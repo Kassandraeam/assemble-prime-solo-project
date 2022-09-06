@@ -20,6 +20,7 @@ import LandingPage from '../LandingPage/LandingPage';
 import LoginPage from '../LoginPage/LoginPage';
 import RegisterPage from '../RegisterPage/RegisterPage';
 import Calendar from '../Calendar/Calendar';
+import Friends from '../Friends/Friends';
 
 import './App.css';
 
@@ -79,7 +80,7 @@ function App() {
             exact 
             Path ='/friends'
           >
-            
+            <Friends/>
           </ProtectedRoute>
 
           <Route
