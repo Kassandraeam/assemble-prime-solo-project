@@ -1,3 +1,4 @@
+const { query } = require('express');
 const express = require('express');
 const {
   rejectUnauthenticated,
@@ -46,5 +47,17 @@ router.post('/logout', (req, res) => {
   req.logout();
   res.sendStatus(200);
 });
+
+router.post('/calendar', (req, res) => {
+  const queryText = `INSERT INTO "user" (timeinUTC)
+  VALUES ($1);
+  `
+  pool.query(queryText, req.body.hour)
+  .then(() => res.sendStatus(201))
+  .catch((err) => {
+    console.log('fail on post');
+    res.sendStatus(500);
+  })
+})
 
 module.exports = router;

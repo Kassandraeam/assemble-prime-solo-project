@@ -21,8 +21,9 @@ const Grid = ({
   };
 
   return (
+    <>
+    <h1 className="weekdays">M T W Th F Sa Su</h1>
     <main>
-      <h1>Grid</h1>
 
       {rows.map((row, index) => (
         <ul className="row" key={index}>
@@ -56,6 +57,7 @@ const Grid = ({
 
       {/* <button onClick={handleGridSize}>Change Grid</button> */}
     </main>
+    </>
   );
 };
 
