@@ -54,7 +54,7 @@ router.post('/', (req, res) => {
   const queryValue = [req.body]
   const queryText = 
   `UPDATE "user" 
-  SET "timeinUTC"=($1);
+  SET "timezone"=($1);
   `
   pool.query(queryText, queryValue)
   .then(result => {
