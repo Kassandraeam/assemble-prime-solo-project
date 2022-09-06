@@ -75,6 +75,13 @@ function App() {
             <InfoPage />
           </ProtectedRoute>
 
+          <ProtectedRoute
+            exact 
+            Path ='/friends'
+          >
+            
+          </ProtectedRoute>
+
           <Route
             exact
             path="/login"

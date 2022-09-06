@@ -3,10 +3,24 @@ import { useSelector } from 'react-redux';
 import "./styles.css";
 import { useHistory } from 'react-router-dom';
 import Grid from '../Grid/Grid';
+import "./Calendar.css";
+import { useDispatch } from 'react-redux';
 const { DateTime } = require("luxon");
+import LogOutButton from '../LogOutButton/LogOutButton';
+
 
 
 function Calendar() {
+
+    const history = useHistory();
+    // const dispatch = useDispatch();
+
+    // useEffect(() => {
+    //     dispatch({
+    //         type: 'POST_TIME_IN_UTC',
+    //         payload: now
+    //     })
+    // }, [])
 
     const user = useSelector((store) => store.user);
     let [timezone, setTimezone] = useState('UTC+0');
@@ -15,18 +29,18 @@ function Calendar() {
     console.log('now', now);
 
     const captureTimeZone = (event) => {
-        console.log('captured')
+
         setTimezone(event.target.value)
     }
 
-    const convertToUTC5 = DateTime.now().setZone(timezone);
-    console.log('Convert to UTC+2 ', convertToUTC5);
+    const convertToUTC = DateTime.now().setZone(timezone);
+    console.log('Convert to UTC ', convertToUTC);
 
 
     const utcNow = DateTime.utc(); //returns User's date in UTC.
-    console.log('utc now', utcNow)
+    // console.log('utc now', utcNow)
 
-    const history = useHistory();
+    // const history = useHistory();
 
     const gridBase = {
         cells: 7,
@@ -47,8 +61,11 @@ function Calendar() {
 
     return (
         <>
-        
-            <p>Calendar Homepage</p>
+            <button className='navLink' onClick={() => history.push('/user')}>Profile</button>
+            <button className='navLink' onClick={() => history.push('/friends')}>Friends</button>
+            <LogOutButton className="navLink" />
+
+            <p id='calendarHomepage'>Calendar Homepage</p>
             <p>Select a timezone to convert to</p>
             <select name="selectList" id="selectList" onChange={captureTimeZone}>
 
@@ -86,9 +103,11 @@ function Calendar() {
 
             </select>
             <h2>Welcome, {user.username}!</h2>
-            <p>My Time: {now.hour}:{now.minute}</p>
-            <p>My Time in UTC: {utcNow.hour}:{utcNow.minute}</p>
-            <p>What time is it in timezone {timezone}? {convertToUTC5.hour}:{convertToUTC5.minute}</p>
+            <h2>My Time: {now.hour}:{now.minute}</h2>
+            {/* store my current time into db. */}
+            <h2>My Time in UTC: {utcNow.hour}:{utcNow.minute}</h2>
+            <h2>What time is it in timezone {timezone}? {convertToUTC.hour}:{convertToUTC.minute}</h2>
+
 
 
             <div className="app">

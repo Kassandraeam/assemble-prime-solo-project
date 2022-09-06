@@ -5,6 +5,7 @@ import { useHistory } from 'react-router-dom';
 function LoginPage() {
   const history = useHistory();
 
+  
   return (
     <div>
       <LoginForm />
@@ -14,10 +15,10 @@ function LoginPage() {
           type="button"
           className="btn btn_asLink"
           onClick={() => {
-            history.push('/registration');
+            history.push('/home');
           }}
         >
-          Register
+          Back
         </button>
       </center>
     </div>
