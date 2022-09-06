@@ -5,11 +5,11 @@ function* offSetZoneName() {
     yield takeEvery('POST_TIME_IN_UTC', postUTCTime);
 }
 
-function* postUTCTime(action){
-    // console.log(event);
+function* postUTCTime(action) {
+    console.log(action.payload)
     try {
-    console.log(action)
-    yield axios.post('/api/user', action.payload);
+        console.log(action.payload)
+        yield axios.post('/api/user', action.payload);
     } catch {
         console.log(action.payload)
         console.log('error in postUTCTime')
