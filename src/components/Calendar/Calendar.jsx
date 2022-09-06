@@ -27,20 +27,20 @@ function Calendar() {
     let [timezone, setTimezone] = useState('UTC+0');
 
     const now = DateTime.now(); //Current time, need hour and minute.
-    console.log('now', now);
+    // console.log('now', now);
 
     const captureTimeZone = (event) => {
         setTimezone(event.target.value)
     }
 
     const convertToUTC = DateTime.now().setZone(timezone);
-    console.log('Convert to UTC ', convertToUTC);
+    // console.log('Convert to UTC ', convertToUTC);
 
     let specifyZone = DateTime.now();
-    console.log('specifyZone', specifyZone);
+    // console.log('specifyZone', specifyZone);
 
     let zone = specifyZone.zoneName;
-    console.log('zone', zone);
+    // console.log('zone', zone);
 
 
     const utcNow = DateTime.utc(); //returns User's date in UTC.
@@ -48,7 +48,7 @@ function Calendar() {
 
     // const history = useHistory();
 
-    console.log(now.toString());
+    // console.log(now.toString());
 
     /*
     ! HERE !
@@ -59,7 +59,7 @@ function Calendar() {
     let keepOffsetZoneName = keepOffset.zoneName;
     console.log('keepOffsetZoneName: ',keepOffsetZoneName)
 
-    console.log('now.zoneName',now.zoneName);
+    // console.log('now.zoneName',now.zoneName);
 
     const gridBase = {
         cells: 7,
