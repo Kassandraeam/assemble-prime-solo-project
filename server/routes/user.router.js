@@ -48,16 +48,22 @@ router.post('/logout', (req, res) => {
   res.sendStatus(200);
 });
 
-router.post('/calendar', (req, res) => {
-  const queryText = `INSERT INTO "user" (timeinUTC)
-  VALUES ($1);
+
+router.post('/', (req, res) => {
+  // POST route code here
+  const queryValue = [req.body]
+  const queryText = 
+  `UPDATE "user" 
+  SET "timeinUTC"=($1);
   `
-  pool.query(queryText, req.body.hour)
-  .then(() => res.sendStatus(201))
-  .catch((err) => {
-    console.log('fail on post');
+  pool.query(queryText, queryValue)
+  .then(result => {
+    res.sendStatus(201);
+  })
+  .catch(err => {
     res.sendStatus(500);
   })
-})
+});
+
 
 module.exports = router;

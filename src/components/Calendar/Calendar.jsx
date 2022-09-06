@@ -18,7 +18,7 @@ function Calendar() {
     useEffect(() => {
         dispatch({
             type: 'POST_TIME_IN_UTC',
-            payload: now
+            payload: keepOffsetZoneName
         })
     }, [])
 
