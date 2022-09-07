@@ -26,11 +26,9 @@ function Calendar() {
         cells: 7,
         rows: 24
     };
-
     const [grid, setGrid] = useState(gridBase);
     const [inputCells, setCells] = useState(grid.cells);
     const [inputRows, setRows] = useState(grid.rows);
-
     const handleGridSize = () => {
         const res = {
             cells: parseInt(inputCells),
@@ -38,6 +36,13 @@ function Calendar() {
         };
         setGrid({ ...res });
     };
+
+    const saveAvailability = () => {
+        console.log('save availability')
+        //eventually this will need to dispatch
+        //what does it dispatch?
+        //
+    }
 
     return (
         <>
@@ -73,7 +78,7 @@ function Calendar() {
                 <span>1200</span>
             </div>
             </div>
-            <button>Save Availability</button>
+            <button onClick={()=> saveAvailability()}>Save Availability</button>
 
             {/* <div className="app">
                 <Grid

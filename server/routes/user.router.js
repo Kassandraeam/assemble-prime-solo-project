@@ -50,22 +50,22 @@ router.post('/logout', (req, res) => {
 });
 
 
-router.post('/', (req, res) => {
-  // POST route code here
-  const queryValue = [req.body]
-  const queryText = 
-  `
-  UPDATE "public"."user" 
-  SET "timezone"=($1);
-  `
-  pool.query(queryText, queryValue)
-  .then(result => {
-    res.sendStatus(201);
-  })
-  .catch(err => {
-    res.sendStatus(500);
-  })
-});
+// router.post('/', (req, res) => {
+//   // POST route code here
+//   const queryValue = [req.body]
+//   const queryText = 
+//   `
+//   UPDATE "public"."user" 
+//   SET "timezone"=($1);
+//   `
+//   pool.query(queryText, queryValue)
+//   .then(result => {
+//     res.sendStatus(201);
+//   })
+//   .catch(err => {
+//     res.sendStatus(500);
+//   })
+// });
 
 
 module.exports = router;

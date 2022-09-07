@@ -1,4 +1,5 @@
 import { all } from 'redux-saga/effects';
+import availabilitySaga from './availability.saga';
 import loginSaga from './login.saga';
 import offSetZoneName from './offSetZoneName.saga';
 import registrationSaga from './registration.saga';
@@ -16,6 +17,7 @@ export default function* rootSaga() {
     loginSaga(), // login saga is now registered
     registrationSaga(),
     userSaga(),
+    availabilitySaga()
     // offSetZoneName()
   ]);
 }
