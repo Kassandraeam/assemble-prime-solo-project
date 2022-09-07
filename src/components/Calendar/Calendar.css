@@ -4,3 +4,17 @@
     border: 3px solid rgb(0, 0, 0);
     padding: 10px;
 }
+
+#day_monday{
+    margin: auto;
+    width: 50%;
+    border: 3px solid rgb(0, 0, 0);
+    padding: 10px;
+}
+
+.monday_boxes{
+    margin: auto;
+    width: 50%;
+    border: 3px solid rgb(0, 0, 0);
+    padding: 10px;
+}

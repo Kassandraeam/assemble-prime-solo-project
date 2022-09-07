@@ -23,6 +23,7 @@ import Calendar from '../Calendar/Calendar';
 import Friends from '../Friends/Friends';
 
 import './App.css';
+import FindADate from '../FindADate/FindADate';
 
 function App() {
   const dispatch = useDispatch();
@@ -60,6 +61,14 @@ function App() {
             path="/user"
           >
             <UserPage />
+          </ProtectedRoute>
+
+
+          <ProtectedRoute
+          exact
+          path="/date"
+          >
+            <FindADate/>
           </ProtectedRoute>
 
           <ProtectedRoute

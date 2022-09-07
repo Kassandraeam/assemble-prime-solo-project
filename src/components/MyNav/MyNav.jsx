@@ -6,9 +6,7 @@ function MyNav() {
 
 
   const history = useHistory();
-
   const user = useSelector((store) => store.user);
-
   const store = useSelector((store) => store);
   const [heading, setHeading] = useState('Functional Component');
 
@@ -18,7 +16,6 @@ function MyNav() {
           <>
         
         <button onClick={()=> history.goBack()}>Move me back one page</button>
-
             {/* <LogOutButton className="navLink" /> */}
           </>
         )}

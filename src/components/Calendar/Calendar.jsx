@@ -45,14 +45,37 @@ function Calendar() {
             <button className='navLink' onClick={() => history.push('/user')}>Profile</button>
             <button className='navLink' onClick={() => history.push('/friends')}>Friends</button>
             <LogOutButton className="navLink" />
+            <button className='navLink' onClick={() => history.push('/date')}>Find a date!</button>
 
             <p id='calendarHomepage'>Calendar Homepage</p>
             <h2>Welcome, {user.username}!</h2>
 
+            <h1 id='day_monday'>Monday(id 1)</h1>
+            <div className='monday_boxes'>
+            <div>
+                <input type="checkbox" id="monday" name="monday" />
+                <span>0800</span>
+            </div>
+            <div>
+                <input type="checkbox" id="monday" name="monday" />
+                <span>0900</span>
+            </div>
+            <div>
+                <input type="checkbox" id="monday" name="monday" />
+                <span>1000</span>
+            </div>
+            <div>
+                <input type="checkbox" id="monday" name="monday" />
+                <span>1100</span>
+            </div>
+            <div>
+                <input type="checkbox" id="monday" name="monday" />
+                <span>1200</span>
+            </div>
+            </div>
+            <button>Save Availability</button>
 
-
-
-            <div className="app">
+            {/* <div className="app">
                 <Grid
                     grid={grid}
                     handleGridSize={handleGridSize}
@@ -61,7 +84,7 @@ function Calendar() {
                     setCells={setCells}
                     setRows={setRows}
                 />
-            </div>
+            </div> */}
         </>
     )
 }
