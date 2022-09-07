@@ -1,11 +1,17 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+const { DateTime } = require("luxon");
 
 function RegisterForm() {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const errors = useSelector((store) => store.errors);
   const dispatch = useDispatch();
+
+  const now = DateTime.now(); //Current time, need hour and minute.
+  let yourTimeZone = now.toString();
+  let keepOffset = DateTime.fromISO(yourTimeZone, { setZone: true });
+  let timezone = keepOffset.zoneName;
 
   const registerUser = (event) => {
     event.preventDefault();
@@ -15,6 +21,7 @@ function RegisterForm() {
       payload: {
         username: username,
         password: password,
+        timezone: timezone
       },
     });
   }; // end registerUser
