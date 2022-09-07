@@ -1,7 +1,8 @@
-const availabilityReducer = (state = '', action) => {
+const availabilityReducer = (state = [], action) => {
     switch (action.type) {
       case 'CALL_TO_REDUCER':
-        return action.payload;
+        return action.payload
+    
       case 'UNSET_USER':
         return {};
       default:

@@ -2,14 +2,17 @@ import React, { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import "./styles.css";
 import { useHistory } from 'react-router-dom';
-import Grid from '../Grid/Grid';
 import "./Calendar.css";
 import { useDispatch } from 'react-redux';
-const { DateTime } = require("luxon");
 import LogOutButton from '../LogOutButton/LogOutButton';
-
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
+import TestComponent from '../TestComponent/TestComponent';
+import MyNav from '../MyNav/MyNav';
 
 function Calendar() {
+
+    
 
     const history = useHistory();
     const dispatch = useDispatch();
@@ -46,39 +49,14 @@ function Calendar() {
 
     return (
         <>
-
-            <button className='navLink' onClick={() => history.push('/user')}>Profile</button>
-            <button className='navLink' onClick={() => history.push('/friends')}>Friends</button>
-            <LogOutButton className="navLink" />
-            <button className='navLink' onClick={() => history.push('/date')}>Find a date!</button>
-
+            <MyNav/>
             <p id='calendarHomepage'>Calendar Homepage</p>
             <h2>Welcome, {user.username}!</h2>
+            <TestComponent />
 
-            <h1 id='day_monday'>Monday(id 1)</h1>
-            <div className='monday_boxes'>
-            <div>
-                <input type="checkbox" id="monday" name="monday" />
-                <span>0800</span>
-            </div>
-            <div>
-                <input type="checkbox" id="monday" name="monday" />
-                <span>0900</span>
-            </div>
-            <div>
-                <input type="checkbox" id="monday" name="monday" />
-                <span>1000</span>
-            </div>
-            <div>
-                <input type="checkbox" id="monday" name="monday" />
-                <span>1100</span>
-            </div>
-            <div>
-                <input type="checkbox" id="monday" name="monday" />
-                <span>1200</span>
-            </div>
-            </div>
-            <button onClick={()=> saveAvailability()}>Save Availability</button>
+            <button onClick={() => saveAvailability()}>Save Availability</button>
+
+
 
             {/* <div className="app">
                 <Grid
@@ -95,3 +73,4 @@ function Calendar() {
 }
 
 export default Calendar;
+

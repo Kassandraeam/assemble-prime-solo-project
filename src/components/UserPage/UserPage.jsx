@@ -18,8 +18,8 @@ function UserPage() {
     })
   }, []);
 
-
-console.log(availability);
+  console.log('USER:',user);
+  console.log('AVAILABILITY', availability)
 
   return (
     <div className="container">
@@ -28,7 +28,9 @@ console.log(availability);
       <p>Your ID is: {user.id}</p>
       <p>Your UTC zone is: {user.timezone}</p>
       <LogOutButton className="btn" />
-      <p>{availability}</p>
+      {/* <p>User_ID: {availability[3].user_id}</p> */}
+
+
     </div>
   );
 }
