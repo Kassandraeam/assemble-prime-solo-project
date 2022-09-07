@@ -8,7 +8,7 @@ const router = express.Router();
  * GET route template
  */
  router.get('/', (req, res) => {
-    const query = `SELECT * FROM availability`;
+    const query = `SELECT * FROM availability;`;
     pool.query(query)
       .then(result => {
         res.send(result.rows);

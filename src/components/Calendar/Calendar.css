@@ -1,20 +1,32 @@
-#calendarHomepage{
+#calendarHomepage {
     margin: auto;
     width: 50%;
     border: 3px solid rgb(0, 0, 0);
     padding: 10px;
 }
 
-#day_monday{
+#day_monday {
     margin: auto;
     width: 50%;
     border: 3px solid rgb(0, 0, 0);
     padding: 10px;
 }
 
-.monday_boxes{
+.monday_boxes {
     margin: auto;
     width: 50%;
     border: 3px solid rgb(0, 0, 0);
     padding: 10px;
 }
+
+.calendar {
+    margin: auto;
+    width: 50%;
+    border: 3px solid rgb(0, 0, 0);
+    padding: 10px;
+}
+
+/* 
+. = classes
+# = ids
+*/

@@ -6,6 +6,11 @@ import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 import { useDispatch } from 'react-redux';
 
+import AccountCircleRoundedIcon from '@mui/icons-material/AccountCircleRounded';
+import GroupRoundedIcon from '@mui/icons-material/GroupRounded';
+import CalendarTodayRoundedIcon from '@mui/icons-material/CalendarTodayRounded';
+import ExitToAppRoundedIcon from '@mui/icons-material/ExitToAppRounded';
+
 function MyNav() {
 
   const dispatch = useDispatch();
@@ -32,9 +37,9 @@ function MyNav() {
           {/* <LogOutButton className="navLink" /> */}
         </>
       )}
-
       <div>
         <Button
+        variant="contained"
           id="basic-button"
           aria-controls={open ? 'basic-menu' : undefined}
           aria-haspopup="true"
@@ -52,14 +57,12 @@ function MyNav() {
             'aria-labelledby': 'basic-button',
           }}
         >
-          {/* <MenuItem onClick={handleClose}>Profile</MenuItem>
-                    <MenuItem onClick={handleClose}>My account</MenuItem>
-                    <MenuItem onClick={handleClose}>Logout</MenuItem> */}
-          <MenuItem className='navLink' onClick={() => history.push('/user')}>Profile</MenuItem>
-          <MenuItem className='navLink' onClick={() => history.push('/friends')}>Friends</MenuItem>
-          <MenuItem className='navLink' onClick={() => history.push('/calendar')}>Calendar</MenuItem>
+
+          <MenuItem color="secondary"className='navLink' onClick={() => history.push('/user')}><AccountCircleRoundedIcon color="primary"/>Profile</MenuItem>
+          <MenuItem className='navLink' onClick={() => history.push('/friends')}> <GroupRoundedIcon color="primary"/>Friends</MenuItem>
+          <MenuItem className='navLink' onClick={() => history.push('/calendar')}><CalendarTodayRoundedIcon color="primary"/>Calendar</MenuItem>
           {/* <LogOutButton className="navLink" /> */}
-          <MenuItem onClick={() => dispatch({ type: 'LOGOUT' })}>LOG OUT</MenuItem>
+          <MenuItem onClick={() => dispatch({ type: 'LOGOUT' })}><ExitToAppRoundedIcon color="primary"/>LOG OUT</MenuItem>
         </Menu>
       </div>
 
