@@ -8,6 +8,7 @@ function Luxon() {
     const now = DateTime.now(); //Current time, need hour and minute.
     console.log('now:',now);
     const yourTimeInUTC = DateTime.utc()//Current time in UTC
+    // Instead of DateTime, I need it to be any time I input. I input 0500, it needs to come out as 1000.
     console.log('yourtimeInUTC',yourTimeInUTC)
     let yourTimeZone = now.toString();
     console.log('yourTimeInUTCtoString',yourTimeInUTC)
@@ -20,14 +21,13 @@ function Luxon() {
     // console.log(now);
     // console.log(timezone);
     // console.log(yourTimeInUTC)
-    // const test = DateTime.local(2022, 3, 12, 5, { zone: "utc" })
     // So if I put 0700 in there, it should spit out 1300.
-    const test = DateTime.local({ zone: "utc" })//this converts whatever comes before the first curly to UTC. So right now, it's just taking the current time.
+    // const test = DateTime.local({ zone: "utc" })//this converts whatever comes before the first curly to UTC. So right now, it's just taking the current time.
     // So if I say I'm free on Monday at 0700, it should be converted to equal 1300 UTC
     // convert 0700 using my timezone, to equal 1300.
     // console.log('test', test);
     //year //Month // day // hour // minute 
-    const testTwo = DateTime.local(2022, 9, 7, 22, 32, { zone: "utc" })
+
 
     // console.log('TEST TWO!!!!!', testTwo)
     let [changeTimeZone, setTimezone] = useState('UTC+0');
@@ -70,8 +70,25 @@ function Luxon() {
     console.log('dateTime', dateTime);
     
      /* If I give it a time of 0500, it needs to return 1000. */
-     const maybe = DateTime.local(5,0, { zone: "utc" })
-     console.log('MAYBE', maybe);
+     /* local takes the offset on my computer.*/
+     /* Maybe I make inputs for the Year, Month, Day, Hour, minute:0*/
+
+     //RIGHT HERE>
+     let year = 2022;
+     let month = 9;
+     let day = 8;
+     let hour = 5;
+     let minute = 0;
+     const maybe = DateTime.local(year, month, day, hour, minute).toUTC();
+     console.log('MAYBE SHOULD SAY 0500', maybe);
+
+    //  DateTime.now().toUTC();
+     
+    
+     console.log(DateTime.local())
+     console.log(DateTime.utc())
+
+
     return (
         <>
             <h1>Luxon Component</h1>
