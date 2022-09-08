@@ -13,10 +13,16 @@ function Luxon() {
     console.log(now);
     console.log(timezone);
     console.log(yourTimeInUTC)
+    // const test = DateTime.local(2022, 3, 12, 5, { zone: "utc" })
+    // So if I put 0700 in there, it should spit out 1300.
+    const test = DateTime.local({ zone: "utc" })//this converts whatever comes before the first curly to UTC. So right now, it's just taking the current time.
+    // So if I say I'm free on Monday at 0700, it should be converted to equal 1300 UTC
+    // convert 0700 using my timezone, to equal 1300.
+    console.log('test', test);
+                                //year //Month // day // hour // minute 
+    const testTwo = DateTime.local(2022, 9, 7, 22, 32, { zone: "utc" })
 
-
-    // 
-
+    console.log('TEST TWO!!!!!',testTwo)
     let [changeTimeZone, setTimezone] = useState('UTC+0');
     const captureTimeZone = (event) => {
         setTimezone(event.target.value)
