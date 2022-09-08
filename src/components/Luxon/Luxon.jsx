@@ -15,6 +15,8 @@ function Luxon() {
     console.log('KeepOffSet',keepOffset)
     let timezone = keepOffset.zoneName;
     console.log('timezone',timezone)
+
+    console.log(typeof(now.hour))
     // console.log(now);
     // console.log(timezone);
     // console.log(yourTimeInUTC)
@@ -33,6 +35,11 @@ function Luxon() {
         setTimezone(event.target.value)
     }
     const convertToUTC = DateTime.now().setZone(changeTimeZone);
+    // constant = the time now, set to the timezone chosen.
+    const help = DateTime.now(); // I need to change the system zone to the zone I choose. That system zone wait no.
+    //as long as it's the system zone it should convert it to utc. All I need to do is change the time that's going into it.
+    console.log('HELP', help)
+
     // console.log('Convert to UTC ', convertToUTC);
 
     const utc = DateTime.utc() // whatever is appended to utc, gets turned to utc. This gives an object. This is also taking my time zone into consideration.
@@ -40,28 +47,31 @@ function Luxon() {
     console.log('utc.toString()',utc.toString())
 
 
-    //getting somewhere here.
-    // DateTime.fromISO("2016-05-25");
-    // console.log('datetime from iso',DateTime.fromISO("09:24:15"))
-    // let inputTime = DateTime.fromISO("10:30")
-    // console.log('inputTime', inputTime)
-    // 
-    // 
-    // 
-    // let dateTime = DateTime.local();
-    // console.log("Configured defaultZoneName", dateTime.toISO());
+    // getting somewhere here.
+    DateTime.fromISO("2016-05-25");
+    console.log('datetime from iso',DateTime.fromISO("09:24:15"))
+    let inputTime = DateTime.fromISO("10:30")
+    console.log('inputTime', inputTime)
+    
+    
+    
+    let dateTime = DateTime.local();
+    console.log("Configured defaultZoneName", dateTime.toISO());
 
-    // dateTime = dateTime.set({
-    //     hour: 4
-    // });
+    dateTime = dateTime.set({
+        hour: 4
+    });
 
 
-    // console.log("format", dateTime.toFormat("LLL dd, yyyy, h:mm a"));
-    // console.log("preset", dateTime.toLocaleString(DateTime.DATETIME_MED));
-    // console.log("UTC plz", DateTime.utc(dateTime.toLocaleString(DateTime.DATETIME_MED)));
+    console.log("format", dateTime.toFormat("LLL dd, yyyy, h:mm a"));
+    console.log("preset", dateTime.toLocaleString(DateTime.DATETIME_MED));
+    console.log("UTC plz", DateTime.utc(dateTime.toLocaleString(DateTime.DATETIME_MED)));
 
-    // console.log('dateTime', dateTime);
-
+    console.log('dateTime', dateTime);
+    
+     /* If I give it a time of 0500, it needs to return 1000. */
+     const maybe = DateTime.local(5,0, { zone: "utc" })
+     console.log('MAYBE', maybe);
     return (
         <>
             <h1>Luxon Component</h1>
@@ -98,12 +108,21 @@ function Luxon() {
                 <option value="UTC+11">UTC+11:00</option>
             </select>
             <p>The time in this  timezone, {changeTimeZone}, is {convertToUTC.hour}:{convertToUTC.minute}</p>
+            <p>Problem:
+                UTC-5,
+                Input: 5:00AM
+            </p>
+            <p>
+                Expected Output: 10:00AM
+            </p>
             {/* I need to give a time
                 and then it needs to convert what that time would be
                 using my time zone.
                 so if I give it 0700
                 I need to convert that to UTC.
             */}
+
+            {/* If I give it a time of 0500, it needs to return 1000. */}
         </>
     )
 }
