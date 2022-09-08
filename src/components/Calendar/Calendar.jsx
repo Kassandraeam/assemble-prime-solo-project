@@ -44,6 +44,7 @@ function Calendar() {
         console.log('clicked');
         console.log(day);
         console.log(time);
+        console.log(typeof(time));
     }
 
     const handleDay = (event) => {
@@ -56,13 +57,6 @@ function Calendar() {
 
     return (
         <>
-  
-            {/* <input 
-            value = {day}
-            placeholder='Days: Monday-Sunday'
-            onChange={(event) => setDay(event.target.value)}
-            /> */}
-
 
             <p id='calendarHomepage'>Calendar Homepage</p>
             <h2>Welcome, {user.username}!</h2>
@@ -97,18 +91,18 @@ function Calendar() {
                         value={time}
                         label="Time"
                         onChange={handleTime}>
-                        <MenuItem value='1'>1:00AM</MenuItem>
-                        <MenuItem value='2'>2:00AM</MenuItem>
-                        <MenuItem value='3'>3:00AM</MenuItem>
-                        <MenuItem value='4'>4:00AM</MenuItem>
-                        <MenuItem value='5'>5:00AM</MenuItem>
-                        <MenuItem value='6'>6:00AM</MenuItem>
-                        <MenuItem value='7'>7:00AM</MenuItem>
-                        <MenuItem value='8'>8:00AM</MenuItem>
-                        <MenuItem value='9'>9:00AM</MenuItem>
-                        <MenuItem value='10'>10:00AM</MenuItem>
-                        <MenuItem value='11'>11:00AM</MenuItem>
-                        <MenuItem value='12'>12:00PM</MenuItem>
+                        <MenuItem value='01:00'>1:00AM</MenuItem>
+                        <MenuItem value='02:00'>2:00AM</MenuItem>
+                        <MenuItem value='03:00'>3:00AM</MenuItem>
+                        <MenuItem value='04:00'>4:00AM</MenuItem>
+                        <MenuItem value='05:00'>5:00AM</MenuItem>
+                        <MenuItem value='06:00'>6:00AM</MenuItem>
+                        <MenuItem value='07:00'>7:00AM</MenuItem>
+                        <MenuItem value='08:00'>8:00AM</MenuItem>
+                        <MenuItem value='09:00'>9:00AM</MenuItem>
+                        <MenuItem value='10:00'>10:00AM</MenuItem>
+                        <MenuItem value='11:00'>11:00AM</MenuItem>
+                        <MenuItem value='12:00'>12:00PM</MenuItem>
                     </Select>
                 </FormControl>
             </Box>
