@@ -11,7 +11,6 @@ function Friends() {
 
   return (
     <div>
-        <MyNav/>
       <h2>{heading}</h2>
     </div>
   );

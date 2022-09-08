@@ -21,7 +21,7 @@ import LoginPage from '../LoginPage/LoginPage';
 import RegisterPage from '../RegisterPage/RegisterPage';
 import Calendar from '../Calendar/Calendar';
 import Friends from '../Friends/Friends';
-
+import MyNav from '../MyNav/MyNav';
 import './App.css';
 import FindADate from '../FindADate/FindADate';
 
@@ -37,7 +37,7 @@ function App() {
   return (
     <Router>
       <div>
-        <Nav />
+        <MyNav />
         <Switch>
           {/* Visiting localhost:3000 will redirect to localhost:3000/home */}
           <Redirect exact from="/" to="/home" />

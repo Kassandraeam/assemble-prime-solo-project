@@ -33,21 +33,6 @@ function Calendar() {
 
     const user = useSelector((store) => store.user);
 
-    const gridBase = {
-        cells: 7,
-        rows: 24
-    };
-    const [grid, setGrid] = useState(gridBase);
-    const [inputCells, setCells] = useState(grid.cells);
-    const [inputRows, setRows] = useState(grid.rows);
-    const handleGridSize = () => {
-        const res = {
-            cells: parseInt(inputCells),
-            rows: parseInt(inputRows)
-        };
-        setGrid({ ...res });
-    };
-
     const saveAvailability = () => {
         console.log('save availability')
         //eventually this will need to dispatch
@@ -61,14 +46,17 @@ function Calendar() {
         console.log(time);
     }
 
-    const handleChange = (event) => {
+    const handleDay = (event) => {
         setDay(event.target.value);
-      };
+    };
+
+    const handleTime = (event) => {
+        setTime(event.target.value);
+    }
 
     return (
         <>
-            <MyNav />
-
+  
             {/* <input 
             value = {day}
             placeholder='Days: Monday-Sunday'
@@ -76,7 +64,11 @@ function Calendar() {
             /> */}
 
 
-            <Box sx={{ minWidth: 120 }}>
+            <p id='calendarHomepage'>Calendar Homepage</p>
+            <h2>Welcome, {user.username}!</h2>
+            <TestComponent />
+
+           <span> <Box sx={{ maxWidth: 180 }} display="flex" justifyContent="space-between">
                 <FormControl fullWidth>
                     <InputLabel id="demo-simple-select-label">Day</InputLabel>
                     <Select
@@ -84,8 +76,7 @@ function Calendar() {
                         id="demo-simple-select"
                         value={day}
                         label="Day"
-                        onChange={handleChange}
-                    >
+                        onChange={handleDay}>
                         <MenuItem value='1'>Monday</MenuItem>
                         <MenuItem value='2'>Tuesday</MenuItem>
                         <MenuItem value='3'>Wednesday</MenuItem>
@@ -97,19 +88,34 @@ function Calendar() {
                 </FormControl>
             </Box>
 
-            <input
-                value={time}
-                placeholder='Time: 100-2400'
-                onChange={(event) => setTime(event.target.value)}
-            />
-
+            <Box sx={{ maxWidth: 180 }} display="flex" justifyContent="space-between">
+                <FormControl fullWidth>
+                    <InputLabel id="demo-simple-select-label">Time</InputLabel>
+                    <Select
+                        labelId="demo-simple-select-label"
+                        id="demo-simple-select"
+                        value={time}
+                        label="Time"
+                        onChange={handleTime}>
+                        <MenuItem value='1'>1:00AM</MenuItem>
+                        <MenuItem value='2'>2:00AM</MenuItem>
+                        <MenuItem value='3'>3:00AM</MenuItem>
+                        <MenuItem value='4'>4:00AM</MenuItem>
+                        <MenuItem value='5'>5:00AM</MenuItem>
+                        <MenuItem value='6'>6:00AM</MenuItem>
+                        <MenuItem value='7'>7:00AM</MenuItem>
+                        <MenuItem value='8'>8:00AM</MenuItem>
+                        <MenuItem value='9'>9:00AM</MenuItem>
+                        <MenuItem value='10'>10:00AM</MenuItem>
+                        <MenuItem value='11'>11:00AM</MenuItem>
+                        <MenuItem value='12'>12:00PM</MenuItem>
+                    </Select>
+                </FormControl>
+            </Box>
+            </span>
             <Button variant="contained" onClick={daysAndTime}>Submit</Button>
 
-            <p id='calendarHomepage'>Calendar Homepage</p>
-            <h2>Welcome, {user.username}!</h2>
-            <TestComponent />
-            <button onClick={() => saveAvailability()}>Save Availability</button>
-
+            {/* <MyNav /> */}
 
 
             {/* <div className="app">
