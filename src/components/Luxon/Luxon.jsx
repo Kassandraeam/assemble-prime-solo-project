@@ -1,11 +1,27 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 const { DateTime } = require("luxon");
 import "./Luxon.css"
+import { useDispatch } from 'react-redux';
 
 
 
 function Luxon() {
+
+    const user = useSelector((store) => store.user);
+    console.log(user);
+    const dispatch = useDispatch();
+
+    useEffect(() => {
+        dispatch({
+          type: 'POST_AVAILABILITY',
+          payload: {
+            user: user.id,
+            weekday: weekday,
+            time: time
+          }
+        })
+      }, []);
 
     const now = DateTime.now(); //Current time, need hour and minute.
     // console.log('now:', now);
@@ -89,7 +105,8 @@ function Luxon() {
     // I think I'll have to use the ... operator.
 
     //  DateTime.now().toUTC();
-    let [time, setTime] = useState(0);
+    let [weekday, setWeekday] = useState(1)
+    let [time, setTime] = useState(1);
 
     const captureTime = (event) => {
         console.log('captured');
@@ -148,7 +165,7 @@ function Luxon() {
                 <option value="UTC+11">UTC+11:00</option>
             </select> */}
             <div id="Monday_Column">
-                <h1 className='Monday'>Monday</h1>
+                <h1 className='Monday' value='1'>Monday</h1>
                 <div>
                     <input type="checkbox" name="days_id" value='1' onChange={captureTime} />
                     <label htmlFor="0100">1:00AM</label>
@@ -178,23 +195,32 @@ function Luxon() {
             {/* If I give it a time of 0500, it needs to return 1000. */}
 
             {/* maybe like, if box is checked, take those, and on click of a button, dispatch whichever are clicked. */}
+            {/* I think I need to post the information I get here to my availability table. 
+            I need to send over:
+            user_id
+            days_id
+            time_id
 
+
+            */}
         </>
     )
 }
 
 export default Luxon;
+//INSERT INTO "availability"("user_id", "days_id", "time_id") VALUES(1, 1, 1) RETURNING "id", "user_id", "days_id", "time_id";
 
 /*
-router.post('/register', (req, res, next) => {
-  const username = req.body.username;
-  const password = encryptLib.encryptPassword(req.body.password);
-  const timezone = req.body.timezone;
 
-  const queryText = `INSERT INTO "user" (username, password, timezone)
+router.post('/', (req, res) => {
+  const username = req.body.id
+  const day = req.body.day
+  const time = req.body.time
+
+  const queryText = `INSERT INTO "availability" (username, day, time)
     VALUES ($1, $2, $3) RETURNING id`;
   pool
-    .query(queryText, [username, password, timezone])
+    .query(queryText, [user, password, timezone])
     .then(() => res.sendStatus(201))
     .catch((err) => {
       console.log('User registration failed: ', err);

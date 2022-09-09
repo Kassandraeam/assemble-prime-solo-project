@@ -23,8 +23,22 @@ const router = express.Router();
 /**
  * POST route template
  */
-router.post('/', (req, res) => {
-  // POST route code here
-});
+// router.post('/', (req, res) => {
+//   // POST route code here
+// });
 
+router.post('/', (req, res) => {
+  const user = req.body.user //these are all hard coded
+  const day = req.body.day
+  const time = req.body.time
+
+  const queryText = `INSERT INTO "availability" ("user_id", "days_id", "time_id") VALUES($1, $2, $3) RETURNING "id", "user_id", "days_id", "time_id";`;
+  pool
+    .query(queryText, [user, day, time])
+    .then(() => res.sendStatus(201))
+    .catch((err) => {
+      console.log('POST FAILED : ', err);
+      res.sendStatus(500);
+    });
+});
 module.exports = router;
