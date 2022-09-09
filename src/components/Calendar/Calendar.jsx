@@ -13,6 +13,7 @@ import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
+import Luxon from '../Luxon/Luxon';
 
 
 function Calendar() {
@@ -60,9 +61,9 @@ function Calendar() {
 
             <p id='calendarHomepage'>Calendar Homepage</p>
             <h2>Welcome, {user.username}!</h2>
-            <TestComponent />
+            {/* <TestComponent /> */}
 
-           <span> <Box sx={{ maxWidth: 180 }} display="flex" justifyContent="space-between">
+           {/* <span> <Box sx={{ maxWidth: 180 }} display="flex" justifyContent="space-between">
                 <FormControl fullWidth>
                     <InputLabel id="demo-simple-select-label">Day</InputLabel>
                     <Select
@@ -106,9 +107,12 @@ function Calendar() {
                     </Select>
                 </FormControl>
             </Box>
-            </span>
-            <Button variant="contained" onClick={daysAndTime}>Submit</Button>
+            </span> */}
+            {/* <Button variant="contained" onClick={daysAndTime}>Submit</Button> */}
 
+            <Luxon/>
+
+            
             {/* <MyNav /> */}
 
 
