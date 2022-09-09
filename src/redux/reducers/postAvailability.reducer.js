@@ -1,8 +1,8 @@
-const postAvailabilityReducer = (state = {}, action) => {
+const postAvailabilityReducer = (state = [], action) => {
     switch (action.type) {
       case 'POST_TO_AVAILABILITY_REDUCER':
         console.log('action.payload in reducer',action.payload)
-        return {...state, time: action.payload.availability.time}
+        return [...state, action.payload]
       default:
         return state;
     }

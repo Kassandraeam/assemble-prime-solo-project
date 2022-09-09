@@ -63,11 +63,10 @@ function Luxon() {
             type: 'POST_AVAILABILITY',
             payload: {
                 user: user.id,
-                // weekday: availability.weekday,
-                // time: availability.time,
+                weekday: availability.weekday,
+                time: availability.time,
                 // user: user.id,
                 availability,
-                weekday: availabilityReducer.weekday
             }
         })
     }
@@ -90,7 +89,7 @@ function Luxon() {
 6: saturday
 7: sunday
 */}
-{/* 
+
             <div>
                 <input type="checkbox" name="1" value="1" onClick={(event) => setAvailability({ ...availability, weekday: event.target.value, time: event.target.name })} />
                 <label >1:00AM</label>
@@ -99,10 +98,10 @@ function Luxon() {
             <div>
                 <input type="checkbox" name="1" value="2" onClick={(event) => setAvailability({ ...availability, weekday: event.target.value, time: event.target.name })} />
                 <label >2:00AM</label>
-            </div> */}
+            </div>
 
             {/* TEST */}
-            <div>
+            {/* <div>
                 <input type="checkbox" name="1" value="1" onClick={(event) => setAvailability({ ...availability, time: event.target.name })} />
                 <label >1:00AM</label>
             </div>
@@ -110,7 +109,7 @@ function Luxon() {
             <div>
                 <input type="checkbox" name="1" value="2" onClick={(event) => setAvailability({ ...availability, time: event.target.name })} />
                 <label >2:00AM</label>
-            </div>
+            </div> */}
             {/* 
             <div>
                 <input type="checkbox" name="1" value="2" onChange={captureAvailability} />
