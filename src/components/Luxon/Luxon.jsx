@@ -42,7 +42,9 @@ function Luxon() {
     let [weekday, setWeekday] = useState()
     let [time, setTime] = useState();
 
-    const [availability, setAvailability] = useState({ user: user.id, weekday: 0, time: 0 })
+    // const [availability, setAvailability] = useState({ user: user.id, weekday: 0, time: 0 })
+    const [availability, setAvailability] = useState([])
+
 
     const captureAvailability = (event) => {
         console.log('captured');
@@ -62,9 +64,9 @@ function Luxon() {
         dispatch({
             type: 'POST_AVAILABILITY',
             payload: {
-                user: user.id,
-                weekday: availability.weekday,
-                time: availability.time,
+                // user: user.id,
+                // weekday: availability.weekday,
+                // time: availability.time,
                 // user: user.id,
                 availability,
             }
@@ -91,12 +93,12 @@ function Luxon() {
 */}
 
             <div>
-                <input type="checkbox" name="1" value="1" onClick={(event) => setAvailability({ ...availability, weekday: event.target.value, time: event.target.name })} />
+                <input type="checkbox" name="1" value="1" onClick={(event) => setAvailability([ ...availability, {weekday: event.target.value, time: event.target.name} ])}/>
                 <label >1:00AM</label>
             </div>
 
             <div>
-                <input type="checkbox" name="1" value="2" onClick={(event) => setAvailability({ ...availability, weekday: event.target.value, time: event.target.name })} />
+                <input type="checkbox" name="1" value="2" onClick={(event) => setAvailability([ ...availability, {weekday: event.target.value, time: event.target.name} ])} />
                 <label >2:00AM</label>
             </div>
 
