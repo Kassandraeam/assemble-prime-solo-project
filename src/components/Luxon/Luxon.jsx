@@ -13,15 +13,15 @@ function Luxon() {
     const dispatch = useDispatch();
 
     useEffect(() => {
-        dispatch({
-          type: 'POST_AVAILABILITY',
-          payload: {
-            user: user.id,
-            weekday: weekday,
-            time: time
-          }
-        })
-      }, []);
+        // dispatch({
+        //   type: 'POST_AVAILABILITY',
+        //   payload: {
+        //     user: user.id,
+        //     weekday: weekday,
+        //     time: time
+        //   }
+        // })
+    }, []);
 
     const now = DateTime.now(); //Current time, need hour and minute.
     // console.log('now:', now);
@@ -164,7 +164,7 @@ function Luxon() {
                 <option value="UTC+10">UTC+10:00</option>
                 <option value="UTC+11">UTC+11:00</option>
             </select> */}
-            <div id="Monday_Column">
+            {/* <div id="Monday_Column">
                 <h1 className='Monday' value='1'>Monday</h1>
                 <div>
                     <input type="checkbox" name="days_id" value='1' onChange={captureTime} />
@@ -180,7 +180,12 @@ function Luxon() {
                     <input type="checkbox" name="days_id" value='3' onChange={captureTime} />
                     <label htmlFor="0300">3:00AM</label>
                 </div>
-            </div> {/* End Monday Column */}
+            </div> End Monday Column */}
+
+            <div>
+                <input type="checkbox" name="days_id" value={[weekday.day, time.time]} onChange={captureTime} />
+                <label htmlFor="0100">1:00AM</label>
+            </div>
 
             <p>The time in this  timezone, {changeTimeZone}, is {convertToUTC.hour}:{convertToUTC.minute}</p>
             <p>My Time: {hour}:{minute}</p>

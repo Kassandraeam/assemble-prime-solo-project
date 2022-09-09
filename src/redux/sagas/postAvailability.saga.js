@@ -10,6 +10,7 @@ function* postAvailability(action) {
         yield axios.post('/api/availability', action.payload)
         yield put({
             type: 'POST_TO_AVAILABILITY_REDUCER',
+            payload: action.payload
         })
     }
     catch (error) {

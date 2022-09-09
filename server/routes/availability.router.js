@@ -28,10 +28,10 @@ const router = express.Router();
 // });
 
 router.post('/', (req, res) => {
-  const user = req.body.user //these are all hard coded
-  const day = req.body.day
-  const time = req.body.time
-
+  const user = req.body.user    //these are all hard coded
+  const day = req.body.weekday      //these are all hard coded
+  const time = req.body.time    //these are all hard coded
+  console.log('req.body is:', req.body);
   const queryText = `INSERT INTO "availability" ("user_id", "days_id", "time_id") VALUES($1, $2, $3) RETURNING "id", "user_id", "days_id", "time_id";`;
   pool
     .query(queryText, [user, day, time])
