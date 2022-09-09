@@ -10,8 +10,6 @@ function Luxon() {
 
     const dispatch = useDispatch();
     const user = useSelector((store) => store.user);
-    const availabilityReducer = useSelector((store) => store.postAvailabilityReducer)
-    console.log('availability reducer: ',availabilityReducer);
     // console.log(user);
 
     useEffect(() => {
@@ -71,9 +69,9 @@ function Luxon() {
                 availability,
             }
         })
-    }
 
-    console.log('availability reducer: ',availabilityReducer);
+
+    }
 
     return (
         <>
@@ -82,23 +80,13 @@ function Luxon() {
             <h1>Your UTC Time Zone: {timezone}</h1>
             <h1>Your time converted to UTC: {yourTimeInUTC.hour}:{yourTimeInUTC.minute}:{yourTimeInUTC.second}</h1>
 
-            {/* names:
-1: monday
-2: tuesday
-3: wednesday
-4: thursday
-5: friday
-6: saturday
-7: sunday
-*/}
-
             <div>
-                <input type="checkbox" name="1" value="1" onClick={(event) => setAvailability([ ...availability, {weekday: event.target.value, time: event.target.name} ])}/>
+                <input type="checkbox" name="1" value="1" onClick={(event) => setAvailability([...availability, { user: user.id, weekday: event.target.name, time: event.target.value }])} />
                 <label >1:00AM</label>
             </div>
 
             <div>
-                <input type="checkbox" name="1" value="2" onClick={(event) => setAvailability([ ...availability, {weekday: event.target.value, time: event.target.name} ])} />
+                <input type="checkbox" name="1" value="2" onClick={(event) => setAvailability([...availability, { user: user.id, weekday: event.target.name, time: event.target.value }])} />
                 <label >2:00AM</label>
             </div>
 
@@ -128,6 +116,13 @@ function Luxon() {
             {/* <p>The time in this  timezone, {changeTimeZone}, is {convertToUTC.hour}:{convertToUTC.minute}</p>
             <p>My Time: {hour}:{minute}</p>
             <p>UTC time: {maybe.hour}:{maybe.minute}</p> */}
+            {/* {availability.map(available => (
+                <div>
+                    <p>{available.user}</p>
+                    <p>{available.weekday}</p>
+                    <p>{available.time}</p>
+                </div>
+            ))} */}
         </>
     )
 }

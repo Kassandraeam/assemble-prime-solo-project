@@ -7,20 +7,15 @@ function* postAvailabilitySaga() {
 
 function* postAvailability(action) {
     try {
-        // console.log('Action.payload in the postAvailability Saga',action.payload)
-        // console.log('Action.payload.availability.user:',action.payload.availability.user); 
-        // console.log('Action.payload.availability.weekday:',action.payload.availability.weekday); 
-        // console.log('Action.payload.availability.time:',action.payload.availability.time); 
-
-
         yield axios.post('/api/availability', action.payload)
+        console.log('action.payload in my postAvail saga',action.payload)
         yield put({
             type: 'POST_TO_AVAILABILITY_REDUCER',
             payload: action.payload
         })
     }
     catch (error) {
-        console.log(action.payload)
+        console.log('error in postAvailSaga',action.payload)
         console.error('error in postAvailabilitySaga')
     }
 };
