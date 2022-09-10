@@ -68,41 +68,27 @@ function Luxon() {
         console.log('convert',convertedTime)
         console.log('HOUR IN 24 HOUR SYSTEM:',hour);
 
-        // make another let 
-
-
-        let testObject = {
-            name: 'kas',
-            age: 28,
-            ethnicity: 'asian',
-            status: 'tired'
-        }
-
-        console.log(testObject);
-        
-        testObject.name = 'kassandra',
-        console.log(testObject)
-        console.log(availability);
-        // if hour = 0, make it 24.
-        // so the convertedTime is 0 when hour is 1900/7:00pm.
-
-        // if convertedTime.hour = 0, set it equal to 24, so that it sends the id of 24 instead.
 
         if (convertedTime.hour === 0) {
-            console.log('THE UTC HOUR IS 0, YOU HAVE REACHED THE IF STATEMENT')
-            console.log('HOUR IN 24 HOUR SYSTEM:', hour);
-            console.log('HOUR CONVERTED TO UTC:',convertedTime.hour);
-            console.log('UTC HOUR:',convertedTime.hour);
+            console.log('this turns it to 24');
+            setAvailability([
+                ...availability,
+                {
+                    user: user.id,
+                    weekday: event.target.name,
+                    time: 24
+                }
+            ])
+        } else {
+            setAvailability([
+                ...availability,
+                {
+                    user: user.id,
+                    weekday: event.target.name,
+                    time: event.target.value
+                }
+            ])
         }
-
-        setAvailability([
-            ...availability,
-            {
-                user: user.id,
-                weekday: event.target.name,
-                time: convertedTime.hour
-            }
-        ])
     }
 
     return (
