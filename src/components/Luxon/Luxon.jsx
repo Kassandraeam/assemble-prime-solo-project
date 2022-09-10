@@ -80,49 +80,115 @@ function Luxon() {
             <h1>Your UTC Time Zone: {timezone}</h1>
             <h1>Your time converted to UTC: {yourTimeInUTC.hour}:{yourTimeInUTC.minute}:{yourTimeInUTC.second}</h1>
 
+{/* 
+Monday 
+name = 1 (monday)
+value = 1 (0100)
+*/}
+<div className='monday'>
+    <p id='mondayTitle'>Monday</p>
             <div>
                 <input type="checkbox" name="1" value="1" onClick={(event) => setAvailability([...availability, { user: user.id, weekday: event.target.name, time: event.target.value }])} />
-                <label >1:00AM</label>
+                <label>1:00AM</label>
             </div>
 
             <div>
                 <input type="checkbox" name="1" value="2" onClick={(event) => setAvailability([...availability, { user: user.id, weekday: event.target.name, time: event.target.value }])} />
-                <label >2:00AM</label>
-            </div>
-
-            {/* TEST */}
-            {/* <div>
-                <input type="checkbox" name="1" value="1" onClick={(event) => setAvailability({ ...availability, time: event.target.name })} />
-                <label >1:00AM</label>
+                <label>2:00AM</label>
             </div>
 
             <div>
-                <input type="checkbox" name="1" value="2" onClick={(event) => setAvailability({ ...availability, time: event.target.name })} />
-                <label >2:00AM</label>
-            </div> */}
-            {/* 
-            <div>
-                <input type="checkbox" name="1" value="2" onChange={captureAvailability} />
-                <label >2:00AM</label>
+                <input type="checkbox" name="1" value="3" onClick={(event) => setAvailability([...availability, { user: user.id, weekday: event.target.name, time: event.target.value }])} />
+                <label>3:00AM</label>
             </div>
-
             <div>
-                <input type="checkbox" name="1" value="3" onChange={captureAvailability} />
-                <label >3:00AM</label>
-            </div> */}
+                <input type="checkbox" name="1" value="4" onClick={(event) => setAvailability([...availability, { user: user.id, weekday: event.target.name, time: event.target.value }])} />
+                <label>4:00AM</label>
+            </div>
+            <div>
+                <input type="checkbox" name="1" value="5" onClick={(event) => setAvailability([...availability, { user: user.id, weekday: event.target.name, time: event.target.value }])} />
+                <label>5:00AM</label>
+            </div>
+            <div>
+                <input type="checkbox" name="1" value="6" onClick={(event) => setAvailability([...availability, { user: user.id, weekday: event.target.name, time: event.target.value }])} />
+                <label>6:00AM</label>
+            </div>
+            <div>
+                <input type="checkbox" name="1" value="7" onClick={(event) => setAvailability([...availability, { user: user.id, weekday: event.target.name, time: event.target.value }])} />
+                <label>7:00AM</label>
+            </div>
+            <div>
+                <input type="checkbox" name="1" value="8" onClick={(event) => setAvailability([...availability, { user: user.id, weekday: event.target.name, time: event.target.value }])} />
+                <label>8:00AM</label>
+            </div>
+            <div>
+                <input type="checkbox" name="1" value="9" onClick={(event) => setAvailability([...availability, { user: user.id, weekday: event.target.name, time: event.target.value }])} />
+                <label>9:00AM</label>
+            </div>
+            <div>
+                <input type="checkbox" name="1" value="10" onClick={(event) => setAvailability([...availability, { user: user.id, weekday: event.target.name, time: event.target.value }])} />
+                <label>10:00AM</label>
+            </div>
+            <div>
+                <input type="checkbox" name="1" value="11" onClick={(event) => setAvailability([...availability, { user: user.id, weekday: event.target.name, time: event.target.value }])} />
+                <label>11:00AM</label>
+            </div>
+            <div>
+                <input type="checkbox" name="1" value="12" onClick={(event) => setAvailability([...availability, { user: user.id, weekday: event.target.name, time: event.target.value }])} />
+                <label>12:00PM</label>
+            </div>
+{/* Afternoon */}
+            <div>
+                <input type="checkbox" name="1" value="13" onClick={(event) => setAvailability([...availability, { user: user.id, weekday: event.target.name, time: event.target.value }])} />
+                <label>1:00PM</label>
+            </div>
+            <div>
+                <input type="checkbox" name="1" value="14" onClick={(event) => setAvailability([...availability, { user: user.id, weekday: event.target.name, time: event.target.value }])} />
+                <label>2:00PM</label>
+            </div>
+            <div>
+                <input type="checkbox" name="1" value="15" onClick={(event) => setAvailability([...availability, { user: user.id, weekday: event.target.name, time: event.target.value }])} />
+                <label>3:00PM</label>
+            </div>
+            <div>
+                <input type="checkbox" name="1" value="16" onClick={(event) => setAvailability([...availability, { user: user.id, weekday: event.target.name, time: event.target.value }])} />
+                <label>4:00PM</label>
+            </div>
+            <div>
+                <input type="checkbox" name="1" value="17" onClick={(event) => setAvailability([...availability, { user: user.id, weekday: event.target.name, time: event.target.value }])} />
+                <label>5:00PM</label>
+            </div>
+            <div>
+                <input type="checkbox" name="1" value="18" onClick={(event) => setAvailability([...availability, { user: user.id, weekday: event.target.name, time: event.target.value }])} />
+                <label>6:00PM</label>
+            </div>
+            <div>
+                <input type="checkbox" name="1" value="19" onClick={(event) => setAvailability([...availability, { user: user.id, weekday: event.target.name, time: event.target.value }])} />
+                <label>7:00PM</label>
+            </div>
+            <div>
+                <input type="checkbox" name="1" value="20" onClick={(event) => setAvailability([...availability, { user: user.id, weekday: event.target.name, time: event.target.value }])} />
+                <label>8:00PM</label>
+            </div>
+            <div>
+                <input type="checkbox" name="1" value="21" onClick={(event) => setAvailability([...availability, { user: user.id, weekday: event.target.name, time: event.target.value }])} />
+                <label>9:00PM</label>
+            </div>
+            <div>
+                <input type="checkbox" name="1" value="22" onClick={(event) => setAvailability([...availability, { user: user.id, weekday: event.target.name, time: event.target.value }])} />
+                <label>10:00PM</label>
+            </div>
+            <div>
+                <input type="checkbox" name="1" value="23" onClick={(event) => setAvailability([...availability, { user: user.id, weekday: event.target.name, time: event.target.value }])} />
+                <label>11:00PM</label>
+            </div>
+            <div>
+                <input type="checkbox" name="1" value="24" onClick={(event) => setAvailability([...availability, { user: user.id, weekday: event.target.name, time: event.target.value }])} />
+                <label>12:00AM</label>
+            </div>
 
             <button onClick={() => handleSubmit()}>Submit Availability</button>
-
-            {/* <p>The time in this  timezone, {changeTimeZone}, is {convertToUTC.hour}:{convertToUTC.minute}</p>
-            <p>My Time: {hour}:{minute}</p>
-            <p>UTC time: {maybe.hour}:{maybe.minute}</p> */}
-            {/* {availability.map(available => (
-                <div>
-                    <p>{available.user}</p>
-                    <p>{available.weekday}</p>
-                    <p>{available.time}</p>
-                </div>
-            ))} */}
+</div>
         </>
     )
 }
