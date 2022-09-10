@@ -66,7 +66,7 @@ function Luxon() {
                 // weekday: availability.weekday,
                 // time: availability.time,
                 // user: user.id,
-                availability,
+                availability
             }
         })
 

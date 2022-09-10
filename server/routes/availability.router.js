@@ -20,31 +20,6 @@ router.get('/', (req, res) => {
 
 });
 
-/**
- * POST route template
- */
-// router.post('/', (req, res) => {
-//   // POST route code here
-// });
-
-// router.post('/', (req, res) => {
-//   // const user = req.body.user    //these are all hard coded
-//   // const day = req.body.weekday      //these are all hard coded
-//   // const time = req.body.time    //these are all hard coded
-//   const user = req.body.availability[0].user    //these are all hard coded
-//   const day = req.body.availability[0].weekday      //these are all hard coded
-//   const time = req.body.availability[0].time    //these are all hard coded
-//   console.log('req.body is:', req.body);
-//   const queryText = `INSERT INTO "availability" ("user_id", "days_id", "time_id") VALUES($1, $2, $3) RETURNING "id", "user_id", "days_id", "time_id";`;
-//   pool
-//     .query(queryText, [user, day, time])
-//     .then(() => res.sendStatus(201))
-//     .catch((err) => {
-//       console.log('POST FAILED : ', err);
-//       res.sendStatus(500);
-//     });
-// });
-// module.exports = router;
 
 router.post('/', async (req, res) => {
   const client = await pool.connect();
