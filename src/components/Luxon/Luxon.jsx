@@ -5,45 +5,45 @@ import "./Luxon.css"
 import { useDispatch } from 'react-redux';
 import CalendarGrid from '../CalendarGrid/CalendarGrid';
 
-
-
 function Luxon() {
 
     const dispatch = useDispatch();
     const user = useSelector((store) => store.user);
-    // console.log(user);
 
     useEffect(() => {
 
     }, []);
 
-    // let year = 2022;
-    // let month = 9;
-    // let day = 8;
-    // let hour = 5;
-    // let minute = 0;
-    // const maybe = DateTime.local(year, month, day, hour, minute).toUTC();
-
-    // console.log('maybe', maybe)
-    // console.log(maybe.hour);
 
     const now = DateTime.now();
-    const yourTimeInUTC = DateTime.utc()//Current time in UTC
+    // console.log('now', now) // Object that shows local time, 1300. Hour: 13.
+
+    const yourTimeInUTC = DateTime.utc()
+    // console.log('yourtimeinUTC',yourTimeInUTC) // Shows time in UTC, 13 => 18
+
     let yourTimeZone = now.toString();
+    // console.log('yourTimeZone', yourTimeZone); //Shows 2022 0911 1300 -5:00
+
     let keepOffset = DateTime.fromISO(yourTimeZone, { setZone: true });
+    // console.log('keepOffset', keepOffset) // object that gives year, month, day, hour (local) and minute
+
     let timezone = keepOffset.zoneName;
+    // console.log('timezone', timezone) // gives UTC-5
 
-    let [changeTimeZone, setTimezone] = useState('UTC+0');
-    const captureTimeZone = (event) => {
-        setTimezone(event.target.value)
-    }
-    // const convertToUTC = DateTime.now().setZone(changeTimeZone);
+    let testSettingZone = DateTime.fromISO(yourTimeZone, { zone: 'UTC+2' }) //I am saying the zone is UTC+2, so now we're saying we're in Paris:UTC+2.
+    // ? Now I need that in UTC, so I want a return of 22 for hour.
+    console.log('testSettingZone', testSettingZone) // this is correctly returning hour: 0.
+    console.log('testSettingZone.hour:', testSettingZone.hour, 'which is the time in Paris RN')
+    // * I now want to see it converted to UTC. So I want to see 22.
 
-    // ! RIGHT HERE
-    let [weekday, setWeekday] = useState()
-    let [time, setTime] = useState();
+    let local = DateTime.local();
+    console.log('local', local)
+    // let rezoned = local.setZone("UTC+2");
+    console.log('rezoned', rezoned)
 
-    // const [availability, setAvailability] = useState({ user: user.id, weekday: 0, time: 0 })
+    let inputZone = '';
+    let rezoned = local.setZone(inputZone);
+
     const [availability, setAvailability] = useState([])
 
 
@@ -59,15 +59,15 @@ function Luxon() {
     }
 
     const handleClick = (event) => {
+        // eventually have a conditional, if box has been checked, run through this, and then send it.
+        let year = 2022; let month = 9; let day = 8; let minute = 0;
 
-        let year = 2022;
-        let month = 9;
-        let day = 8;
         let hour = parseInt(event.target.value);
-        let minute = 0;
+        // ? So if I live in Paris, and I choose 7am, 0500 should be sent to the DB.
         const convertedTime = DateTime.local(year, month, day, hour, minute).toUTC();
-        console.log('convert',convertedTime)
-        console.log('HOUR IN 24 HOUR SYSTEM:',hour);
+
+        console.log('convert', convertedTime)
+        console.log('HOUR IN 24 HOUR SYSTEM:', hour);
 
 
 
@@ -97,7 +97,7 @@ function Luxon() {
         <>
             <h1>Luxon Component</h1>
             <h1>Current Time: {now.hour}:{now.minute}:{now.second}</h1>
-            <h1>Your UTC Time Zone: {timezone}</h1>
+            <h1>Your Current UTC Time Zone: {timezone}</h1>
             <h1>Your time converted to UTC: {yourTimeInUTC.hour}:{yourTimeInUTC.minute}:{yourTimeInUTC.second}</h1>
 
             <div className='monday'>
@@ -204,7 +204,8 @@ function Luxon() {
 
                 <button onClick={() => handleSubmit()}>Submit Availability</button>
             </div>
-            <CalendarGrid/>
+
+            <CalendarGrid />
         </>
     )
 }
