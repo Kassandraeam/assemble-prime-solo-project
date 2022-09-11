@@ -5,16 +5,18 @@ function* availabilitySaga() {
     yield takeLatest('FETCH_AVAILABILITY', fetchAvailability)
 }
 
-function* fetchAvailability() {
+function* fetchAvailability(action) {
     try {
-        const response = yield axios.get('/api/availability')
+        console.log('action.payload in availablily saga:', action.payload)
+        const response = yield axios.get(`/api/availability/${action.payload}`)
 
         yield put({
-            type: 'CALL_TO_REDUCER',
+            type: 'AVAILABLE_TIMES_FOR_USER',
             payload: response.data
         })
     }
     catch (error) {
+        console.log('action.payload in availablily saga:', action.payload)
         console.error('error in fetchAvailability Saga')
     }
 };

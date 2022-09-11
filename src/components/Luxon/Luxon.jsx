@@ -3,6 +3,7 @@ import { useSelector } from 'react-redux';
 const { DateTime } = require("luxon");
 import "./Luxon.css"
 import { useDispatch } from 'react-redux';
+import CalendarGrid from '../CalendarGrid/CalendarGrid';
 
 
 
@@ -69,6 +70,7 @@ function Luxon() {
         console.log('HOUR IN 24 HOUR SYSTEM:',hour);
 
 
+
         if (convertedTime.hour === 0) {
             console.log('this turns it to 24');
             setAvailability([
@@ -85,7 +87,7 @@ function Luxon() {
                 {
                     user: user.id,
                     weekday: event.target.name,
-                    time: event.target.value
+                    time: convertedTime.hour
                 }
             ])
         }
@@ -202,6 +204,7 @@ function Luxon() {
 
                 <button onClick={() => handleSubmit()}>Submit Availability</button>
             </div>
+            <CalendarGrid/>
         </>
     )
 }

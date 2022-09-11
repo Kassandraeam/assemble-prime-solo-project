@@ -21,6 +21,44 @@ router.get('/', (req, res) => {
 });
 
 
+router.get('/:id', (req, res) => {
+  console.log('req.params.id: ', req.params.id)
+
+  const queryText = `SELECT "availability".id, "user".id AS "user_id","availability".days_id, "availability".time_id
+  FROM "availability"
+  JOIN "user" ON "user".id = "availability".user_id
+  WHERE "user_id" = $1
+  GROUP BY "availability".id, "user".id, "availability".days_id, "availability".time_id
+  ;
+  `;
+  pool.query(queryText, [req.params.id])
+    .then(result => {
+      console.log('result in pool query', result)
+      res.send(result.rows);
+    })
+    .catch(err => {
+      console.log('ERROR: Get all available times', err);
+      res.sendStatus(500)
+    })
+
+});
+
+
+// router.get('/:id', (req, res) => {
+//   console.log(req.params.id)
+//   const query = `SELECT * FROM movies WHERE id = $1;`;
+//   pool.query(query, [req.params.id])
+//     .then(result => {
+//       res.send(result.rows);
+//     })
+//     .catch(err => {
+//       console.log('ERROR: Get detail movies', err);
+//       res.sendStatus(500)
+//     })
+// });
+
+
+
 router.post('/', async (req, res) => {
   const client = await pool.connect();
 
@@ -33,7 +71,7 @@ router.post('/', async (req, res) => {
       const queryText = `INSERT INTO "availability" ("user_id", "days_id", "time_id") VALUES($1, $2, $3) RETURNING "id", "user_id", "days_id", "time_id";`;
       const reqBody = [available.user, available.weekday, available.time];
       return client.query(queryText, reqBody);
-  }));
+    }));
 
     await client.query('COMMIT')
     res.sendStatus(201);
@@ -47,4 +85,38 @@ router.post('/', async (req, res) => {
   }
 });
 
+router.delete('/:id', (req, res) => {
+  console.log('DELETE ROUTER');
+  console.log(req.params.id);
+
+  queryText =
+    ` DELETE FROM "availability"
+      WHERE "id" = $1;`;
+  pool.query (queryText, [req.params.id])
+  .then(results => {
+    res.sendStatus(200);
+  })
+  .catch(err => {
+    console.error('err on DELETE ROUTE', err)
+    res.sendStatus(500);
+  })
+})
+
+
+/*
+router.delete('/:id', (req, res) => {
+  console.log(req.params.id)
+  const id = req.params.id
+  queryText = `
+    DELETE FROM "movies_genres"
+    WHERE "movie_id" = $1;`;
+  pool.query(queryText, [id])
+  .then(results => {
+    res.sendStatus(200)
+  }).catch(err => {
+    console.log(err)
+    res.sendStatus(500)
+  })
+})
+*/
 module.exports = router;

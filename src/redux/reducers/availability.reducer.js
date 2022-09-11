@@ -1,6 +1,7 @@
 const availabilityReducer = (state = [], action) => {
     switch (action.type) {
-      case 'CALL_TO_REDUCER':
+      case 'AVAILABLE_TIMES_FOR_USER':
+        console.log('availabilityReducer payload:',action.payload)
         return action.payload
     
       case 'UNSET_USER':
