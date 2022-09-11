@@ -28,8 +28,8 @@ function UserPage() {
     // dispatch this id to the delete request.
     dispatch({
       type: 'DELETE_AVAILABILITY',
-      payload: user.id,
-      id: id
+      payload: user.id, //alex
+      id: id // item number in database
     })
   }
 
