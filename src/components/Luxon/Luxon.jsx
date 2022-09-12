@@ -100,7 +100,6 @@ function Luxon() {
                             onChange={handleChange}
                         >
                             <MenuItem value="">
-                                <em>None</em>
                             </MenuItem>
                             <MenuItem value='UTC+0'>UTC+0</MenuItem>
                             <MenuItem value='UTC+1'>UTC+1</MenuItem>

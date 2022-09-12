@@ -2,6 +2,7 @@ import React from 'react';
 import { useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { useDispatch } from 'react-redux';
+import Button from '@mui/material/Button';
 import Luxon from '../Luxon/Luxon';
 
 
@@ -9,7 +10,7 @@ function UserPage() {
   // this component doesn't do much to start, just renders some user reducer info to the DOM
   const user = useSelector((store) => store.user);
   const availableTimesSpecificToUser = useSelector((store) => store.availabilityReducer)
-  console.log('availableTimesSpecificUser Reducer:',availableTimesSpecificToUser)
+  console.log('availableTimesSpecificUser Reducer:', availableTimesSpecificToUser)
   const dispatch = useDispatch();
 
 
@@ -20,11 +21,11 @@ function UserPage() {
     })
   }, []);
 
-  console.log('Times available to this user:',availableTimesSpecificToUser)
-  
+  console.log('Times available to this user:', availableTimesSpecificToUser)
+
   const handleDelete = (id) => {
-    console.log('THIS IS THE ID OF THE ITEM THAT YOU WANT TO DELETE:',id);
-    console.log('THIS IS THE USER ID IN THE HANDLE DELETE HOPEFULLY',user.id)
+    console.log('THIS IS THE ID OF THE ITEM THAT YOU WANT TO DELETE:', id);
+    console.log('THIS IS THE USER ID IN THE HANDLE DELETE HOPEFULLY', user.id)
     // dispatch this id to the delete request.
     dispatch({
       type: 'DELETE_AVAILABILITY',
@@ -34,19 +35,19 @@ function UserPage() {
   }
 
   return (
-    <div className="container">
-
+    <>
       <h2>Welcome, {user.username}!</h2>
       <p>Your ID is: {user.id}</p>
       <h1>Available Times:</h1>
-
-      {availableTimesSpecificToUser?.map(free => (
-                    <div key={free.id}>
-                        <p>TIME FREE: {free.days_id} AT {free.time_id}</p> 
-                        <button onClick={()=> handleDelete(free.id)}>DELETE</button>
-                    </div>
-                ))}
-    </div>
+      <div className='map'>
+        {availableTimesSpecificToUser.map(free => (
+          <div className='mappp' key={free.id}>
+            <span><p>TIME FREE: {free.days_id} AT {free.time_id}</p>
+              <Button variant="contained" onClick={() => handleDelete(free.id)}>DELETE</Button></span>
+          </div>
+        ))}
+      </div>
+    </>
   );
 }
 
