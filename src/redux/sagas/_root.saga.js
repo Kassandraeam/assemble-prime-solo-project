@@ -6,6 +6,7 @@ import availabilitySaga from './availability.saga';
 import postAvailabilitySaga from './postAvailability.saga';
 import deleteSaga from './Delete.saga';
 import updateSaga from './updateTimezone.saga';
+import fetchAllUsersSaga from './multipleUsers.saga';
 
 // rootSaga is the primary saga.
 // It bundles up all of the other sagas so our project can use them.
@@ -22,6 +23,7 @@ export default function* rootSaga() {
     availabilitySaga(),
     postAvailabilitySaga(),
     deleteSaga(),
-    updateSaga()
+    updateSaga(),
+    fetchAllUsersSaga()
   ]);
 }

@@ -26,6 +26,11 @@ function MyNav() {
   const history = useHistory();
   const user = useSelector((store) => store.user);
 
+  const otherUsers = () => {
+    console.log('otherUsers');
+    history.push('/friends');
+  }
+
   return (
     <>
       <div className='nav'>
@@ -50,7 +55,7 @@ function MyNav() {
         >
 
           <MenuItem color="secondary"className='navLink' onClick={() => history.push('/user')}><AccountCircleRoundedIcon color="primary"/>Profile</MenuItem>
-          <MenuItem className='navLink' onClick={() => history.push('/friends')}> <GroupRoundedIcon color="primary"/>Friends</MenuItem>
+          <MenuItem className='navLink' onClick={otherUsers}> <GroupRoundedIcon color="primary"/>Other Users</MenuItem> 
           <MenuItem className='navLink' onClick={() => history.push('/calendar')}><CalendarTodayRoundedIcon color="primary"/>Calendar</MenuItem>
           {/* <LogOutButton className="navLink" /> */}
           <MenuItem onClick={() => dispatch({ type: 'LOGOUT' })}><ExitToAppRoundedIcon color="primary"/>LOG OUT</MenuItem>

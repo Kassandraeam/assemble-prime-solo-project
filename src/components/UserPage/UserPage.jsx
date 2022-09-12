@@ -39,6 +39,7 @@ function UserPage() {
       <h2>Welcome, {user.username}!</h2>
       <p>Your ID is: {user.id}</p>
       <h1>Available Times:</h1>
+      {/* {JSON.stringify(availableTimesSpecificToUser)} */}
       <div className='map'>
         {availableTimesSpecificToUser.map(free => (
           <div className='mappp' key={free.id}>
