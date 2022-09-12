@@ -26,6 +26,9 @@ and the finally. -->
     - [ ] Allow them to edit it.
     - [ ] Need to go back and make it so that the timezone that is in the DB is what is used to set the timezone.
 
+    when the user registers, their timezone is automatically generated. Allow them to change it. It gets sent over as timezone in the register form.
+    It gets sent over in this format: fixed offset	'UTC+7'	a fixed offset zone
+
 My time: 1700
 Paris:   2400
 UTC:     2200
@@ -34,8 +37,6 @@ therefore, its UTC is UTC+2.
 
 UTC:     2200
 Paris:   2400
-
-
 
     let chosenYear = testSettingZone.year;
     let chosenMonth = testSettingZone.month;

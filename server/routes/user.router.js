@@ -49,6 +49,23 @@ router.post('/logout', (req, res) => {
   res.sendStatus(200);
 });
 
+router.put(`/`, (req, res) => {
+  console.log('REQ.BODY IN THE PUT', req.body)
+  const timezone = req.body.inputTimeZone;
+  const user = req.body.user;
+  const queryText = `
+  UPDATE "user"
+  SET "timezone" = $1
+  WHERE "id" = $2;`
+  pool.query(queryText, [timezone, user])
+  .then (response => {
+    res.sendStatus(200);
+  }).catch(err => {
+    console.log(err);
+    res.sendStatus(500);
+  })
+})
+
 
 
 

@@ -40,7 +40,7 @@ function UserPage() {
       <p>Your ID is: {user.id}</p>
       <h1>Available Times:</h1>
 
-      {availableTimesSpecificToUser.map(free => (
+      {availableTimesSpecificToUser?.map(free => (
                     <div key={free.id}>
                         <p>TIME FREE: {free.days_id} AT {free.time_id}</p> 
                         <button onClick={()=> handleDelete(free.id)}>DELETE</button>
