@@ -23,13 +23,3 @@ function* deleteAvailability(action){
 };
 
 export default deleteSaga;
-
-// function* deleteMovie(action) {
-//     console.log(action.payload)
-//     try{
-//         yield axios.delete(`/api/movie/${action.payload}`)
-//         yield put({type: 'FETCH_MOVIES'})
-//     } catch {
-//         console.log('delete movie error');
-//     }
-// }

@@ -57,6 +57,12 @@ function Friends() {
     })
   }, []);
 //{...stringAvatar('Kent Dodds')}
+
+const handleScheduleClick = (eachUser) => {
+  console.log(eachUser)
+  console.log(`Clicked on`, eachUser);
+  // console.log(`Clicked on ${eachUser.username}`);
+}
   return (
 <>
       {/* {JSON.stringify(allUsers)} */}
@@ -67,7 +73,8 @@ function Friends() {
           <Avatar {...stringAvatar(eachUser.username)}></Avatar>
           <p>USER: {eachUser.username} </p>
           <p>TIMEZONE: {eachUser.timezone}</p>
-          <Button variant="contained">Get {eachUser.username}'s schedule</Button>
+          <Button variant="contained" onClick={()=>handleScheduleClick(eachUser.id, eachUser.username)}>Get {eachUser.username}'s schedule</Button>
+          &nbsp;
           <Button variant="contained">Select</Button>
           </div>
         ))}

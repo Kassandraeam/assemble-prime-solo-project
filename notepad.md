@@ -7,7 +7,7 @@
 </div>
 <div ORDER OF OPERATIONS>
     1. Select users, checkbox perhaps. Hit submit that confirms that?
-    2. GET availability from each user selected. GET that information as an array.
+    2. GET availability from each user selected. GET that information as an array. (HAVE TO CONVERT TO MY TIME.)
     3. Push each array into a big array. like MondayArray = [ [1], [2], [3] ], TuesdayArray = [same thing]
     4. Run logic on each Weekday array.
     5. Push intersecting numbers for each day into a new array corresponding to that day. ex. TimesThatWorkOnMonday([10], [15])...(THIS INFORMATION IS IN UTC)
@@ -17,14 +17,23 @@
                 Kas:  0500, 1000
                 Gab:  0600, 1100
     7. Show that time as a time that works.
+<div DO!>
+1. When I click Gab's Schedule button, it should send me to her page and display her availability in MY time.
+    - Need to GO to a page, steps to do that:
+        - Make a new component and path that goes to /id?
+        - Get Gab's id.
+        - maybe onClick of the schedule, dispatch to a saga that triggers a GET request for THAT specific   user from the AVAILABILITY table and then saves that information to a userSpecificReducer. Then on the new component, map and display the available times of that user.
+        - New protectedroute in App.
+        - Takes me to new component that has a path of "/user/:id
+</div>
 </div>
 
 <div Code: intersection using spread>
     <script>
     const mondayArray = [ [MondayGab], [MondayKas], [MondayBill]]
-    const arr1 = ['Gab'];
-    const arr2 = ['Gab', 'Kas'];
-    const arr3 = ['Gab', 'Kas', 'Bill'];
+    // const arr1 = ['Gab'];
+    // const arr2 = ['Gab', 'Kas'];
+    // const arr3 = ['Gab', 'Kas', 'Bill'];
     const intersection = (arr1, arr2) => {
     const res = [];
     for(let i = 0; i < arr1.length; i++){
@@ -62,6 +71,8 @@
     SQL, get Gab's schedule.
     SQL, get Lex's schedule.
     SQL, get n's schedule.
+
+    this button runs this sql on this id. shoot it to storage. page load or button click.
     <!-- *CONCERN: Reset button that changes timezone to initial value? -->
     - Will probably need to make a local state and then hold that. Right now I tried to make a local state, but set it equal to user.timezone, which is just capturing each change from the DB. I need that initial INITIAL value.
 </div>

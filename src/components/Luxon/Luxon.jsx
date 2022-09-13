@@ -103,8 +103,7 @@ function Luxon() {
                             label="Timezone"
                             onChange={handleChange}
                         >
-                            <MenuItem value='system'>
-                            </MenuItem>
+
                             <MenuItem value='UTC+0'>UTC+0</MenuItem>
                             <MenuItem value='UTC+1'>UTC+1</MenuItem>
                             <MenuItem value='UTC+2'>UTC+2</MenuItem>
