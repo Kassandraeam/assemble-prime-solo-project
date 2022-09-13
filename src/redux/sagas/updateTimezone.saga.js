@@ -1,3 +1,4 @@
+// * PUT * //
 import axios from 'axios';
 import { put, takeLatest } from 'redux-saga/effects';
 
@@ -22,13 +23,3 @@ function* updateTimezone(action){
 };
 
 export default updateSaga;
-
-// function* deleteMovie(action) {
-//     console.log(action.payload)
-//     try{
-//         yield axios.delete(`/api/movie/${action.payload}`)
-//         yield put({type: 'FETCH_MOVIES'})
-//     } catch {
-//         console.log('delete movie error');
-//     }
-// }

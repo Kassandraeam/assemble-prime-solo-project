@@ -20,13 +20,17 @@ function Luxon() {
 
     console.log(user.timezone);
     const userTimeZone = user.timezone;
+    console.log(userTimeZone);
     
     useEffect(() => {
+    setInitialUserTimeZone(user.timezone);
 
     }, []);
 
     const [availability, setAvailability] = useState([])
-    const [inputTimeZone, setInputTimeZone] = useState('');
+    const [inputTimeZone, setInputTimeZone] = useState(userTimeZone);
+    const [initialUserTimeZone, setInitialUserTimeZone] = useState(user.timezone)
+
 
 
     const handleSubmit = () => {
@@ -99,7 +103,7 @@ function Luxon() {
                             label="Timezone"
                             onChange={handleChange}
                         >
-                            <MenuItem value="">
+                            <MenuItem value='system'>
                             </MenuItem>
                             <MenuItem value='UTC+0'>UTC+0</MenuItem>
                             <MenuItem value='UTC+1'>UTC+1</MenuItem>

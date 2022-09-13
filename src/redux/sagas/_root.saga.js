@@ -18,12 +18,12 @@ import fetchAllUsersSaga from './multipleUsers.saga';
 export default function* rootSaga() {
   yield all([
     loginSaga(), // login saga is now registered
-    registrationSaga(),
+    registrationSaga(), 
     userSaga(),
-    availabilitySaga(),
-    postAvailabilitySaga(),
-    deleteSaga(),
-    updateSaga(),
-    fetchAllUsersSaga()
+    availabilitySaga(),       // GETS the times that the logged in User is available.
+    postAvailabilitySaga(),   // POSTS the times that the User is available.
+    deleteSaga(),             // DELETES a time that the User chooses.
+    updateSaga(),             // UPDATES the User's timezone.
+    fetchAllUsersSaga()       // GETS all of the Users that have registered.
   ]);
 }

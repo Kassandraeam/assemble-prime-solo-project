@@ -41,12 +41,16 @@ function UserPage() {
       <h1>Available Times:</h1>
       {/* {JSON.stringify(availableTimesSpecificToUser)} */}
       <div className='map'>
+
+        
         {availableTimesSpecificToUser.map(free => (
           <div className='mappp' key={free.id}>
             <span><p>TIME FREE: {free.days_id} AT {free.time_id}</p>
               <Button variant="contained" onClick={() => handleDelete(free.id)}>DELETE</Button></span>
           </div>
         ))}
+
+        
       </div>
     </>
   );

@@ -1,3 +1,5 @@
+// * POST * //
+
 import axios from 'axios';
 import { put, takeLatest } from 'redux-saga/effects';
 
@@ -16,7 +18,7 @@ function* postAvailability(action) {
     }
     catch (error) {
         console.log('error in postAvailSaga',action.payload)
-        console.error('error in postAvailabilitySaga')
+        console.error('error in postAvailabilitySaga', error)
     }
 };
 

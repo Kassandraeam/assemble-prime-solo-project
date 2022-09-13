@@ -1,3 +1,76 @@
+<div day=09/13/22 1125>
+<div TODO>
+    - [ ] I need to get the logic down today
+    Allow n users to be added to the group that the intersection function will run.
+    1. there are const arrays. these are the users. maybe an array that holds these arrays. [ [user1], [user2], [user3] ... [userN] ]
+    2. then it 'maps' through this big array to give individual arrays.
+</div>
+<div ORDER OF OPERATIONS>
+    1. Select users, checkbox perhaps. Hit submit that confirms that?
+    2. GET availability from each user selected. GET that information as an array.
+    3. Push each array into a big array. like MondayArray = [ [1], [2], [3] ], TuesdayArray = [same thing]
+    4. Run logic on each Weekday array.
+    5. Push intersecting numbers for each day into a new array corresponding to that day. ex. TimesThatWorkOnMonday([10], [15])...(THIS INFORMATION IS IN UTC)
+    6. Convert that into everyone's respective timezone.
+        6a. Example: Converting TimesThatWorkOnMonday[ [10], [15] ](THIS IS IN UTC) for Kas, Gab, Lex:
+                Bill: 0300, 0800
+                Kas:  0500, 1000
+                Gab:  0600, 1100
+    7. Show that time as a time that works.
+</div>
+
+<div Code: intersection using spread>
+    <script>
+    const mondayArray = [ [MondayGab], [MondayKas], [MondayBill]]
+    const arr1 = ['Gab'];
+    const arr2 = ['Gab', 'Kas'];
+    const arr3 = ['Gab', 'Kas', 'Bill'];
+    const intersection = (arr1, arr2) => {
+    const res = [];
+    for(let i = 0; i < arr1.length; i++){
+        if(!arr2.includes(arr1[i])){
+            continue;
+        };
+        res.push(arr1[i]);
+    };
+    return res;
+    };
+    const intersectMany = (...arrs) => {
+    let res = arrs[0].slice();
+    for(let i = 1; i < arrs.length; i++){
+        res = intersection(res, arrs[i]);
+    };
+    return res;
+    };
+    console.log(intersectMany(arr1, arr2, arr3));
+    const bigArray = [ arr1, arr2, arr3 ]
+    console.log('big array without the spread operator:', bigArray)
+    console.log('big array using the spread operator: ',...bigArray)
+    </script>
+</div>
+<div Concern!>
+    <!-- !Concern: HOW TO DETERMINE AVAILABILITY ON DAYS MONDAY THROUGH SUNDAY! -->
+    How do I do this when 
+    Monday = 1;
+    Tuesday = 2;
+    Wednesday = 3;
+    so on so forth.
+    Maybe I could have it so like I run that intersection function for each day. If day_id = 1, run it. So run it 7 times.
+    <!-- !Concern: HOW DO I INPUT N AMOUNT OF SQL QUERIES BASED ON PEOPLE CHOSEN! -->
+    How do I ask SQL to get n number of availabilities? 
+    ex. choose Gab and Alex.
+    SQL, get Gab's schedule.
+    SQL, get Lex's schedule.
+    SQL, get n's schedule.
+    <!-- *CONCERN: Reset button that changes timezone to initial value? -->
+    - Will probably need to make a local state and then hold that. Right now I tried to make a local state, but set it equal to user.timezone, which is just capturing each change from the DB. I need that initial INITIAL value.
+</div>
+</div>
+
+
+
+
+
 <div day=09/12/22 0900>
 <!-- *PLAN OF ATTACK* -->
 ORDER OF OPERATIONS:
@@ -136,7 +209,11 @@ catch (error)
 and the finally. -->
 </div>
 
-<div day=9/11/22 1210>
+
+
+
+
+<div day=09/11/22 1210>
 - [x] Get Delete to work
     - [x] I have the ID of the item I want to send,
     - [x] Now I need to make a DELETE request that says, delete the row in the database with this id.
@@ -163,7 +240,11 @@ Paris:   2400
 ;
 </div>
 
-<div day=9/10/22 1327>
+
+
+
+
+<div day=09/10/22 1327>
 - [x] Current issue: When attempting to add 7:00PM to the database, when it converts to UTC, it has an id of 0. Which is not allowed.
 - [?] Secondary issue: on EACH click of a checkbox, that information gets added to the availability object. Even UNCLICKING it adds it to the object.
     - may not be an issue because the map only ever shows one occurence of it on the DOM.
