@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import MyNav from '../MyNav/MyNav';
 import { useDispatch } from 'react-redux';
+import { useHistory } from 'react-router-dom';
 import './Friends.css'
 import Button from '@mui/material/Button';
 import Avatar from '@mui/material/Avatar';
@@ -12,6 +13,7 @@ function Friends() {
   const store = useSelector((store) => store);
   const allUsers = useSelector((store) => store.multipleUsersReducer)
   console.log('all users:',allUsers)
+  const history = useHistory();
   const [heading, setHeading] = useState('Users');
   const dispatch = useDispatch();
   // console.log('testing how to get things out of the array.', allUsers[0].username)
@@ -61,6 +63,11 @@ function Friends() {
 const handleScheduleClick = (eachUser) => {
   console.log(eachUser)
   console.log(`Clicked on`, eachUser);
+  history.push(`/friends/${eachUser}`)
+  dispatch({
+    type: 'FETCH_SPECIFIC_USER', // go to this saga.
+    id: eachUser // this is the payload, so when I want to access it, it's gonna be action.id
+  })
   // console.log(`Clicked on ${eachUser.username}`);
 }
   return (

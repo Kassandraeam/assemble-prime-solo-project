@@ -19,10 +19,10 @@
     7. Show that time as a time that works.
 <div DO!>
 1. When I click Gab's Schedule button, it should send me to her page and display her availability in MY time.
-    - Need to GO to a page, steps to do that:
-        - Make a new component and path that goes to /id?
-        - Get Gab's id.
-        - maybe onClick of the schedule, dispatch to a saga that triggers a GET request for THAT specific   user from the AVAILABILITY table and then saves that information to a userSpecificReducer. Then on the new component, map and display the available times of that user.
+    X Need to GO to a page, steps to do that:
+        X Make a new component and path that goes to /id?
+        X Get Gab's id.
+        - maybe onClick of the schedule, dispatch to a saga that triggers a GET request for THAT specific user from the AVAILABILITY table and then saves that information to a userSpecificReducer. Then on the new component, map and display the available times of that user.
         - New protectedroute in App.
         - Takes me to new component that has a path of "/user/:id
 </div>
