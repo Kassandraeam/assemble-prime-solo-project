@@ -1,3 +1,19 @@
+<script>
+  router.get('/', (req, res) => {
+  const query = `SELECT * FROM availability;`;
+  pool.query(query)
+    .then(result => {
+      res.send(result.rows);
+    })
+    .catch(err => {
+      console.log('ERROR: Get all available times', err);
+      res.sendStatus(500)
+    })
+
+});
+</script>
+
+
 <div day=09/13/22 1125>
 <div TODO>
     - [ ] I need to get the logic down today
