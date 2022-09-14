@@ -1,19 +1,44 @@
-import React, { useState } from 'react';
-import {useSelector} from 'react-redux';
+import React, { useState, useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { useHistory } from 'react-router-dom';
+import { useParams } from "react-router-dom";
+import Stack from '@mui/material/Stack';
+import Button from '@mui/material/Button';
 
-// Basic functional component structure for React with default state
-// value setup. When making a new component be sure to replace the
-// component name TemplateFunction with the name for the new component.
 function SpecificUserAvailability() {
-  // Using hooks we're creating local state for a "heading" variable with
-  // a default value of 'Functional Component'
-  const store = useSelector((store) => store);
+
+  const history = useHistory();
+  const dispatch = useDispatch();
   const [heading, setHeading] = useState('SpecificUserAvailability');
+  const specificUserReducer = useSelector((store) => store.specificUserReducer);
+  let id = useParams();
+
+
+  useEffect(() => {
+    dispatch({
+      type: 'FETCH_SPECIFIC_USER_AVAILABILITY',
+      payload: id
+    })
+  }, [])
+
+  const handleBack = () => {
+    console.log('go back a page');
+    history.push('/calendar');
+  }
 
   return (
-    <div>
-      <h2>{heading}</h2>
-    </div>
+    <>
+      <div>
+        <h2>{heading}</h2>
+        <p>✨I need to convert specificUser.hour to the current user's timezone.✨</p>
+      </div>
+      {specificUserReducer.map(specificUser => (
+        <div className='map' key={specificUser.id}>
+          <p>{specificUser.username} is free on {specificUser.day} at: {specificUser.hour}</p>
+        </div>
+      ))}
+      <Button variant="contained" onClick={handleBack}>BACK</Button>
+    </>
   );
 }
 

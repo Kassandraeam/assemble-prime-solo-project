@@ -1,17 +1,6 @@
-<script>
-  router.get('/', (req, res) => {
-  const query = `SELECT * FROM availability;`;
-  pool.query(query)
-    .then(result => {
-      res.send(result.rows);
-    })
-    .catch(err => {
-      console.log('ERROR: Get all available times', err);
-      res.sendStatus(500)
-    })
-
-});
-</script>
+<div day=09/14/22 0919>
+TODAY IS LOGIC GET THAT IMPLEMENTED.
+</div>
 
 
 <div day=09/13/22 1125>
@@ -34,13 +23,16 @@
                 Gab:  0600, 1100
     7. Show that time as a time that works.
 <div DO!>
+<script>
 1. When I click Gab's Schedule button, it should send me to her page and display her availability in MY time.
-    X Need to GO to a page, steps to do that:
-        X Make a new component and path that goes to /id?
-        X Get Gab's id.
-        - maybe onClick of the schedule, dispatch to a saga that triggers a GET request for THAT specific user from the AVAILABILITY table and then saves that information to a userSpecificReducer. Then on the new component, map and display the available times of that user.
-        - New protectedroute in App.
-        - Takes me to new component that has a path of "/user/:id
+    //X Need to GO to a page, steps to do that:
+        //X Make a new component and path that goes to /id?
+        //X Get Gab's id.
+        - maybe onClick of the schedule, dispatch to a saga that triggers a GET request for THAT specific user from the AVAILABILITY table and then saves that information to a userSpecificReducer. 
+          Then on the new component, map and display the available times of that user.
+        // - New protectedroute in App.
+        // Takes me to new component that has a path of "/user/:id
+<script>
 </div>
 </div>
 

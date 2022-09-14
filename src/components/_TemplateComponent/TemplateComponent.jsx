@@ -28,6 +28,7 @@ function TemplateFunction(props) {
 
 
     return (
+        <>
         <div>
             <h2>{heading}</h2>
         {/* // TODO: Step 15 - Now that we have that information, we can display it however we want. */ }
@@ -36,7 +37,41 @@ function TemplateFunction(props) {
         <p>{reducer.username}</p>
         <p>{reducer.password}</p>
         </div>
+            // ! Map example
+        {ReducerInventory.map(ReducerItem => (
+          <div className='map' key={ReducerItem.id}>
+            <p>{ReducerItem.columnNameOne}</p>
+            <p>{ReducerItem.columnNameTwo}</p>
+            <p>{ReducerItem.columnNameThree}</p>
+          </div>
+        ))}
+        </>
     );
 }
 
 export default TemplateFunction;
+
+// import React, { useState, useEffect } from 'react';
+// import { useSelector, useDispatch } from 'react-redux';
+// import { useHistory } from 'react-router-dom';
+
+// function SpecificUserAvailability() {
+
+//   const dispatch = useDispatch();
+//   const store = useSelector((store) => store);
+//   const [heading, setHeading] = useState('SpecificUserAvailability');
+
+//   useEffect(() => {
+//     dispatch({
+//         type: 'This_Should_Match_Between_The_Component_And_Saga'
+//     })
+// }, [])
+
+//   return (
+//     <div>
+//       <h2>{heading}</h2>
+//     </div>
+//   );
+// }
+
+// export default SpecificUserAvailability;
