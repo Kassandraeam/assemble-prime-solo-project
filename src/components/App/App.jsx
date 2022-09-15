@@ -23,7 +23,8 @@ import Calendar from '../Calendar/Calendar';
 import Friends from '../Friends/Friends';
 import MyNav from '../MyNav/MyNav';
 import './App.css';
-import FindADate from '../FindADate/FindADate';
+
+import SpecificUserAvailability from '../SpecificUserAvailability/SpecificUserAvailability'
 
 function App() {
   const dispatch = useDispatch();
@@ -66,13 +67,6 @@ function App() {
 
           <ProtectedRoute
           exact
-          path="/date"
-          >
-            <FindADate/>
-          </ProtectedRoute>
-
-          <ProtectedRoute
-          exact
           path="/calendar"
           >
             <Calendar/>
@@ -85,11 +79,12 @@ function App() {
             <Friends/>
           </ProtectedRoute>
 
+
           <ProtectedRoute
           exact
           path="/friends/:id"
           >
-            <Friends/>
+            <SpecificUserAvailability/>
           </ProtectedRoute>
 
           <ProtectedRoute

@@ -7,6 +7,7 @@ import postAvailabilitySaga from './postAvailability.saga';
 import deleteSaga from './Delete.saga';
 import updateSaga from './updateTimezone.saga';
 import fetchAllUsersSaga from './multipleUsers.saga';
+import specificUserAvailabilitySAGA from './SpecificUserAvailability.saga';
 
 // rootSaga is the primary saga.
 // It bundles up all of the other sagas so our project can use them.
@@ -24,6 +25,7 @@ export default function* rootSaga() {
     postAvailabilitySaga(),   // POSTS the times that the User is available.
     deleteSaga(),             // DELETES a time that the User chooses.
     updateSaga(),             // UPDATES the User's timezone.
-    fetchAllUsersSaga()       // GETS all of the Users that have registered.
+    fetchAllUsersSaga(),       // GETS all of the Users that have registered.
+    specificUserAvailabilitySAGA()
   ]);
 }

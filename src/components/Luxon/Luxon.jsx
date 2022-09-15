@@ -92,7 +92,7 @@ function Luxon() {
         }
         return (
             <>
-                <h1>Your time zone: {userTimeZone}</h1>
+                <h1>Your time zone (maybe hide this?): {userTimeZone}</h1>
                 <div>
                     <FormControl sx={{ m: 1, minWidth: 120 }}>
                         <InputLabel id="demo-simple-select-helper-label">Timezone</InputLabel>
@@ -104,9 +104,33 @@ function Luxon() {
                             onChange={handleChange}
                         >
 
-                            <MenuItem value='UTC+0'>UTC+0</MenuItem>
-                            <MenuItem value='UTC+1'>UTC+1</MenuItem>
-                            <MenuItem value='UTC+2'>UTC+2</MenuItem>
+                            <MenuItem value='UTC-12'>GMT-12</MenuItem>
+                            <MenuItem value='UTC-11'>GMT-11</MenuItem>
+                            <MenuItem value='UTC-10'>GMT-10</MenuItem>
+                            <MenuItem value='UTC-9'>GMT-9</MenuItem>
+                            <MenuItem value='UTC-8'>GMT-8</MenuItem>
+                            <MenuItem value='UTC-7'>GMT-7</MenuItem>
+                            <MenuItem value='UTC-6'>GMT-6</MenuItem>
+                            <MenuItem value='UTC-5'>GMT-5</MenuItem>
+                            <MenuItem value='UTC-4'>GMT-4</MenuItem>
+                            <MenuItem value='UTC-3'>GMT-3</MenuItem>
+                            <MenuItem value='UTC-2'>GMT-2</MenuItem>
+                            <MenuItem value='UTC-1'>GMT-1</MenuItem>
+                            <MenuItem value='UTC+0'>GMT+0</MenuItem>
+                            <MenuItem value='UTC+1'>GMT+1</MenuItem>
+                            <MenuItem value='UTC+2'>GMT+2</MenuItem>
+                            <MenuItem value='UTC+3'>GMT+3</MenuItem>
+                            <MenuItem value='UTC+4'>GMT+4</MenuItem>
+                            <MenuItem value='UTC+5'>GMT+5</MenuItem>
+                            <MenuItem value='UTC+6'>GMT+6</MenuItem>
+                            <MenuItem value='UTC+7'>GMT+7</MenuItem>
+                            <MenuItem value='UTC+8'>GMT+8</MenuItem>
+                            <MenuItem value='UTC+9'>GMT+9</MenuItem>
+                            <MenuItem value='UTC+10'>GMT+10</MenuItem>
+                            <MenuItem value='UTC+11'>GMT+11</MenuItem>
+                            <MenuItem value='UTC+12'>GMT+12</MenuItem>
+                            <MenuItem value='UTC+13'>GMT+13</MenuItem>
+                            <MenuItem value='UTC+14'>GMT+14</MenuItem>
                         </Select>
                         <FormHelperText>Change your timezone here!</FormHelperText>
                         <Button variant="contained" onClick={submitNewZone}>Change Timezone</Button>
@@ -223,7 +247,12 @@ function Luxon() {
                     <button onClick={() => handleSubmit()}>Submit Availability</button>
                 </div>
                
-    
+            <p>Notes: </p>
+            <p>Clear checked checkmarks upon Submit availability</p>
+            <p>Add more UTC options for the change timezone</p>
+            <p>Add the rest of the days</p>
+            <p>Get rid of Dashboard view from register</p>
+            <p>If a person changes their timezones, how does that reflect their current availability?</p>
       {/* <CalendarGrid /> */}
             </>
         )
