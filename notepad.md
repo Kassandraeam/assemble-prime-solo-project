@@ -1,7 +1,35 @@
+<div day=09/15/22 0715>
+clear checkmarks upon save availability.
+<script>
+    BLOCKERS:
+    1. Can not figure out how to get information to compare.
+    2. Not sure how hard it will be to compare different days.
+    3. Need to convert presented times free in users timezone.
+GOAL:
+- Select n number of users and see if they have any common times in Postico. 
+
+PLAN OF ATTACK W/ LIZ
+- have local state.
+- n number of people to saga
+- saga will loop over do that many get requests. Do for loop in my try saga. the axios get will be in the for loop. put response.rows into an array initialized in try but outside of for loop. Then that array will be available. if resultsarray[0], nested loops,
+after 
+
+? WHAT DOES THE ARRAY AFTER THE GET REQUEST LOOK LIKE ?
+For the sake of my sanity, just consider Monday.
+When I make a GET request, I want that information to look like this:
+
+For user1 = [ 100, 200, 300, 400, 500 ] meaning, 
+I only want the information availability table, from the time_id column where day_id = 1, and it returns the time_id.
+
+[[1,3,4,2,5],[1,4,7,3,6,2,5,1],[1,3,4,2]]
+[[1,2,3,4,5], [1,2,3,4,5,6,7,1], [1,2,3,4]] 
+expected commonalities: [1,2,3,4]
+</script>
+</div>
+
 <div day=09/14/22 0919>
 TODAY IS LOGIC GET THAT IMPLEMENTED.
 </div>
-
 
 <div day=09/13/22 1125>
 <div TODO>
@@ -28,8 +56,8 @@ TODAY IS LOGIC GET THAT IMPLEMENTED.
     //X Need to GO to a page, steps to do that:
         //X Make a new component and path that goes to /id?
         //X Get Gab's id.
-        - maybe onClick of the schedule, dispatch to a saga that triggers a GET request for THAT specific user from the AVAILABILITY table and then saves that information to a userSpecificReducer. 
-          Then on the new component, map and display the available times of that user.
+        //X maybe onClick of the schedule, dispatch to a saga that triggers a GET request for THAT specific user from the AVAILABILITY table and then saves that information to a userSpecificReducer. 
+          //X Then on the new component, map and display the available times of that user.
         // - New protectedroute in App.
         // Takes me to new component that has a path of "/user/:id
 <script>
@@ -39,9 +67,9 @@ TODAY IS LOGIC GET THAT IMPLEMENTED.
 <div Code: intersection using spread>
     <script>
     const mondayArray = [ [MondayGab], [MondayKas], [MondayBill]]
-    // const arr1 = ['Gab'];
-    // const arr2 = ['Gab', 'Kas'];
-    // const arr3 = ['Gab', 'Kas', 'Bill'];
+    const arr1 = ['Gab'];
+    const arr2 = ['Gab', 'Kas'];
+    const arr3 = ['Gab', 'Kas', 'Bill'];
     const intersection = (arr1, arr2) => {
     const res = [];
     for(let i = 0; i < arr1.length; i++){
@@ -79,16 +107,11 @@ TODAY IS LOGIC GET THAT IMPLEMENTED.
     SQL, get Gab's schedule.
     SQL, get Lex's schedule.
     SQL, get n's schedule.
-
     this button runs this sql on this id. shoot it to storage. page load or button click.
     <!-- *CONCERN: Reset button that changes timezone to initial value? -->
     - Will probably need to make a local state and then hold that. Right now I tried to make a local state, but set it equal to user.timezone, which is just capturing each change from the DB. I need that initial INITIAL value.
 </div>
 </div>
-
-
-
-
 
 <div day=09/12/22 0900>
 <!-- *PLAN OF ATTACK* -->
@@ -228,10 +251,6 @@ catch (error)
 and the finally. -->
 </div>
 
-
-
-
-
 <div day=09/11/22 1210>
 - [x] Get Delete to work
     - [x] I have the ID of the item I want to send,
@@ -258,10 +277,6 @@ Paris:   2400
     console.log('Chosen time converted to UTC, expecting 22',chosenTimeConvertedToUTC);
 ;
 </div>
-
-
-
-
 
 <div day=09/10/22 1327>
 - [x] Current issue: When attempting to add 7:00PM to the database, when it converts to UTC, it has an id of 0. Which is not allowed.

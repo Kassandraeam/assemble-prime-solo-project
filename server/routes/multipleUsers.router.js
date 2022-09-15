@@ -9,19 +9,22 @@ const router = express.Router();
 
 // });
 router.get('/', (req, res) => {
-    // Send back user object from the session (previously queried from the database)
-    const query = `
-    SELECT "user".id, "user".username, "user".timezone
-    FROM "user";`;
-    pool.query(query)
-      .then(result => {
-        res.send(result.rows);
-      })
-      .catch(err => {
-        console.log('ERROR: Get all users times', err);
-        res.sendStatus(500)
-      })
-  });
+  // Send back user object from the session (previously queried from the database)
+  const query = `
+    SELECT "user".id, "user".username, "user".timezone, array_agg("availability".days_id) "availableDays"
+    FROM "user"
+    JOIN "availability" ON "user".id = "availability".user_id
+    GROUP BY "user".id, "user".username, "user".timezone
+;`;
+  pool.query(query)
+    .then(result => {
+      res.send(result.rows);
+    })
+    .catch(err => {
+      console.log('ERROR: Get all users times', err);
+      res.sendStatus(500)
+    })
+});
 /**
  * POST route template
  */

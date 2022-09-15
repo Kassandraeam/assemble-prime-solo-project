@@ -23,14 +23,14 @@ function SpecificUserAvailability() {
 
   const handleBack = () => {
     console.log('go back a page');
-    history.push('/calendar');
+    history.push('/friends');
   }
 
   return (
     <>
       <div>
         <h2>{heading}</h2>
-        <p>✨I need to convert specificUser.hour to the current user's timezone.✨</p>
+        {/* <p>✨I need to convert specificUser.hour to the current user's timezone.✨</p> */}
       </div>
       {specificUserReducer.map(specificUser => (
         <div className='map' key={specificUser.id}>
