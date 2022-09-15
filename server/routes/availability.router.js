@@ -24,12 +24,16 @@ router.get('/', (req, res) => {
 router.get('/:id', (req, res) => {
   console.log('req.params.id: ', req.params.id)
 
-  const queryText = `SELECT "availability".id, "user".id AS "user_id","availability".days_id, "availability".time_id
+  const queryText = 
+  `
+  SELECT "availability".id, "user".id AS "user_id","availability".days_id, "availability".time_id, "user".username as "username", "days".day, "time".hour
   FROM "availability"
   JOIN "user" ON "user".id = "availability".user_id
+  JOIN "days" ON "days".id = "availability".days_id
+  JOIN "time" ON "time".id = "availability".time_id
   WHERE "user_id" = $1
-  GROUP BY "availability".id, "user".id, "availability".days_id, "availability".time_id
-  ;
+  GROUP BY "availability".id, "user".id, "availability".days_id, "availability".time_id, "user".username, "days".day, "time".time, "time".hour
+ ;
   `;
   pool.query(queryText, [req.params.id])
     .then(result => {
