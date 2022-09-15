@@ -7,7 +7,7 @@ import './Friends.css'
 import Button from '@mui/material/Button';
 import Avatar from '@mui/material/Avatar';
 import Stack from '@mui/material/Stack';
-import { deepOrange, deepPurple } from '@mui/material/colors';
+import { common, deepOrange, deepPurple } from '@mui/material/colors';
 import Checkbox from '@mui/material/Checkbox';
 import { compare } from 'bcryptjs';
 const label = { inputProps: { 'aria-label': 'Compare Times' } };
@@ -58,6 +58,7 @@ function Friends() {
   const history = useHistory();
   const [heading, setHeading] = useState('Users');
   const [compareArray, setCompareArray] = useState([]);
+  const [commonalities, setCommonalities] = useState();
   const dispatch = useDispatch();
   const ref = useRef(null);
   // console.log(typeof(allUsers))
@@ -120,15 +121,18 @@ const handleSubmit = () => {
   console.log(intersectMany(compareArray))
   let commonalities = intersectMany(...compareArray);
   console.log('COMMONALITIES',commonalities)
+  setCommonalities(commonalities); 
   // setCompareArray(0); //should reset it upon click of submit maybe hold off on this
 }
 
+//git merge
   return (
 <>
       <p>THIS IS THE COMPARE ARRAY</p>
       {JSON.stringify(compareArray)}
       <h2>{heading}</h2>
       <p>Users to compare to should go here:</p>
+      <p>Common days: {commonalities}</p>
       <Button variant="contained" onClick={handleSubmit}>SUBMIT</Button>
       &nbsp;
       <div className='map'>

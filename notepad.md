@@ -1,6 +1,11 @@
 <div day=09/15/22 0715>
-clear checkmarks upon save availability.
-<script>
+Now what? 
+Stephon - 
+include the times (numbers) in the select query that I added.
+
+work around: input for a day and time to see if they match string that matches
+
+<script LIZ AND KRIS HELPED ME>
     BLOCKERS:
     1. Can not figure out how to get information to compare.
     2. Not sure how hard it will be to compare different days.
@@ -25,6 +30,7 @@ I only want the information availability table, from the time_id column where da
 [[1,2,3,4,5], [1,2,3,4,5,6,7,1], [1,2,3,4]] 
 expected commonalities: [1,2,3,4]
 </script>
+
 </div>
 
 <div day=09/14/22 0919>
