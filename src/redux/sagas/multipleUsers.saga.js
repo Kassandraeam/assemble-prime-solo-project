@@ -1,11 +1,11 @@
 // * GET * //
 
 import axios from 'axios';
-import { put, takeLatest } from 'redux-saga/effects';
+import { put, takeEvery, takeLatest } from 'redux-saga/effects';
 
 function* fetchAllUsersSaga() {
     yield takeLatest('FETCH_ALL_USERS', fetchAllUsers);
-    yield takeLatest('GET_AVAILABLE_TIMES', fetchAllAvailableTimes);
+    yield takeEvery('GET_AVAILABLE_TIMES', fetchAllAvailableTimes);
 }
 
 function* fetchAllUsers(action) {
@@ -24,19 +24,30 @@ function* fetchAllUsers(action) {
     }
 };
 
+// // ! ASK LIZ
+// // ? I'm doing it this way because I need to make multiple SQL queries in a row and the way I've done that before is by doing an async query. If I do it the usual GET way, I only get response.data back for the last insertion, in this case, typically 3.
 // function* fetchAllAvailableTimes(action) {
 //     try {
-//         console.error(action.payload);
-//         // console.log('type of in fetchAllavailableTimes:', typeof(action.payload.day))
-//         console.error('fetchAllAvailableTimes payload recieved:', {day: action.payload.day})
-//         // payload recieved, now send it to the router /availableTimes
-//         const response = yield axios.post('/api/multipleUsers/availableTimes', {day: action.payload.day})
-//         console.log('response.data', response.data)
-//         // yield put({
-//         //     type: 'ALL_USERS',
-//         //     payload: response.data
-//         // })
-//         // need to dispatch this information to a reducer.
+//         console.error('fetchAvailableTimes in the multipleUsers.saga: ', {day: action.payload.day});
+//         yield axios.post('/api/multipleUsers/availableTimes', {day: action.payload.day})
+//         // console.error('fetchAllAvailableTimes payload recieved:', {day: action.payload.day})
+//         // const response = yield axios.post('/api/multipleUsers/availableTimes', {day: action.payload.day})
+//         // console.log('response.data', response.data)
+//         console.log('result in the fetchAllAvailableTimes sagaFunction:', result.data);
+//     }
+//     catch (error) {
+//         console.log(`action.payload in multipleUsersSaga/fetchAllAvailableTimes function: ${action.payload}`)
+//         console.error('error in multipleUsersSaga/fetchAllAvailableTimes function saga:', error)
+//     }
+// }
+// function* fetchAllAvailableTimes(action) {
+//     try {
+//         console.error('fetchAvailableTimes in the multipleUsers.saga: ', {day: action.payload.day});
+//         yield axios.post('/api/multipleUsers/availableTimes', {day: action.payload.day})
+//         // console.error('fetchAllAvailableTimes payload recieved:', {day: action.payload.day})
+//         // const response = yield axios.post('/api/multipleUsers/availableTimes', {day: action.payload.day})
+//         // console.log('response.data', response.data)
+//         console.log('result in the fetchAllAvailableTimes sagaFunction:', result.data);
 //     }
 //     catch (error) {
 //         console.log(`action.payload in multipleUsersSaga/fetchAllAvailableTimes function: ${action.payload}`)
@@ -46,17 +57,24 @@ function* fetchAllUsers(action) {
 
 function* fetchAllAvailableTimes(action) {
     try {
-        console.error('fetchAvailableTimes in the multipleUsers.saga: ', {day: action.payload.day});
-        yield axios.post('/api/multipleUsers/availableTimes', {day: action.payload.day})
-        // console.error('fetchAllAvailableTimes payload recieved:', {day: action.payload.day})
-        // const response = yield axios.post('/api/multipleUsers/availableTimes', {day: action.payload.day})
-        // console.log('response.data', response.data)
-        console.log('result in the fetchAllAvailableTimes sagaFunction:', result.data);
+        console.error(action.payload);
+        // console.log('type of in fetchAllavailableTimes:', typeof(action.payload.day))
+        console.error('fetchAllAvailableTimes payload recieved:', {day: action.payload.day})
+        // payload recieved, now send it to the router /availableTimes
+        const response = yield axios.post('/api/multipleUsers/availableTimes', {day: action.payload.day})
+        console.log('response.data', response.data)
+        // yield put({
+        //     type: 'ALL_USERS',
+        //     payload: response.data
+        // })
+        // need to dispatch this information to a reducer.
     }
     catch (error) {
         console.log(`action.payload in multipleUsersSaga/fetchAllAvailableTimes function: ${action.payload}`)
         console.error('error in multipleUsersSaga/fetchAllAvailableTimes function saga:', error)
     }
 }
+
+
 
 export default fetchAllUsersSaga;
