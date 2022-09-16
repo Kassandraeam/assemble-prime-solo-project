@@ -28,7 +28,7 @@ router.get('/', (req, res) => {
 });
 
 router.get('/availableTimes/:payload', (req, res) => {
-  console.log('hopefully the number 1:', req.params.payload)
+  console.log('PAYLOAD BABEYYYYY', req.params.payload)
   const dummyData = req.params.payload;
   // Send back user object from the session (previously queried from the database)
   const query = `SELECT
@@ -51,7 +51,7 @@ router.get('/availableTimes/:payload', (req, res) => {
 ;`;
   pool.query(query, [dummyData])
     .then(result => {
-      console.log('result.rows on server side for route /availabileTimes:', result.rows) // this is coming back as each user id, their id, username, timezone, and available days.
+      console.log('result.rows on server side for route /availableTimes:', result.rows) // this is coming back as each user id, their id, username, timezone, and available days.
       res.send(result.rows);
     })
     .catch(err => {
