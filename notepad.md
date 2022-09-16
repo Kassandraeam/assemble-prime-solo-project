@@ -1,3 +1,25 @@
+In the post, it maps through it there.
+
+<script>
+  {movies.map(movie => {
+                    return (
+                        <div className="card" key={movie.id} >
+                            <h3 className="card-title">{movie.title}</h3>
+                        </div>
+                    );
+                })}
+</script>
+
+
+<div>
+Right now I need to drill down into each individual array.
+I was able to get eachUser by mapping the reducer of all users in the return and then passing it up through the function handleCheckBox(eachUser). 
+
+Maybe I can map through the freeTime to get individual times?
+</div>
+
+
+
 <div good ex of transactional sql>
 <script>
 router.post('/', async (req, res) => {

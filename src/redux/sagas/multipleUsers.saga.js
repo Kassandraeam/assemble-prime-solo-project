@@ -1,5 +1,4 @@
 // * GET * //
-
 import axios from 'axios';
 import { put, takeEvery, takeLatest } from 'redux-saga/effects';
 
@@ -12,7 +11,7 @@ function* fetchAllUsers(action) {
     try {
         console.log('fetch all users saga')
         const response = yield axios.get('/api/multipleUsers')
-        console.log(response.data);
+        // console.log(response.data);
         yield put({
             type: 'ALL_USERS',
             payload: response.data
@@ -57,16 +56,17 @@ function* fetchAllUsers(action) {
 
 function* fetchAllAvailableTimes(action) {
     try {
-        console.error(action.payload);
+        console.log(action.payload);
         // console.log('type of in fetchAllavailableTimes:', typeof(action.payload.day))
-        console.error('fetchAllAvailableTimes payload recieved:', {day: action.payload.day})
+        console.log('fetchAllAvailableTimes payload recieved:', {day: action.payload.day})
         // payload recieved, now send it to the router /availableTimes
         const response = yield axios.post('/api/multipleUsers/availableTimes', {day: action.payload.day})
-        console.log('response.data', response.data)
-        // yield put({
-        //     type: 'ALL_USERS',
-        //     payload: response.data
-        // })
+        console.log('response.data on the fetchAllAvailableTimes saga:', response.data)
+        // maybe send to a reducer with switch cases:
+        yield put({
+            type: 'ALL_USERS_FREE_TIME',
+            payload: response.data
+        })
         // need to dispatch this information to a reducer.
     }
     catch (error) {

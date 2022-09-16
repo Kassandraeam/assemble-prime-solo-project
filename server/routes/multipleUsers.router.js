@@ -101,31 +101,31 @@ router.post('/', async (req, res) => {
 
 router.post('/availableTimes', async (req, res) => {
   console.error(req.body);
-  console.log('PAYLOAD BABEYYYYY', req.body.day)
+  console.error('PAYLOAD BABEYYYYY', req.body.day)
   const dummyData = req.body.day;
-  console.log('DUMMY DATA YOU DUMMY:', dummyData);
+  console.error('DUMMY DATA YOU DUMMY:', dummyData);
   // Send back user object from the session (previously queried from the database)
   const query = `SELECT
-    "user".id,
-    "user".username,
-    "days".id,
-    "days".day,
-    array_agg("availability".time_id) AS "availableTimes"
-  FROM
-    "availability"
-    JOIN "user" ON "user".id = "availability".user_id
-    JOIN "days" ON "days".id = "availability".days_id
-  WHERE
-    "availability".days_id = $1
-  GROUP BY
-    "user".id,
-    "user".username,
-    "days".day,
-    "days".id;
-;`;
+	"user".id,
+	"user".username,
+	"days".id AS dayID,
+	"days".day,
+	array_agg("availability".time_id) AS "availableTimes"
+FROM
+	"availability"
+	JOIN "user" ON "user".id = "availability".user_id
+	JOIN "days" ON "days".id = "availability".days_id
+WHERE
+	"availability".days_id = $1
+GROUP BY
+	"user".id,
+	"user".username,
+	"days".day,
+	"days".id;`;
   pool.query(query, [dummyData])
     .then(result => {
       console.log('result.rows on server side for route /availableTimes:', result.rows) // this is coming back as each user id, their id, username, timezone, and available days.
+      // Do I wanna map through result.rows before I send it over?
       res.send(result.rows);
     })
     .catch(err => {
