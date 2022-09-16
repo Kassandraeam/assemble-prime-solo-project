@@ -1,4 +1,18 @@
 <div day=09/15/22 0715>
+<div day=09/15/22 1914>
+Maybe I want to see if I can aggregate the available times on day_id? 
+So, for day_id = 1 (monday) I see each user's available times? 
+
+
+              times available:
+day_id = 1 => {5,6,7,8,9,10}
+
+at day_id = 1, aggregate the times available for each user?
+
+# Current Priority: Postico code. For each user, at day_id = 1, aggregate the times they have available. # 
+
+</div>
+------------------------------------------------------------
 Now what? 
 Stephon - 
 include the times (numbers) in the select query that I added.

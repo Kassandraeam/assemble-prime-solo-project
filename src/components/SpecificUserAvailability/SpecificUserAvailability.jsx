@@ -12,6 +12,7 @@ function SpecificUserAvailability() {
   const [heading, setHeading] = useState('SpecificUserAvailability');
   const specificUserReducer = useSelector((store) => store.specificUserReducer);
   let id = useParams();
+  console.log(id); // console logs as {id: '3'}
 
 
   useEffect(() => {
