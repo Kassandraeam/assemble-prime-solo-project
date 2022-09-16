@@ -1,85 +1,75 @@
+// ! This is the function that finds the common elements in each array passed through it.
+/*
 const Gab = [100, 200, 5];
 const Bill = [100, 200, 10];
 const Alex = [100, 200, 300, 15];
 const Tuladai = [100, 200, 300, 400, 20];
-
 const bigArray = [Gab, Bill, Alex, Tuladai];
-
 console.log('BIG ARRAY BEFORE RUNNING FUNCTION:', bigArray);
-
 const intersection = (arr1, arr2) => {
-const res = [];
-for(let i = 0; i < arr1.length; i++){
-    if(!arr2.includes(arr1[i])){
-        continue;
+    const res = [];
+    for (let i = 0; i < arr1.length; i++) {
+        if (!arr2.includes(arr1[i])) {
+            continue;
+        };
+        res.push(arr1[i]);
     };
-    res.push(arr1[i]);
-};
-return res;
+    return res;
 };
 const intersectMany = (...arrs) => {
-let res = arrs[0].slice();
-for(let i = 1; i < arrs.length; i++){
-    res = intersection(res, arrs[i]);
+    let res = arrs[0].slice();
+    for (let i = 1; i < arrs.length; i++) {
+        res = intersection(res, arrs[i]);
+    };
+    return res;
 };
-return res;
-};
-console.log('COMMON TIMES IN BIG ARRAY:',intersectMany(...bigArray));
+console.log('COMMON TIMES IN BIG ARRAY:', intersectMany(...bigArray));
+ */
 
-// ! GOAL: See if any of the values in the first nested Array are in ALL of the other nested arrays. 
-// compareArrays = [[1,1,1,1],[1,1,1,1,1]]
-// ? Could I map through this 
-// Can I split this up here, and then push that into the argument of intersectMany?
+// ! This is the function that gets unique elements in any array passed through it. 
+/*
+function getUnique(array) {
+  let uniqueArray = [];
+  for (let i = 0; i < array.length; i++) {
+    if (uniqueArray.indexOf(array[i]) === -1) {
+      uniqueArray.push(array[i]);
+    }
+  }
+  return uniqueArray;
+}
+*/
 
-// Find the first thing in the big array? R0? 
+// ! Loop through a test batch of unique common days
 
-// let test = [[1, 2, 3], [1, 2], [1]] // this is my compareArray
+// * The array uniqueCommonDays will be sent through here.
+function sendEachUniqueDay(array){
+    for (let day of array) {
+        // console.log(day);
+        // for each day I get back, I need to run that SQL statement.
+        // maybe check what the value of it is and determine a local state to hold it in?
+        if (day === 1) {
+            console.log('1 is being sent');
+            // dispatch with type: that gets me to a saga that gets me to router that inserts that info as a value.
+            // get that information back as an array. 
+            // Store in local state mondayTimes (maybe a reducer instead?)
+            // Run that local state through the logic to get 
+                // 1. The common times amoung the selected users.
+        } else if (day === 2) {
+            console.log('2 is being sent');
+        } else if (day === 3) {
+            console.log('3 is being sent');
+        } else if (day === 4) {
+            console.log('4 is being sent');
+        } else {
+            console.log('Invalid number')
+        }
+    }
+}
 
-// const flatTest = test.flat(1);
-// console.log('flatTest:',flatTest);
-// /*
-// let testFunction = (a) => {
-//     for (let value of a) {
-//     console.log(value);
-// }
-// };
-// testFunction(test);
-// console.log('testFunction running:',testFunction(test)) // this returns undefined.
+sendEachUniqueDay([1,2,3,5]);
 
-// function testThis(array){
-//     for (let value of array) {
-//         console.log('the values given back in testThis:',value)
-//     }
-// }
-
-// testThis(test);
-
-
-
-
-
-// /*
-// 1. I have one big ass array.
-// 2. I need to split that big ass array up into tiny ass arrays.
-// 3. Then I need to check those tiny ass arrays for commonalities.
-// */
-
-//  function help (a, b){
-//     console.log(a+b)    
-// }
-
-// help(1,2);
-//https://stackoverflow.com/questions/7106410/looping-through-arrays-of-arrays
-// var printArray = function(arr) {
-//     if ( typeof(arr) == "object") {
-//         for (var i = 0; i < arr.length; i++) {
-//             printArray(arr[i]);
-//         }
-//     }
-//     else document.write(arr);
-// }
-
-// printArray(parentArray)
-
-// console.table(test);
-// console.log(test[0][0]);
+// I'm in the Fetchallusers saga.
+/*
+So I'm going to the route, but I need to give it the day from the unique day as the value. 
+So from the component I need to dispatch the day. Just as a test hardcode it on submit because that's when this is gonna run.
+*/

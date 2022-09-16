@@ -60,7 +60,7 @@ So what needs to happen now is that I ship 1 out as the value of day_id, I get b
 
 </div>
 
-<div TEST>
+<div Nix this: TEST>
 <script>
 router.get('/', (req, res) => {
   // Send back user object from the session (previously queried from the database)
@@ -105,6 +105,36 @@ router.get('/', (req, res) => {
     })
 });
 </script>
+
+<div query example with two query texts.>
+<script>
+    // updates a specific movie and genre
+router.put('/:id', (req, res) => {
+  console.log("hi", req.body.genre_id)
+  const id = req.params.id
+  const title = req.body.title
+  const description = req.body.description
+  const genre = req.body.genre_id
+  const queryText = `
+    UPDATE "movies"
+    SET "title" = $2, "description" = $3
+    WHERE "id" = $1;`;
+  const queryText2 = `
+    UPDATE "movies_genres"
+    SET "genre_id" = $2
+    WHERE "movie_id" = $1;`
+  pool.query(queryText, [id, title, description])
+  pool.query(queryText2, [id, genre])
+    .then(results => {
+      res.sendStatus(200)
+    }).catch(err => {
+      console.log(err)
+      res.sendStatus(500)
+    })
+})
+</script>
+</div>
+
 </div>
 ------------------------------------------------------------
 Now what? 

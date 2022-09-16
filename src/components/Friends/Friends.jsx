@@ -9,7 +9,6 @@ import Avatar from '@mui/material/Avatar';
 import Stack from '@mui/material/Stack';
 import { common, deepOrange, deepPurple } from '@mui/material/colors';
 import Checkbox from '@mui/material/Checkbox';
-import { compare } from 'bcryptjs';
 const label = { inputProps: { 'aria-label': 'Compare Times' } };
 
 const intersection = (arr1, arr2) => {
@@ -39,8 +38,8 @@ function getUnique(array) {
   return uniqueArray;
 }
 
-function Friends() {
 
+function Friends() {
   const store = useSelector((store) => store);
   const allUsers = useSelector((store) => store.multipleUsersReducer)
   const history = useHistory();
@@ -52,6 +51,7 @@ function Friends() {
   const ref = useRef(null);
   // console.log('all users:',allUsers)
   // console.log(typeof(allUsers))
+  console.log('uniqueCommonDays:',uniqueCommonDays)
 
   function stringToColor(string) {
     let hash = 0;
@@ -108,6 +108,11 @@ function Friends() {
     setUniqueCommonDays(getUnique(commonalities).sort());
     console.log('COMMONALITIES', commonalities)
     setCommonalities(commonalities);
+    // will have to do a loop, each containing a dispatch
+    dispatch(({
+      type: 'GET_AVAILABLE_TIMES',
+      payload: 1
+    }))
     // setCompareArray(0); //should reset it upon click of submit maybe hold off on this
   }
 
