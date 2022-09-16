@@ -46,12 +46,12 @@ function Friends() {
   const [heading, setHeading] = useState('Users');
   const [compareArray, setCompareArray] = useState([]);
   const [commonalities, setCommonalities] = useState();
-  const [uniqueCommonDays, setUniqueCommonDays] = useState();
+  const [uniqueCommonDays, setUniqueCommonDays] = useState([0]);
   const dispatch = useDispatch();
   const ref = useRef(null);
   // console.log('all users:',allUsers)
   // console.log(typeof(allUsers))
-  console.log('uniqueCommonDays:',uniqueCommonDays)
+  console.log('uniqueCommonDays:', uniqueCommonDays)
 
   function stringToColor(string) {
     let hash = 0;
@@ -78,6 +78,71 @@ function Friends() {
       children: `${name.split(' ')[0][0]}`,
     };
   }
+  function sendEachUniqueDay(array) {
+    for (let day of array) {
+      switch (day) {
+        case 1:
+          console.log('1 is being sent');
+          dispatch({
+            type: 'GET_AVAILABLE_TIMES',
+            payload: day
+          })
+          break;
+
+        case 2:
+          console.log('2 is being sent');
+          dispatch({
+            type: 'GET_AVAILABLE_TIMES',
+            payload: day
+          })
+          break;
+
+        case 3:
+          console.log('3 is being sent');
+          dispatch({
+            type: 'GET_AVAILABLE_TIMES',
+            payload: day
+          })
+          break;
+
+        case 4:
+          console.log('4 is being sent');
+          dispatch({
+            type: 'GET_AVAILABLE_TIMES',
+            payload: day
+          })
+          break;
+
+        case 5:
+          console.log('5 is being sent');
+          dispatch({
+            type: 'GET_AVAILABLE_TIMES',
+            payload: day
+          })
+          break;
+
+        case 6:
+          console.log('6 is being sent');
+          dispatch({
+            type: 'GET_AVAILABLE_TIMES',
+            payload: day
+          })
+          break;
+
+        case 7:
+          console.log('7 is being sent');
+          dispatch({
+            type: 'GET_AVAILABLE_TIMES',
+            payload: day
+          })
+          break;
+        default:
+          console.log('default of the sendEachUniqueDay function')
+
+          break;
+      }
+    }
+  };
 
   useEffect(() => {
     dispatch({
@@ -95,6 +160,71 @@ function Friends() {
     })
   };
 
+  // const sendEachUniqueDay = (uniqueCommonDays) => {
+  //   for (let day of uniqueCommonDays) {
+  //     switch (day) {
+  //         case 1:
+  //             console.log('1 is being sent');
+  //             dispatch({
+  //                 type: 'GET_AVAILABLE_TIMES',
+  //                 payload: day
+  //             })
+  //             break;
+
+  //         case 2:
+  //             console.log('2 is being sent');
+  //             dispatch({
+  //                 type: 'GET_AVAILABLE_TIMES',
+  //                 payload: day
+  //             })
+  //             break;
+
+  //         case 3:
+  //             console.log('3 is being sent');
+  //             dispatch({
+  //                 type: 'GET_AVAILABLE_TIMES',
+  //                 payload: day
+  //             })
+  //             break;
+
+  //         case 4:
+  //             console.log('4 is being sent');
+  //             dispatch({
+  //                 type: 'GET_AVAILABLE_TIMES',
+  //                 payload: day
+  //             })
+  //             break;
+
+  //         case 5:
+  //             console.log('5 is being sent');
+  //             dispatch({
+  //                 type: 'GET_AVAILABLE_TIMES',
+  //                 payload: day
+  //             })
+  //             break;
+
+  //         case 6:
+  //             console.log('6 is being sent');
+  //             dispatch({
+  //                 type: 'GET_AVAILABLE_TIMES',
+  //                 payload: day
+  //             })
+  //             break;
+
+  //         case 7:
+  //             console.log('7 is being sent');
+  //             dispatch({
+  //                 type: 'GET_AVAILABLE_TIMES',
+  //                 payload: day
+  //             })
+  //             break;
+  //         default:
+  //             console.log('default of the sendEachUniqueDay function')
+  //             break;
+  //     }
+  // }
+  // }
+
   const handleCheckBox = (eachUser) => {
     console.log('Got this persons id:', eachUser)
     setCompareArray([...compareArray, eachUser.availableDays]) // this gives me a new array with all the old stuff. this is stored locally
@@ -104,18 +234,23 @@ function Friends() {
     console.log(compareArray)
     console.log(intersectMany(compareArray))
     let commonalities = intersectMany(...compareArray);
+    setCommonalities(commonalities);
     console.log('unique days: ', getUnique(commonalities));
     setUniqueCommonDays(getUnique(commonalities).sort());
     console.log('COMMONALITIES', commonalities)
-    setCommonalities(commonalities);
-    // will have to do a loop, each containing a dispatch of the number.
+    handleGettingAvailableTimes();
 
-    // dispatch(({
-    //   type: 'GET_AVAILABLE_TIMES',
-    //   payload: 1
-    // }))
+    //unique days doesn't get hit UNTIL handleSubmit is clicked.
     // setCompareArray(0); //should reset it upon click of submit maybe hold off on this
   }
+
+  const handleGettingAvailableTimes = async () => {
+    const test = await axios(uniqueCommonDays);
+    console.log('handleGettingAvailableTimes function',uniqueCommonDays) // comes back as empty on first click.
+    // second click of submit button it populates.
+  }
+
+
 
   return (
     <>

@@ -75,73 +75,75 @@ So from the component I need to dispatch the day. Just as a test hardcode it on 
 */
 
 // * The array uniqueCommonDays will be sent through here. So array = uniqueCommonDays
-function sendEachUniqueDay(array){
+function sendEachUniqueDay(array) {
     for (let day of array) {
         switch (day) {
             case 1:
-            console.log('1 is being sent');
-            dispatch({
-                type: 'GET_AVAILABLE_TIMES',
-                payload: day
-            })
+                console.log('1 is being sent');
+                dispatch({
+                    type: 'GET_AVAILABLE_TIMES',
+                    payload: day
+                })
                 break;
 
             case 2:
-            console.log('2 is being sent');
-            dispatch({
-                type: 'GET_AVAILABLE_TIMES',
-                payload: day
-            })
+                console.log('2 is being sent');
+                dispatch({
+                    type: 'GET_AVAILABLE_TIMES',
+                    payload: day
+                })
                 break;
 
             case 3:
-            console.log('3 is being sent');
-            dispatch({
-                type: 'GET_AVAILABLE_TIMES',
-                payload: day
-            })
+                console.log('3 is being sent');
+                dispatch({
+                    type: 'GET_AVAILABLE_TIMES',
+                    payload: day
+                })
                 break;
 
             case 4:
-            console.log('4 is being sent');
-            dispatch({
-                type: 'GET_AVAILABLE_TIMES',
-                payload: day
-            })
+                console.log('4 is being sent');
+                dispatch({
+                    type: 'GET_AVAILABLE_TIMES',
+                    payload: day
+                })
                 break;
 
             case 5:
-            console.log('5 is being sent');
-            dispatch({
-                type: 'GET_AVAILABLE_TIMES',
-                payload: day
-            })
+                console.log('5 is being sent');
+                dispatch({
+                    type: 'GET_AVAILABLE_TIMES',
+                    payload: day
+                })
                 break;
 
             case 6:
-            console.log('6 is being sent');   
-            dispatch({
-                type: 'GET_AVAILABLE_TIMES',
-                payload: day
-            })
+                console.log('6 is being sent');
+                dispatch({
+                    type: 'GET_AVAILABLE_TIMES',
+                    payload: day
+                })
                 break;
 
             case 7:
-            console.log('7 is being sent');
-            dispatch({
-                type: 'GET_AVAILABLE_TIMES',
-                payload: day
-            })
+                console.log('7 is being sent');
+                dispatch({
+                    type: 'GET_AVAILABLE_TIMES',
+                    payload: day
+                })
                 break;
             default:
+                console.log('default of the sendEachUniqueDay function')
+
                 break;
         }
     }
 };
-sendEachUniqueDay([1,2,3,5]);
+sendEachUniqueDay([1, 2, 3, 5]);
 
 
-function ifElseFunction(array){
+function ifElseFunction(array) {
     for (let day of array) {
         if (day === 1) {
             console.log('1 is being sent');
@@ -162,3 +164,5 @@ function ifElseFunction(array){
         }
     }
 };
+
+
