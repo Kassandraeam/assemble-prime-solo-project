@@ -23,7 +23,7 @@ import Calendar from '../Calendar/Calendar';
 import Friends from '../Friends/Friends';
 import MyNav from '../MyNav/MyNav';
 import './App.css';
-
+import Griddd from '../Griddd/Gridd.jsx'
 import SpecificUserAvailability from '../SpecificUserAvailability/SpecificUserAvailability'
 
 function App() {

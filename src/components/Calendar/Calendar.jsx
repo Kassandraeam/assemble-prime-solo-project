@@ -14,6 +14,8 @@ import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 import Luxon from '../Luxon/Luxon';
+import Griddd from '../Griddd/Gridd.jsx'
+
 
 
 function Calendar() {
@@ -61,8 +63,8 @@ function Calendar() {
 
             <p id='calendarHomepage'>Calendar Homepage</p>
             <h2>Welcome, {user.username}!</h2>
+            
             {/* <TestComponent /> */}
-
            {/* <span> <Box sx={{ maxWidth: 180 }} display="flex" justifyContent="space-between">
                 <FormControl fullWidth>
                     <InputLabel id="demo-simple-select-label">Day</InputLabel>
@@ -111,6 +113,7 @@ function Calendar() {
             {/* <Button variant="contained" onClick={daysAndTime}>Submit</Button> */}
 
             <Luxon/>
+            <Griddd></Griddd>
 
             
             {/* <MyNav /> */}
