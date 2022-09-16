@@ -1,3 +1,29 @@
+<div good ex of transactional sql>
+<script>
+router.post('/', async (req, res) => {
+  const client = await pool.connect();
+  const availability = req.body.availability;
+  console.log(availability)
+  try {
+    await client.query('BEGIN')
+    await Promise.all(availability.map((available) => {
+      const queryText = `INSERT INTO "availability" ("user_id", "days_id", "time_id") VALUES($1, $2, $3) RETURNING "id", "user_id", "days_id", "time_id";`;
+      const reqBody = [available.user, available.weekday, available.time];
+      return client.query(queryText, reqBody);
+    }));
+    await client.query('COMMIT')
+    res.sendStatus(201);
+  } catch (error) {
+    await client.query('ROLLBACK')
+    console.log('Error POST /api/availability', error);
+    res.sendStatus(500);
+  } finally {
+    client.release()
+  }
+});
+</script>
+</div>
+
 <div day=09/16/22 0105>
 Now that I'm getting the times from the server, I should hold them in a local state. Each day of the week.
 so [monday, setMonday] = useState([]);
@@ -8,6 +34,97 @@ and then run monday through the intersectMany function, and then set another sta
 Will probably have to make a reducer because it's not being stored anywhere after the query gets the information.
 
 only grabbing the last entry. I think I have to do the transactional sql for the times too.
+
+
+
+<script edit this so it's a async function> 
+router.post('/availableTimes', async (req, res) => {
+  console.error(req.body);
+  console.log('PAYLOAD BABEYYYYY', req.body.day)
+  const dummyData = req.body.day;
+  console.log('dummy data you dummy', dummyData);
+  // Send back user object from the session (previously queried from the database)
+  const query = `SELECT
+    "user".id,
+    "user".username,
+    "days".id,
+    "days".day,
+    array_agg("availability".time_id) AS "availableTimes"
+  FROM
+    "availability"
+    JOIN "user" ON "user".id = "availability".user_id
+    JOIN "days" ON "days".id = "availability".days_id
+  WHERE
+    "availability".days_id = $1
+  GROUP BY
+    "user".id,
+    "user".username,
+    "days".day,
+    "days".id;
+;`;
+  pool.query(query, [dummyData])
+    .then(result => {
+      console.log('result.rows on server side for route /availableTimes:', result.rows) // this is coming back as each user id, their id, username, timezone, and available days.
+      res.send(result.rows);
+    })
+    .catch(err => {
+      console.log('dummy data you dummy', dummyData);
+
+      console.log('ERROR: Get all users times', err);
+      res.sendStatus(500)
+    })
+});
+</script>
+
+// HERE !! 
+<script convert this to a async post>
+router.post('/availableTimes', async (req, res) => {
+  const client = await pool.connect();
+  const commonDays = req.body.uniqueCommonDays
+  console.log('CommonDayss in the server post route',commonDays);
+    try {
+    await client.query('BEGIN')
+
+    await Promise.all(commonDays.map((day) => {
+      const queryText = `
+      SELECT
+        "user".id,
+        "user".username,
+        "days".id,
+        "days".day,
+        array_agg("availability".time_id) AS "availableTimes"
+      FROM
+        "availability"
+        JOIN "user" ON "user".id = "availability".user_id
+        JOIN "days" ON "days".id = "availability".days_id
+      WHERE
+        "availability".days_id = 1
+      GROUP BY
+        "user".id,
+        "user".username,
+        "days".day,
+        "days".id;
+      `;
+      const reqBody = [available.user, available.weekday, available.time];
+      return client.query(queryText, reqBody);
+    }));
+
+
+    await client.query('COMMIT')
+    res.sendStatus(201);
+
+  } catch (error) {
+    await client.query('ROLLBACK')
+    console.log('Error POST /api/availability', error);
+    res.sendStatus(500);
+  } finally {
+    client.release()
+  }
+})
+</script>
+
+
+
 </div>
 
 <div day=09/15/22 0715>

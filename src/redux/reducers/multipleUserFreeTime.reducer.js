@@ -1,4 +1,3 @@
-
 const multipleUserFreeTimeReducer = (state = [], action) => { 
     switch (action.type) {
       case 'ALL_USERS_FREE_TIME': 
