@@ -1,5 +1,35 @@
+<div day=09/16/22 0105>
+Now that I'm getting the times from the server, I should hold them in a local state. Each day of the week.
+so [monday, setMonday] = useState([]);
+and in the switch case, I'll want to 
+setMonday[...monday, info.from.server.availableTimes];
+and then run monday through the intersectMany function, and then set another state? Maybe like commonMonday, setCommonMonday?
+
+Will probably have to make a reducer because it's not being stored anywhere after the query gets the information.
+</div>
+
 <div day=09/15/22 0715>
 <div day=09/15/22 1914>
+
+<script borked handleSubmit>
+      const handleSubmit = () => {
+    console.log(compareArray)
+    console.log(intersectMany(compareArray))
+    let commonalities = intersectMany(...compareArray);
+    setCommonalities(...commonalities);
+    // console.log('unique days: ', getUnique(commonalities));
+    let uniqueCommonDays = getUnique(commonalities).sort();
+    setUniqueCommonDays([...uniqueCommonDays])
+    // setUniqueCommonDays(getUnique(commonalities).sort());
+    // setCommonalities(getUnique(commonalities).sort());
+    // console.log('COMMONALITIES', commonalities)
+    handleGettingAvailableTimes(uniqueCommonDays);
+    
+    //unique days doesn't get hit UNTIL handleSubmit is clicked.
+    // setCompareArray(0); //should reset it upon click of submit maybe hold off on this
+  }
+</script>
+
 Maybe I want to see if I can aggregate the available times on day_id? 
 So, for day_id = 1 (monday) I see each user's available times? 
 
