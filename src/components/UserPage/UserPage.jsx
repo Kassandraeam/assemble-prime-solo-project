@@ -2,9 +2,10 @@ import React from 'react';
 import { useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { useDispatch } from 'react-redux';
+import '../App/App.css'
 import Button from '@mui/material/Button';
 import Luxon from '../Luxon/Luxon';
-
+import 'animate.css';
 
 function UserPage() {
   // this component doesn't do much to start, just renders some user reducer info to the DOM
@@ -36,9 +37,11 @@ function UserPage() {
 
   return (
     <>
+    <h1 className="animate__bounce animate__bounce">An animated element</h1>
       <h2>Welcome, {user.username}!</h2>
       <p>Your ID is: {user.id}</p>
       <h1>Available Times:</h1>
+      
       {/* {JSON.stringify(availableTimesSpecificToUser)} */}
       <div className='map'>
 

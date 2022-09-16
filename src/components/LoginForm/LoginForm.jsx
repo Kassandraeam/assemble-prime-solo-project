@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import {useSelector} from 'react-redux';
+import 'animate.css';
 
 function LoginForm() {
   const [username, setUsername] = useState('');
@@ -26,7 +27,9 @@ function LoginForm() {
 
   return (
     <>
-    <h2>Assemble</h2>
+    <h5 className="animate__bounce animate__bounce">Assemble</h5>
+    <h1 className="animate__bounce animate__bounce">An animated element</h1>
+    
     <form className="formPanel" onSubmit={login}>
       <h2>Login</h2>
       {errors.loginMessage && (
