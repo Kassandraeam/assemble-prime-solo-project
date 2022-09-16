@@ -6,9 +6,12 @@ setMonday[...monday, info.from.server.availableTimes];
 and then run monday through the intersectMany function, and then set another state? Maybe like commonMonday, setCommonMonday?
 
 Will probably have to make a reducer because it's not being stored anywhere after the query gets the information.
+
+only grabbing the last entry. I think I have to do the transactional sql for the times too.
 </div>
 
 <div day=09/15/22 0715>
+
 <div day=09/15/22 1914>
 
 <script borked handleSubmit>

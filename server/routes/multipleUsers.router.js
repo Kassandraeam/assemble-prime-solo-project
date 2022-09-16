@@ -26,8 +26,11 @@ router.get('/', (req, res) => {
       res.sendStatus(500)
     })
 });
+/**
+ * POST route template
+ */
 
-router.get('/availableTimes/:payload', (req, res) => {
+ router.get('/availableTimes/:payload', (req, res) => {
   console.log('PAYLOAD BABEYYYYY', req.params.payload)
   const dummyData = req.params.payload;
   // Send back user object from the session (previously queried from the database)
@@ -42,7 +45,7 @@ router.get('/availableTimes/:payload', (req, res) => {
     JOIN "user" ON "user".id = "availability".user_id
     JOIN "days" ON "days".id = "availability".days_id
   WHERE
-    "availability".days_id = $1
+    "avzailability".days_id = $1
   GROUP BY
     "user".id,
     "user".username,
@@ -59,9 +62,6 @@ router.get('/availableTimes/:payload', (req, res) => {
       res.sendStatus(500)
     })
 });
-/**
- * POST route template
- */
 router.post('/', (req, res) => {
   // POST route code here
 });

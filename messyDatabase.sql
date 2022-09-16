@@ -1,3 +1,5 @@
+
+
 -- AVAILABILITY --
 CREATE TABLE "availability" (
 	"id" SERIAL PRIMARY KEY,

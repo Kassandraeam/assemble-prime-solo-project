@@ -5,6 +5,7 @@ import availabilityReducer from './availability.reducer';
 import postAvailabilityReducer from './postAvailability.reducer';
 import multipleUsersReducer from './multipleUsers.reducer';
 import specificUserReducer from './specificUser.reducer';
+import multipleUserFreeTimeReducer from './multipleUserFreeTime.reducer';
 
 // rootReducer is the primary reducer for our entire project
 // It bundles up all of the other reducers so our project can use them.
@@ -18,7 +19,8 @@ const rootReducer = combineReducers({
   availabilityReducer,
   postAvailabilityReducer,
   multipleUsersReducer,
-  specificUserReducer
+  specificUserReducer,
+  multipleUserFreeTimeReducer
 });
 
 export default rootReducer;

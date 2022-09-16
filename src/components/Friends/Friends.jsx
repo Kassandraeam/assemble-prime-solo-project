@@ -42,6 +42,7 @@ function getUnique(array) {
 function Friends() {
   const store = useSelector((store) => store);
   const allUsers = useSelector((store) => store.multipleUsersReducer)
+  const freeTime = useSelector((store) => store.multipleUserFreeTimeReducer)
   const history = useHistory();
   const [heading, setHeading] = useState('Users');
   const [compareArray, setCompareArray] = useState([]);
@@ -51,6 +52,7 @@ function Friends() {
   const [monday, setMonday] = useState([]);
   const [commonMondays, setCommonMondays] = useState([]);
 
+  console.log('freetime:',freeTime)
   const dispatch = useDispatch();
   const ref = useRef(null);
   let runSubmitOnce = false;
@@ -180,6 +182,7 @@ function Friends() {
     let uniqueCommonDays = getUnique(commonalities).sort();
     setUniqueCommonDays([...uniqueCommonDays])
     handleGettingAvailableTimes(uniqueCommonDays);
+    console.log('all users after hitting submit',allUsers)
   }
 
   const handleGettingAvailableTimes = (array) => {
@@ -193,6 +196,7 @@ function Friends() {
               type: 'GET_AVAILABLE_TIMES',
               payload: day
             })
+            setMonday([...monday, ])
             break;
 
           case 2:
@@ -262,8 +266,6 @@ function Friends() {
       {JSON.stringify(uniqueCommonDays)}
 
       <h2>{heading}</h2>
-      <p>Users to compare to should go here:</p>
-      <p>Common days: {commonalities}</p>
 
 
       <Button variant="contained" onClick={handleSubmit}>SUBMIT</Button>

@@ -29,7 +29,11 @@ function* fetchAllAvailableTimes(action) {
         console.log(`fetchAllAvailableTimes payload recieved:', ${action.payload}`)
         // payload recieved, now send it to the router /availableTimes
         const response = yield axios.get(`/api/multipleUsers/availableTimes/${action.payload}`)
-        console.log(response.data)
+        console.log('response.data in the fetchAllAvailableTimes saga:',response.data)
+        // yield put({
+        //     type: 'ALL_USERS',
+        //     payload: response.data
+        // })
         // need to dispatch this information to a reducer.
     }
     catch (error) {
