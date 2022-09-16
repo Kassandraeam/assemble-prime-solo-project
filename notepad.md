@@ -9,7 +9,48 @@ day_id = 1 => {5,6,7,8,9,10}
 
 at day_id = 1, aggregate the times available for each user?
 
-# Current Priority: Postico code. For each user, at day_id = 1, aggregate the times they have available. # 
+√ Current Priority: Postico code. For each user, at day_id = 1, aggregate the times they have available.
+
+Now I have the query that allows me to enter x into days_id to get the arrays of available times based on what day it is.
+
+<script SQL that gets all available times based on day>
+SELECT
+	"user".id,
+	"user".username,
+	"days".day,
+	array_agg("availability".time_id) AS "availableTimes"
+FROM
+	"availability"
+	JOIN "user" ON "user".id = "availability".user_id
+	JOIN "days" ON "days".id = "availability".days_id
+WHERE
+	"availability".days_id = ${1}
+GROUP BY
+	"user".id,
+	"user".username,
+	"days".day;
+</script>
+
+I hit 3 checkboxes, I get an array of [1,2,3,4]. I want to ship each of those numbers out.
+I run through a loop of that array that individually sends out and runs this query:
+                    <script>
+                    SELECT
+                        "user".id,
+                        "user".username,
+                        "days".day,
+                        array_agg("availability".time_id) AS "availableTimes"
+                    FROM
+                        "availability"
+                        JOIN "user" ON "user".id = "availability".user_id
+                        JOIN "days" ON "days".id = "availability".days_id
+                    WHERE
+                        "availability".days_id = ${1}
+                    GROUP BY
+                        "user".id,
+                        "user".username,
+                        "days".day;
+                    </script>
+So what needs to happen now is that I ship 1 out as the value of day_id, I get back all of those arrays for everyone, run 
 
 </div>
 ------------------------------------------------------------

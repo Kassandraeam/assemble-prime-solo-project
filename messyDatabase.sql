@@ -236,11 +236,33 @@ FROM
 	"availability"
 	JOIN "user" ON "user".id = "availability".user_id
 WHERE
-	"availability".days_id = 1
+	"availability".days_id = 4
 GROUP BY
 	"user".username,
 	"user".id;
 
+-- BETTER VERSION --
+SELECT
+	"user".id,
+	"user".username,
+	"days".day,
+	"days".id,
+	array_agg("availability".time_id) AS "availableTimes"
+FROM
+	"availability"
+	JOIN "user" ON "user".id = "availability".user_id
+	JOIN "days" ON "days".id = "availability".days_id
+WHERE
+	"availability".days_id = 1
+GROUP BY
+	"user".id,
+	"user".username,
+	"days".id,
+	"days".day;
+-- BETTER VERSION --
+	
+	
+	
 -- GOAL: Get available times in here as well?
 -- Shows the available days
 -- working on this with liz and kris

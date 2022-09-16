@@ -26,14 +26,6 @@ return res;
 };
 console.log('COMMON TIMES IN BIG ARRAY:',intersectMany(...bigArray));
 
-for (i=0; let i < )
-
-
-
-
-
-
-
 // ! GOAL: See if any of the values in the first nested Array are in ALL of the other nested arrays. 
 // compareArrays = [[1,1,1,1],[1,1,1,1,1]]
 // ? Could I map through this 
