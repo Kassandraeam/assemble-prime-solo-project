@@ -108,11 +108,12 @@ function Friends() {
     setUniqueCommonDays(getUnique(commonalities).sort());
     console.log('COMMONALITIES', commonalities)
     setCommonalities(commonalities);
-    // will have to do a loop, each containing a dispatch
-    dispatch(({
-      type: 'GET_AVAILABLE_TIMES',
-      payload: 1
-    }))
+    // will have to do a loop, each containing a dispatch of the number.
+
+    // dispatch(({
+    //   type: 'GET_AVAILABLE_TIMES',
+    //   payload: 1
+    // }))
     // setCompareArray(0); //should reset it upon click of submit maybe hold off on this
   }
 

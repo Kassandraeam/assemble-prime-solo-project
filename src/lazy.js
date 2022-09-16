@@ -42,6 +42,7 @@ function getUnique(array) {
 // ! Loop through a test batch of unique common days
 
 // * The array uniqueCommonDays will be sent through here.
+/*
 function sendEachUniqueDay(array){
     for (let day of array) {
         // console.log(day);
@@ -65,11 +66,99 @@ function sendEachUniqueDay(array){
         }
     }
 }
-
-sendEachUniqueDay([1,2,3,5]);
+*/
 
 // I'm in the Fetchallusers saga.
 /*
 So I'm going to the route, but I need to give it the day from the unique day as the value. 
 So from the component I need to dispatch the day. Just as a test hardcode it on submit because that's when this is gonna run.
 */
+
+// * The array uniqueCommonDays will be sent through here. So array = uniqueCommonDays
+function sendEachUniqueDay(array){
+    for (let day of array) {
+        switch (day) {
+            case 1:
+            console.log('1 is being sent');
+            dispatch({
+                type: 'GET_AVAILABLE_TIMES',
+                payload: day
+            })
+                break;
+
+            case 2:
+            console.log('2 is being sent');
+            dispatch({
+                type: 'GET_AVAILABLE_TIMES',
+                payload: day
+            })
+                break;
+
+            case 3:
+            console.log('3 is being sent');
+            dispatch({
+                type: 'GET_AVAILABLE_TIMES',
+                payload: day
+            })
+                break;
+
+            case 4:
+            console.log('4 is being sent');
+            dispatch({
+                type: 'GET_AVAILABLE_TIMES',
+                payload: day
+            })
+                break;
+
+            case 5:
+            console.log('5 is being sent');
+            dispatch({
+                type: 'GET_AVAILABLE_TIMES',
+                payload: day
+            })
+                break;
+
+            case 6:
+            console.log('6 is being sent');   
+            dispatch({
+                type: 'GET_AVAILABLE_TIMES',
+                payload: day
+            })
+                break;
+
+            case 7:
+            console.log('7 is being sent');
+            dispatch({
+                type: 'GET_AVAILABLE_TIMES',
+                payload: day
+            })
+                break;
+            default:
+                break;
+        }
+    }
+};
+sendEachUniqueDay([1,2,3,5]);
+
+
+function ifElseFunction(array){
+    for (let day of array) {
+        if (day === 1) {
+            console.log('1 is being sent');
+        } else if (day === 2) {
+            console.log('2 is being sent');
+        } else if (day === 3) {
+            console.log('3 is being sent');
+        } else if (day === 4) {
+            console.log('4 is being sent');
+        } else if (day === 5) {
+            console.log('5 is being sent');
+        } else if (day === 6) {
+            console.log('6 is being sent');
+        } else if (day === 7) {
+            console.log('7 is being sent');
+        } else {
+            console.log('invalid number')
+        }
+    }
+};
