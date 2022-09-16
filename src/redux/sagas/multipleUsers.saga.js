@@ -26,10 +26,12 @@ function* fetchAllUsers(action) {
 
 function* fetchAllAvailableTimes(action) {
     try {
-        console.log(`fetchAllAvailableTimes payload recieved:', ${action.payload}`)
+        console.error(action.payload);
+        // console.log('type of in fetchAllavailableTimes:', typeof(action.payload.day))
+        console.error('fetchAllAvailableTimes payload recieved:', {day: action.payload.day})
         // payload recieved, now send it to the router /availableTimes
-        const response = yield axios.get(`/api/multipleUsers/availableTimes/${action.payload}`)
-        console.log('response.data in the fetchAllAvailableTimes saga:',response.data)
+        yield axios.post('/api/multipleUsers/availableTimes', {day: action.payload.day})
+
         // yield put({
         //     type: 'ALL_USERS',
         //     payload: response.data

@@ -30,9 +30,11 @@ router.get('/', (req, res) => {
  * POST route template
  */
 
- router.get('/availableTimes/:payload', (req, res) => {
-  console.log('PAYLOAD BABEYYYYY', req.params.payload)
-  const dummyData = req.params.payload;
+router.post('/availableTimes', (req, res) => {
+  console.error(req.body);
+  console.log('PAYLOAD BABEYYYYY', req.body.day)
+  const dummyData = req.body.day;
+  console.log('dummy data you dummy', dummyData);
   // Send back user object from the session (previously queried from the database)
   const query = `SELECT
     "user".id,
@@ -45,7 +47,7 @@ router.get('/', (req, res) => {
     JOIN "user" ON "user".id = "availability".user_id
     JOIN "days" ON "days".id = "availability".days_id
   WHERE
-    "avzailability".days_id = $1
+    "availability".days_id = $1
   GROUP BY
     "user".id,
     "user".username,
@@ -58,6 +60,8 @@ router.get('/', (req, res) => {
       res.send(result.rows);
     })
     .catch(err => {
+      console.log('dummy data you dummy', dummyData);
+
       console.log('ERROR: Get all users times', err);
       res.sendStatus(500)
     })

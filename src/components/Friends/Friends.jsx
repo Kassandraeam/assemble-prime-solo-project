@@ -191,19 +191,20 @@ function Friends() {
       for (let day of array) {
         switch (day) {
           case 1:
+            console.log(day);
             console.error('1 is being sent');
             dispatch({
               type: 'GET_AVAILABLE_TIMES',
-              payload: day
+              payload: {day:day}
             })
-            setMonday([...monday, ])
+            // setMonday([...monday, ])
             break;
 
           case 2:
             console.error('2 is being sent');
             dispatch({
               type: 'GET_AVAILABLE_TIMES',
-              payload: day
+              payload: {day:day}
             })
             break;
 
