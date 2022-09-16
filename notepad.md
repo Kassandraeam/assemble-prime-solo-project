@@ -33,7 +33,8 @@ GROUP BY
 
 I hit 3 checkboxes, I get an array of [1,2,3,4]. I want to ship each of those numbers out.
 I run through a loop of that array that individually sends out and runs this query:
-                    <script>
+
+<script>
                     SELECT
                         "user".id,
                         "user".username,
@@ -49,9 +50,61 @@ I run through a loop of that array that individually sends out and runs this que
                         "user".id,
                         "user".username,
                         "days".day;
-                    </script>
-So what needs to happen now is that I ship 1 out as the value of day_id, I get back all of those arrays for everyone, run 
+</script>
 
+So what needs to happen now is that I ship 1 out as the value of day_id, I get back all of those arrays for everyone, run.... come back to this.
+
+1. let uniqueCommonDays = [1,2,3];
+2. loop through uniqueCommonDays and for each element of uniqueCommondays, shoot it into the SQL GET request.
+3. Save that information maybe in an a separate reducer? Or maybe 
+
+</div>
+
+<div TEST>
+<script>
+router.get('/', (req, res) => {
+  // Send back user object from the session (previously queried from the database)
+  const query = `
+    SELECT "user".id, "user".username, "user".timezone, array_agg("availability".days_id) "availableDays"
+    FROM "user"
+    JOIN "availability" ON "user".id = "availability".user_id
+    GROUP BY "user".id, "user".username, "user".timezone
+;`;
+  const queryTwo = `
+    SELECT
+    "user".id,
+    "user".username,
+    "days".id,
+    "days".day,
+    array_agg("availability".time_id) AS "availableTimes"
+  FROM
+    "availability"
+    JOIN "user" ON "user".id = "availability".user_id
+    JOIN "days" ON "days".id = "availability".days_id
+  WHERE
+    "availability".days_id = 1
+  GROUP BY
+    "user".id,
+    "user".username,
+    "days".day,
+    "days".id;
+  `;
+  pool.query(query)
+    .then(result => {
+      console.log('result.rows on server side:',result.rows) // this is coming back as each user id, their id, username, timezone, and available days.
+      res.send(result.rows);
+    })
+  pool.query(queryTwo)
+    .then(resultTwo => {
+      console.log('secondQuery test on server side:', resultTwo.rows)
+      res.send(resultTwo.rows);
+    })
+    .catch(err => {
+      console.log('ERROR: Get all users times', err);
+      res.sendStatus(500)
+    })
+});
+</script>
 </div>
 ------------------------------------------------------------
 Now what? 

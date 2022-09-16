@@ -18,6 +18,7 @@ router.get('/', (req, res) => {
 ;`;
   pool.query(query)
     .then(result => {
+      console.log('result.rows on server side:',result.rows) // this is coming back as each user id, their id, username, timezone, and available days.
       res.send(result.rows);
     })
     .catch(err => {

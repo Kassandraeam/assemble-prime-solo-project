@@ -37,29 +37,29 @@ INSERT INTO
 	"time" (time)
 VALUES
 	(100),
-(200),
-(300),
-(400),
-(500),
-(600),
+	(200),
+	(300),
+	(400),
+	(500),
+	(600),
 	(700),
-(800),
-(900),
-(1000),
-(1100),
-(1200),
+	(800),
+	(900),
+	(1000),
+	(1100),
+	(1200),
 	(1300),
-(1400),
-(1500),
-(1600),
-(1700),
-(1800),
+	(1400),
+	(1500),
+	(1600),
+	(1700),
+	(1800),
 	(1900),
-(2000),
-(2100),
-(2200),
-(2300),
-(2400);
+	(2000),
+	(2100),
+	(2200),
+	(2300),
+	(2400);
 
 -- USER --
 CREATE TABLE "user" (
@@ -193,10 +193,27 @@ GROUP BY
 	"time".hour;
 
 ------------ BRUHHHHHH -------------
-"availability".id,
-"availability".time_id,
-"days".day,
-"time".hour;
+
+-- Gets available times based on the day by user --
+SELECT
+	"user".id,
+	"user".username,
+	"days".id,
+	"days".day,
+	array_agg("availability".time_id) AS "availableTimes"
+FROM
+	"availability"
+	JOIN "user" ON "user".id = "availability".user_id
+	JOIN "days" ON "days".id = "availability".days_id
+WHERE
+	"availability".days_id = 1
+GROUP BY
+	"user".id,
+	"user".username,
+	"days".day,
+	"days".id;
+-- Gets available times based on the day by user  --
+
 
 ----- REALLLLLY BAD SCRATCH WORK -----
 -- Shows the available times by user
@@ -227,26 +244,11 @@ FROM
 
 ;
 
--- this is it omg --
-SELECT
-	array_agg("availability".time_id) AS "availableTimes",
-	"user".id,
-	"user".username
-FROM
-	"availability"
-	JOIN "user" ON "user".id = "availability".user_id
-WHERE
-	"availability".days_id = 4
-GROUP BY
-	"user".username,
-	"user".id;
-
--- BETTER VERSION --
+-- √ LET'S GOOOOOOOO -- 
 SELECT
 	"user".id,
 	"user".username,
 	"days".day,
-	"days".id,
 	array_agg("availability".time_id) AS "availableTimes"
 FROM
 	"availability"
@@ -257,12 +259,22 @@ WHERE
 GROUP BY
 	"user".id,
 	"user".username,
-	"days".id,
 	"days".day;
--- BETTER VERSION --
-	
-	
-	
+
+-- this is it omg --
+SELECT
+	array_agg("availability".time_id) AS "availableTimes",
+	"user".id,
+	"user".username
+FROM
+	"availability"
+	JOIN "user" ON "user".id = "availability".user_id
+WHERE
+	"availability".days_id = 1
+GROUP BY
+	"user".username,
+	"user".id;
+
 -- GOAL: Get available times in here as well?
 -- Shows the available days
 -- working on this with liz and kris
@@ -507,7 +519,7 @@ CREATE TABLE "movies_genres" (
 INSERT INTO
 	"availability"("user_id", "days_id", "time_id")
 VALUES
-($ 1, $ 2, $ 3) RETURNING "id",
+	($ 1, $ 2, $ 3) RETURNING "id",
 	"user_id",
 	"days_id",
 	"time_id";
@@ -515,7 +527,7 @@ VALUES
 INSERT INTO
 	"availability"("user_id", "days_id", "time_id")
 VALUES
-(1, 2, 3) RETURNING "id",
+	(1, 2, 3) RETURNING "id",
 	"user_id",
 	"days_id",
 	"time_id";
