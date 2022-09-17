@@ -9,7 +9,10 @@ import Avatar from '@mui/material/Avatar';
 import Stack from '@mui/material/Stack';
 import { common, deepOrange, deepPurple } from '@mui/material/colors';
 import Checkbox from '@mui/material/Checkbox';
+import TestingReducer from '../_TemplateComponent copy/TemplateComponent';
+import { array } from 'prop-types';
 const label = { inputProps: { 'aria-label': 'Compare Times' } };
+
 
 const intersection = (arr1, arr2) => {
   const res = [];
@@ -28,6 +31,10 @@ const intersectMany = (...arrs) => {
   };
   return res;
 };
+
+
+
+
 function getUnique(array) {
   let uniqueArray = [];
   for (let i = 0; i < array.length; i++) {
@@ -39,26 +46,45 @@ function getUnique(array) {
 }
 
 
+
 function Friends() {
   const store = useSelector((store) => store);
   const allUsers = useSelector((store) => store.multipleUsersReducer)
-  const freeTime = useSelector((store) => store.multipleUserFreeTimeReducer)
+  console.error(allUsers);
+  let freeTime = useSelector((store) => store.multipleUserFreeTimeReducer)
+
   const history = useHistory();
-  const [heading, setHeading] = useState('Users');
-  const [compareArray, setCompareArray] = useState([]);
-  const [commonalities, setCommonalities] = useState();
-  const [uniqueCommonDays, setUniqueCommonDays] = useState([]);
-
-  const [monday, setMonday] = useState([]);
-  const [commonMondays, setCommonMondays] = useState([]);
-
-  console.log('freetime:',freeTime)
   const dispatch = useDispatch();
+  const [heading, setHeading] = useState('Users');
+  const availableTimes = freeTime.map(({ availableTimes }) => availableTimes)
+
+  // * compareArray contains all of the days that the user is free upon click, based on their current availability.
+  const [compareArray, setCompareArray] = useState([]);
+  const [compareTimeArray, setCompareTimeArray] = useState([]);
+
+  // * commonalities determines what number is present in all selected arrays.
+  const [commonalities, setCommonalities] = useState();
+
+  // * uniqueCommonDays eliminates duplicates to show simply.
+  const [uniqueCommonDays, setUniqueCommonDays] = useState([]);
+  let arrayTest = [];
+  const simpleForOf = (arr) => {
+    for (const hour of arr) {
+      //console.log('INDIVIDUAL ITEMS FROM THE ARRAY',hour);
+      //console.log(hour.time);
+      arrayTest.push(hour.time);
+    }
+  }
+
+  simpleForOf(freeTime);
+
+
+  const [uniqueCommonTimes, setUniqueCommonTimes] = useState([])
+
   const ref = useRef(null);
-  let runSubmitOnce = false;
-  // console.log('all users:',allUsers)
-  // console.log(typeof(allUsers))
-  console.log('uniqueCommonDays:', uniqueCommonDays)
+
+  let testIntersect = (intersectMany(arrayTest))
+  //console.log('testIntersect', testIntersect)
 
   function stringToColor(string) {
     let hash = 0;
@@ -85,17 +111,19 @@ function Friends() {
       children: `${name.split(' ')[0][0]}`,
     };
   }
-  
+
+
+
 
   useEffect(() => {
     dispatch({
-      type: 'FETCH_ALL_USERS'
+      type: 'FETCH_ALL_USERS',
     })
-  }, []);
+  }, [])
+
+  simpleForOf(freeTime);
 
   const handleGetAvailableSchedule = (eachUser) => {
-    console.log(eachUser)
-    console.log(`Clicked on`, eachUser);
     history.push(`/friends/${eachUser}`)
     dispatch({
       type: 'FETCH_SPECIFIC_USER',
@@ -104,29 +132,26 @@ function Friends() {
   };
 
 
-  const handleCheckBox = (eachUser) => {
-    console.log('Got this persons id:', eachUser)
-    setCompareArray([...compareArray, eachUser.availableDays]) // this gives me a new array with all the old stuff. this is stored locally
+
+ // + CHECKBOX 
+  const handleCheckBox = (eachUser, eachHour) => {
+    console.log('userID:',eachUser.id)
+    setCompareArray([...compareArray, eachUser.availableDays]) 
+    getTime(eachHour);
   };
 
+// + SUBMIT
   const handleSubmit = () => {
-    console.log(compareArray)
-    console.log(intersectMany(compareArray))
     let commonalities = intersectMany(...compareArray);
     setCommonalities(...commonalities);
+
     let uniqueCommonDays = getUnique(commonalities).sort();
     setUniqueCommonDays([...uniqueCommonDays])
-    console.error('uniqueCommonDays in friends',uniqueCommonDays) // ! Send this to Saga.
+
     handleGettingAvailableTimes(uniqueCommonDays);
-    console.log('all users after hitting submit',allUsers)
-    //dispatch the uniqueCommonDays instead and map through.
-    // dispatch({
-    //   type: 'GET_AVAILABLE_TIMES',
-    //   payload: uniqueCommonDays
-    // })
   }
 
-  // maybe send as uniqueCommondays instead
+
 
   const handleGettingAvailableTimes = (array) => {
     sendEachUniqueDay(...array);
@@ -134,99 +159,111 @@ function Friends() {
       for (let day of array) {
         switch (day) {
           case 1:
-            console.log(day);
-            console.error('1 is being sent');
+            console.warn('Shooting', day, 'off to the Server!')
             dispatch({
               type: 'GET_AVAILABLE_TIMES',
-              payload: {day:day}
+              payload: { day: day }
             })
-            // setMonday([...monday, ])
             break;
-
           case 2:
-            console.error('2 is being sent');
+            console.warn('Shooting', day, 'off to the Server!')
             dispatch({
               type: 'GET_AVAILABLE_TIMES',
-              payload: {day:day}
+              payload: { day: day }
             })
             break;
-
           case 3:
-            console.error('3 is being sent');
+            console.warn('Shooting', day, 'off to the Server!')
             dispatch({
               type: 'GET_AVAILABLE_TIMES',
-              payload: {day:day}
+              payload: { day: day }
             })
             break;
-
           case 4:
-            console.log('4 is being sent');
+            console.warn('Shooting', day, 'off to the Server!')
             dispatch({
               type: 'GET_AVAILABLE_TIMES',
-              payload: {day:day}
+              payload: { day: day }
             })
             break;
-
           case 5:
-            console.log('5 is being sent');
+            console.warn('Shooting', day, 'off to the Server!')
             dispatch({
               type: 'GET_AVAILABLE_TIMES',
-              payload: {day:day}
+              payload: { day: day }
             })
             break;
-
           case 6:
-            console.log('6 is being sent');
+            console.warn('Shooting', day, 'off to the Server!')
             dispatch({
               type: 'GET_AVAILABLE_TIMES',
-              payload: {day:day}
+              payload: { day: day }
             })
             break;
-
           case 7:
-            console.log('7 is being sent');
+            console.warn('Shooting', day, 'off to the Server!')
             dispatch({
               type: 'GET_AVAILABLE_TIMES',
-              payload: {day:day}
+              payload: { day: day }
             })
             break;
           default:
             console.log('default of the sendEachUniqueDay function')
-
             break;
         }
       }
     };
   }
 
-
-
   return (
     <>
-      <p>THIS IS THE COMPARE ARRAY:</p>
+       <>
+      <p>THIS IS THE COMPARE ARRAY FOR DAYS:</p>
       {JSON.stringify(compareArray)}
       <br></br>
-      <p>Unique Common Days:</p>
+      <br></br>
+      <br></br>
+      <p>Unique Common Days (M:1, T:2, W:3 ---):</p>
       {JSON.stringify(uniqueCommonDays)}
+      <br></br>
+      <br></br>
+      <br></br>
+      <p>Times:</p>
+      <br></br>
+      <br></br>
+      <br></br>
+      <br></br>
+      <p>geting the times of ANYONE with availability on x day</p>
+      {JSON.stringify(testIntersect)}
+       </>
 
       <h2>{heading}</h2>
 
-
       <Button variant="contained" onClick={handleSubmit}>SUBMIT</Button>
       &nbsp;
-
       <div className='map'>
         &nbsp;
         {allUsers.map(eachUser => (
+
           <div className='eachUser' key={eachUser.id}>
             <Avatar {...stringAvatar(eachUser.username)}></Avatar>
             <p>USER: {eachUser.username} </p>
             <p>TIMEZONE: {eachUser.timezone}</p>
             <Button variant="contained" onClick={() => handleGetAvailableSchedule(eachUser.id, eachUser.username)}>Get {eachUser.username}'s schedule</Button>
             &nbsp;
-            <Checkbox ref={ref} value={eachUser} onClick={() => handleCheckBox(eachUser)}></Checkbox>
+            <Checkbox value={eachUser} onClick={() => handleCheckBox(eachUser)}></Checkbox>
           </div>
         ))}
+        {freeTime.map(eachHour => (
+          <div className='eachUser' key={eachHour.id}>
+
+            <p>ID{eachHour.id}</p>
+            <p>username:{eachHour.username}</p>
+            <p>time:{eachHour.time}</p>
+            <Button onClick={() => handleCheckBox(eachHour.time)}>For the sake of getting something </Button>
+            </div>
+           ))}
+
       </div>
     </>
   );

@@ -1,3 +1,94 @@
+SELECT
+	"user".id,
+	"user".username,
+	"days".id,
+	"days".day,
+	array_agg("availability".days_id) AS "availableDays",
+	array_agg("availability".time_id) AS "availableTimes"
+FROM
+	"availability"
+	JOIN "user" ON "user".id = "availability".user_id
+	JOIN "days" ON "days".id = "availability".days_id
+WHERE
+	"availability".days_id = 1
+GROUP BY
+	"user".id,
+	"user".username,
+	"days".day,
+	"days".id;
+
+  router.post('/new', async (req, res) => {
+  const name = req.body.name;
+  const amount = req.body.amount;
+  console.log(`Creating new account ${name} with initial balance of ${amount}`);
+
+  const connection = await pool.connect();
+  try {
+    await connection.query('BEGIN;');
+    const sqlAddAccount = `
+    INSERT INTO "account" ("name")
+    VALUES ($1)
+    RETURNING "id";
+    `;
+    // Save query result to variable.
+    const result = await connection.query(sqlAddAccount, [name]);
+    const accountId = result.rows[0].id //the first row, and its id.
+    
+    const sqlInitialDeposit = 
+    `
+    INSERT INTO "register" ("acct_id", "amount")
+    VALUES ($1, $2);
+    ;`;
+    await connection.query(sqlInitialDeposit, [accountId, amount]); //
+    await connection.query('COMMIT;');
+    res.sendStatus(200);
+  } catch (error) {
+    await connection.query('ROLLBACK');
+    console.log('Error adding new account:', error)
+    res.sendStatus(500);
+  } finally {
+    connection.release();
+  }
+})
+
+In the post, it maps through it there.
+  //I may not even need these because the times come with the days.
+  // ! compareArray contains all of the days that the user is free upon click, based on their current availability.
+  const [compareArray, setCompareArray] = useState([]);
+  console.log('THIS IS THE FORMAT I NEED RN FOR TIME. compareArray:', compareArray);
+  // ! commonalities determines what number is present in all selected arrays.
+  const [commonalities, setCommonalities] = useState();
+  console.log('commonalitiesArray:', commonalities);
+  // ! uniqueCommonDays eliminates duplicates to show simply.
+  const [uniqueCommonDays, setUniqueCommonDays] = useState([]);
+  console.log(uniqueCommonDays);
+
+  // ! monday contains all of the times on Monday that the user is free upon submit.
+  const [monday, setMonday] = useState([]);
+  // ! commonMondays should determine which numbers are present in all selected arrays of Monday.
+  const [commonMondays, setCommonMondays] = useState([]);
+  // ! uniqueMondays eliminates duplicates to show simply.
+  const [uniqueMondays, setUniqueMondays] = useState([]);
+<script>
+  {movies.map(movie => {
+                    return (
+                        <div className="card" key={movie.id} >
+                            <h3 className="card-title">{movie.title}</h3>
+                        </div>
+                    );
+                })}
+</script>
+
+
+<div>
+Right now I need to drill down into each individual array.
+I was able to get eachUser by mapping the reducer of all users in the return and then passing it up through the function handleCheckBox(eachUser). 
+
+Maybe I can map through the freeTime to get individual times?
+</div>
+
+
+
 <div good ex of transactional sql>
 <script>
 router.post('/', async (req, res) => {
