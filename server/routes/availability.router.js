@@ -26,14 +26,13 @@ router.get('/:id', (req, res) => {
 
   const queryText = 
   `
-  SELECT "availability".id, "user".id AS "user_id","availability".days_id, "availability".time_id, "user".username as "username", "days".day, "time".hour
+  SELECT "availability".id, "user".id AS "user_id","availability".days_id, "availability".time_id, "user".username as "username", "days".day, "time".hour, "user".timezone
   FROM "availability"
   JOIN "user" ON "user".id = "availability".user_id
   JOIN "days" ON "days".id = "availability".days_id
   JOIN "time" ON "time".id = "availability".time_id
   WHERE "user_id" = $1
-  GROUP BY "availability".id, "user".id, "availability".days_id, "availability".time_id, "user".username, "days".day, "time".time, "time".hour
- ;
+  GROUP BY "availability".id, "user".id, "availability".days_id, "availability".time_id, "user".username, "days".day, "time".time, "time".hour, "user".timezone;
   `;
   pool.query(queryText, [req.params.id])
     .then(result => {
@@ -72,8 +71,8 @@ router.post('/', async (req, res) => {
     await client.query('BEGIN')
 
     await Promise.all(availability.map((available) => {
-      const queryText = `INSERT INTO "availability" ("user_id", "days_id", "time_id") VALUES($1, $2, $3) RETURNING "id", "user_id", "days_id", "time_id";`;
-      const reqBody = [available.user, available.weekday, available.time];
+      const queryText = `INSERT INTO "availability" ("user_id", "days_id", "time_id", "localHour") VALUES($1, $2, $3, $4) RETURNING "id", "user_id", "days_id", "time_id", "localHour";`;
+      const reqBody = [available.user, available.weekday, available.time, available.localHour];
       return client.query(queryText, reqBody);
     }));
 

@@ -48,7 +48,7 @@ function UserPage() {
         
         {availableTimesSpecificToUser.map(free => (
           <div className='mappp' key={free.id}>
-            <span><p>TIME FREE: {free.days_id} AT {free.time_id}</p>
+            <span><p>TIME FREE: {free.days_id} AT {free.time_id} UTC</p>
               <Button variant="contained" onClick={() => handleDelete(free.id)}>DELETE</Button></span>
           </div>
         ))}
