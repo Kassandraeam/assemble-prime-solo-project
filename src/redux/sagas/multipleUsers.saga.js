@@ -7,10 +7,26 @@ function* fetchAllUsersSaga() {
     yield takeEvery('GET_AVAILABLE_TIMES', fetchAllAvailableTimes);
 }
 
+// function* fetchAllUsers(action) {
+//     try {
+//         console.log('fetch all users saga')
+//         const response = yield axios.get('/api/multipleUsers')
+//         console.log('fetchAllUsers saga in multipleUsers Saga, this is getting all the users:', response.data)
+//         yield put({
+//             type: 'ALL_USERS',
+//             payload: response.data
+//         })
+//     }
+//     catch (error) {
+//         console.log('action.payload in multipleUsersSaga:', action.payload)
+//         console.error('ERROR IN MULTIPLE USERS SAGA')
+//     }
+// };
 function* fetchAllUsers(action) {
     try {
         console.log('fetch all users saga')
         const response = yield axios.get('/api/multipleUsers')
+
         console.log('fetchAllUsers saga in multipleUsers Saga, this is getting all the users:', response.data)
         yield put({
             type: 'ALL_USERS',
@@ -28,6 +44,7 @@ function* fetchAllUsers(action) {
 function* fetchAllAvailableTimes(action) {
     try {
         const response = yield axios.post('/api/multipleUsers/availableTimes', {day: action.payload.day})
+        console.warn(response.data);
         yield put({
             type: 'ALL_USERS_FREE_TIME',
             payload: response.data
@@ -41,3 +58,4 @@ function* fetchAllAvailableTimes(action) {
 
 
 export default fetchAllUsersSaga;
+

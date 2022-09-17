@@ -17,6 +17,40 @@ GROUP BY
 	"days".day,
 	"days".id;
 
+  router.post('/new', async (req, res) => {
+  const name = req.body.name;
+  const amount = req.body.amount;
+  console.log(`Creating new account ${name} with initial balance of ${amount}`);
+
+  const connection = await pool.connect();
+  try {
+    await connection.query('BEGIN;');
+    const sqlAddAccount = `
+    INSERT INTO "account" ("name")
+    VALUES ($1)
+    RETURNING "id";
+    `;
+    // Save query result to variable.
+    const result = await connection.query(sqlAddAccount, [name]);
+    const accountId = result.rows[0].id //the first row, and its id.
+    
+    const sqlInitialDeposit = 
+    `
+    INSERT INTO "register" ("acct_id", "amount")
+    VALUES ($1, $2);
+    ;`;
+    await connection.query(sqlInitialDeposit, [accountId, amount]); //
+    await connection.query('COMMIT;');
+    res.sendStatus(200);
+  } catch (error) {
+    await connection.query('ROLLBACK');
+    console.log('Error adding new account:', error)
+    res.sendStatus(500);
+  } finally {
+    connection.release();
+  }
+})
+
 In the post, it maps through it there.
   //I may not even need these because the times come with the days.
   // ! compareArray contains all of the days that the user is free upon click, based on their current availability.

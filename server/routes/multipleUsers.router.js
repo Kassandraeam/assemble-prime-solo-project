@@ -8,6 +8,8 @@ const router = express.Router();
 // router.get('/', (req, res) => {
 
 // });
+
+// !!!! DO NOT GET RID OF THIS !!!!!!
 router.get('/', (req, res) => {
   // Send back user object from the session (previously queried from the database)
   const query = `
@@ -26,26 +28,6 @@ router.get('/', (req, res) => {
       res.sendStatus(500)
     })
 });
-
-// !!!! DO NOT GET RID OF THIS !!!!!!
-// router.get('/', (req, res) => {
-//   // Send back user object from the session (previously queried from the database)
-//   const query = `
-//     SELECT "user".id, "user".username, "user".timezone, array_agg("availability".days_id) "availableDays"
-//     FROM "user"
-//     JOIN "availability" ON "user".id = "availability".user_id
-//     GROUP BY "user".id, "user".username, "user".timezone
-// ;`;
-//   pool.query(query)
-//     .then(result => {
-//       console.log('result.rows on server side:', result.rows) // this is coming back as each user id, their id, username, timezone, and available days.
-//       res.send(result.rows);
-//     })
-//     .catch(err => {
-//       console.log('ERROR: Get all users times', err);
-//       res.sendStatus(500)
-//     })
-// });
 
 // router.get('/', (req, res) => {
 //   // Send back user object from the session (previously queried from the database)

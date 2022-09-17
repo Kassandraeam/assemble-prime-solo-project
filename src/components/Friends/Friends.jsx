@@ -170,44 +170,49 @@ function Friends() {
       for (let day of array) {
         switch (day) {
           case 1:
+            console.warn('Shooting', day, 'off to the Server!')
             dispatch({
               type: 'GET_AVAILABLE_TIMES',
               payload: { day: day }
             })
-            setMonday([...monday, freeTime.availableTimes])
-            console.log('MONDAY ARRAY SET! Hopefully', monday)
             break;
           case 2:
+            console.warn('Shooting', day, 'off to the Server!')
             dispatch({
               type: 'GET_AVAILABLE_TIMES',
               payload: { day: day }
             })
             break;
           case 3:
+            console.warn('Shooting', day, 'off to the Server!')
             dispatch({
               type: 'GET_AVAILABLE_TIMES',
               payload: { day: day }
             })
             break;
           case 4:
+            console.warn('Shooting', day, 'off to the Server!')
             dispatch({
               type: 'GET_AVAILABLE_TIMES',
               payload: { day: day }
             })
             break;
           case 5:
+            console.warn('Shooting', day, 'off to the Server!')
             dispatch({
               type: 'GET_AVAILABLE_TIMES',
               payload: { day: day }
             })
             break;
           case 6:
+            console.warn('Shooting', day, 'off to the Server!')
             dispatch({
               type: 'GET_AVAILABLE_TIMES',
               payload: { day: day }
             })
             break;
           case 7:
+            console.warn('Shooting', day, 'off to the Server!')
             dispatch({
               type: 'GET_AVAILABLE_TIMES',
               payload: { day: day }
@@ -235,8 +240,7 @@ function Friends() {
       <br></br>
       <br></br>
       <p>Times:</p>
-      {JSON.stringify(compareTimesArray)}
-      
+      {/* {JSON.stringify(freeTime)} */}
       <br></br>
       <br></br>
       <br></br>
