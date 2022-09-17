@@ -52,18 +52,13 @@ function Friends() {
 
   // ! I think this is all I needed. 
   const availableTimes = freeTime.map(({ availableTimes }) => availableTimes)
-  console.log('FREE TIME REDUCER:',freeTime)
-  console.error('availableTimes?', availableTimes);
 
   //I may not even need these because the times come with the days.
   // * compareArray contains all of the days that the user is free upon click, based on their current availability.
       const [compareArray, setCompareArray] = useState([]);
       console.log('THIS IS THE FORMAT I NEED RN FOR TIME. compareArray:', compareArray);
 
-      const [compareTimesArray, setCompareTimesArray] = useState([])
-
-
-
+      const [compareTimesArray, setCompareTimesArray] = useState()
 
   // * commonalities determines what number is present in all selected arrays.
       const [commonalities, setCommonalities] = useState();
@@ -71,24 +66,11 @@ function Friends() {
 
       const [commonalitiesTime, setCommonalitiesTime] = useState([])
 
-
-
-
   // * uniqueCommonDays eliminates duplicates to show simply.
       const [uniqueCommonDays, setUniqueCommonDays] = useState([]);
       console.log(uniqueCommonDays);
 
       const [uniqueCommonTimes, setUniqueCommonTimes] = useState([])
-
-
-
-
-  // // * monday contains all of the times on Monday that the user is free upon submit.
-  // const [monday, setMonday] = useState([]);
-  // // * commonMondays should determine which numbers are present in all selected arrays of Monday.
-  // const [commonMondays, setCommonMondays] = useState([]);
-  // // * uniqueMondays eliminates duplicates to show simply.
-  // const [uniqueMondays, setUniqueMondays] = useState([]);
 
   const ref = useRef(null);
 
@@ -124,7 +106,10 @@ function Friends() {
 
   useEffect(() => {
     dispatch({
-      type: 'FETCH_ALL_USERS'
+      type: 'FETCH_ALL_USERS',
+    }),
+    dispatch({
+      type: 'GET_AVAILABLE_TIMES',
     })
   }, []);
 
@@ -144,6 +129,7 @@ function Friends() {
     console.log('Got this persons id:', eachUser)
     // ! compareArray contains all of the days that the user is free upon click, based on their current availability.
     setCompareArray([...compareArray, eachUser.availableDays]) // this gives me a new array with all the old stuff. this is stored locally.
+    console.warn('eachUser!!!', `${eachUser.availableTimes}`)
     setCompareTimesArray([...compareTimesArray, eachUser.availableTimes]); 
   };
 
@@ -151,15 +137,18 @@ function Friends() {
 
 
 
-  const handleSubmit = (times) => {
+  const handleSubmit = () => {
+    // console.warn('eachUser!!!',eachUser)
+
     console.log('CompareArray upon submit:', compareArray);
     let commonalities = intersectMany(...compareArray);
     setCommonalities(...commonalities);
+
     let uniqueCommonDays = getUnique(commonalities).sort();
     setUniqueCommonDays([...uniqueCommonDays])
+    //this 
     handleGettingAvailableTimes(uniqueCommonDays);
-    let commonTimes = intersectMany(availableTimes)
-    console.log('COMMON TIMES:',commonTimes)
+
   }
 
 
@@ -240,7 +229,7 @@ function Friends() {
       <br></br>
       <br></br>
       <p>Times:</p>
-      {/* {JSON.stringify(freeTime)} */}
+      {JSON.stringify(compareTimesArray)}
       <br></br>
       <br></br>
       <br></br>
