@@ -9,9 +9,9 @@ import Avatar from '@mui/material/Avatar';
 import Stack from '@mui/material/Stack';
 import { common, deepOrange, deepPurple } from '@mui/material/colors';
 import Checkbox from '@mui/material/Checkbox';
-const label = { inputProps: { 'aria-label': 'Compare Times' } };
 import TestingReducer from '../_TemplateComponent copy/TemplateComponent';
 import { array } from 'prop-types';
+const label = { inputProps: { 'aria-label': 'Compare Times' } };
 
 
 const intersection = (arr1, arr2) => {
@@ -31,6 +31,10 @@ const intersectMany = (...arrs) => {
   };
   return res;
 };
+
+
+
+
 function getUnique(array) {
   let uniqueArray = [];
   for (let i = 0; i < array.length; i++) {
@@ -45,60 +49,42 @@ function getUnique(array) {
 
 function Friends() {
   const store = useSelector((store) => store);
-
-  const allUsers = useSelector((store) => store.multipleUsersReducer) // all users and days available which shoots off which days to look at.
+  const allUsers = useSelector((store) => store.multipleUsersReducer)
+  console.error(allUsers);
   let freeTime = useSelector((store) => store.multipleUserFreeTimeReducer)
-  console.log(freeTime)
+
   const history = useHistory();
   const dispatch = useDispatch();
   const [heading, setHeading] = useState('Users');
-
-  
-  // ! I think this is all I needed. 
   const availableTimes = freeTime.map(({ availableTimes }) => availableTimes)
 
-  //I may not even need these because the times come with the days.
   // * compareArray contains all of the days that the user is free upon click, based on their current availability.
   const [compareArray, setCompareArray] = useState([]);
   const [compareTimeArray, setCompareTimeArray] = useState([]);
-  console.log('THIS IS THE FORMAT I NEED RN FOR TIME. compareArray:', compareArray);
-
-
 
   // * commonalities determines what number is present in all selected arrays.
   const [commonalities, setCommonalities] = useState();
-  console.log('commonalitiesArray:', commonalities);
 
-  const [commonalitiesTime, setCommonalitiesTime] = useState([0])
-
+  // * uniqueCommonDays eliminates duplicates to show simply.
+  const [uniqueCommonDays, setUniqueCommonDays] = useState([]);
   let arrayTest = [];
   const simpleForOf = (arr) => {
     for (const hour of arr) {
-      console.log('INDIVIDUAL ITEMS FROM THE ARRAY',hour);
-      console.log(hour.time);
+      //console.log('INDIVIDUAL ITEMS FROM THE ARRAY',hour);
+      //console.log(hour.time);
       arrayTest.push(hour.time);
     }
   }
 
   simpleForOf(freeTime);
-  console.log('array',arrayTest);
 
-
-
-
-
-  // * uniqueCommonDays eliminates duplicates to show simply.
-  const [uniqueCommonDays, setUniqueCommonDays] = useState([]);
-  console.log(uniqueCommonDays);
 
   const [uniqueCommonTimes, setUniqueCommonTimes] = useState([])
 
   const ref = useRef(null);
-  console.table('array',arrayTest);
-console.log('INTERECT ARRAY TEST',intersectMany(arrayTest))
-console.log('arrayTest', arrayTest)
+
   let testIntersect = (intersectMany(arrayTest))
-  console.log('testIntersect', testIntersect)
+  //console.log('testIntersect', testIntersect)
 
   function stringToColor(string) {
     let hash = 0;
@@ -135,7 +121,7 @@ console.log('arrayTest', arrayTest)
     })
   }, [])
 
-
+  simpleForOf(freeTime);
 
   const handleGetAvailableSchedule = (eachUser) => {
     history.push(`/friends/${eachUser}`)
@@ -146,38 +132,23 @@ console.log('arrayTest', arrayTest)
   };
 
 
+
+ // + CHECKBOX 
   const handleCheckBox = (eachUser, eachHour) => {
-    console.error('All users:', allUsers)
-    console.log('Got this persons id:', eachUser)
-    // ! compareArray contains all of the days that the user is free upon click, based on their current availability.
-    setCompareArray([...compareArray, eachUser.availableDays]) // this gives me a new array with all the old stuff. this is stored locally.
-    console.warn('eachUser!!!', `${eachUser.time}`)
+    console.log('userID:',eachUser.id)
+    setCompareArray([...compareArray, eachUser.availableDays]) 
     getTime(eachHour);
   };
 
-
-  const getTime = (eachHour) => {
-    console.warn('each hour time', eachHour.time)
-    setCompareTimeArray([...compareTimeArray, eachUser.time]);
-    console.log(compareTimeArray);
-
-  }
-
-
-
+// + SUBMIT
   const handleSubmit = () => {
-    // console.warn('eachUser!!!',eachUser)
-
-
-    console.log('CompareArray upon submit:', compareArray);
     let commonalities = intersectMany(...compareArray);
     setCommonalities(...commonalities);
 
     let uniqueCommonDays = getUnique(commonalities).sort();
     setUniqueCommonDays([...uniqueCommonDays])
-    //this 
-    handleGettingAvailableTimes(uniqueCommonDays);
 
+    handleGettingAvailableTimes(uniqueCommonDays);
   }
 
 
@@ -246,7 +217,7 @@ console.log('arrayTest', arrayTest)
 
   return (
     <>
-
+       <>
       <p>THIS IS THE COMPARE ARRAY FOR DAYS:</p>
       {JSON.stringify(compareArray)}
       <br></br>
@@ -264,16 +235,12 @@ console.log('arrayTest', arrayTest)
       <br></br>
       <p>geting the times of ANYONE with availability on x day</p>
       {JSON.stringify(testIntersect)}
-
+       </>
 
       <h2>{heading}</h2>
 
-
       <Button variant="contained" onClick={handleSubmit}>SUBMIT</Button>
       &nbsp;
-
-      {/* //! What's happening here?
-      // Each checkbox is made specifically for that person and contains only THEIR information. So when I click it, it sends THEIR information to handleCheckBox function which sets the local state. */}
       <div className='map'>
         &nbsp;
         {allUsers.map(eachUser => (
@@ -284,10 +251,9 @@ console.log('arrayTest', arrayTest)
             <p>TIMEZONE: {eachUser.timezone}</p>
             <Button variant="contained" onClick={() => handleGetAvailableSchedule(eachUser.id, eachUser.username)}>Get {eachUser.username}'s schedule</Button>
             &nbsp;
-            <Checkbox ref={ref} value={eachUser} onClick={() => handleCheckBox(eachUser)}></Checkbox>
+            <Checkbox value={eachUser} onClick={() => handleCheckBox(eachUser)}></Checkbox>
           </div>
         ))}
-
         {freeTime.map(eachHour => (
           <div className='eachUser' key={eachHour.id}>
 
@@ -295,8 +261,9 @@ console.log('arrayTest', arrayTest)
             <p>username:{eachHour.username}</p>
             <p>time:{eachHour.time}</p>
             <Button onClick={() => handleCheckBox(eachHour.time)}>For the sake of getting something </Button>
-          </div>
-        ))}
+            </div>
+           ))}
+
       </div>
     </>
   );
