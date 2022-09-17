@@ -32,9 +32,6 @@ const intersectMany = (...arrs) => {
   return res;
 };
 
-
-
-
 function getUnique(array) {
   let uniqueArray = [];
   for (let i = 0; i < array.length; i++) {
@@ -45,9 +42,39 @@ function getUnique(array) {
   return uniqueArray;
 }
 
+function uniqueArrayDaysOfWeek(array){
+  let uniqueArrayDaysOfWeekArray = [];
+  for (let i = 0; i < array.length; i++) {
+      if (i === 1) {
+        uniqueArrayDaysOfWeekArray.push['Monday'];
+      }
+      else if (i === 2) {
+        uniqueArrayDaysOfWeekArray.push['Tuesday'];
+      }
+      else if (i === 3) {
+        uniqueArrayDaysOfWeekArray.push['Wednesday']
+      }
+      else if (i === 4) {
+        uniqueArrayDaysOfWeekArray.push['Thursday']
+      }
+      else if (i === 5) {
+        uniqueArrayDaysOfWeekArray.push['Friday']
+      }
+      else if (i === 6) {
+        uniqueArrayDaysOfWeekArray.push['Saturday']
+      }
+      else if (i === 7) {
+        uniqueArrayDaysOfWeekArray.push['Sunday']
+      }
+      else {
+        return uniqueArrayDaysOfWeekArray;
+      }
+    }
+  }
 
-
+  
 function Friends() {
+  const specificUser = useSelector((store)=> store.specificUserReducer)
   const store = useSelector((store) => store);
   const allUsers = useSelector((store) => store.multipleUsersReducer)
   console.error(allUsers);
@@ -57,7 +84,8 @@ function Friends() {
   const dispatch = useDispatch();
   const [heading, setHeading] = useState('Users');
   const availableTimes = freeTime.map(({ availableTimes }) => availableTimes)
-
+  // from the multiple free time reducer, save it in a local state. 
+  const [freehours, setFreeHours] = useState();
   // * compareArray contains all of the days that the user is free upon click, based on their current availability.
   const [compareArray, setCompareArray] = useState([]);
   const [compareTimeArray, setCompareTimeArray] = useState([]);
@@ -149,6 +177,9 @@ function Friends() {
     setUniqueCommonDays([...uniqueCommonDays])
 
     handleGettingAvailableTimes(uniqueCommonDays);
+    console.log('unique common days', uniqueCommonDays)
+    let displayDaysOnDOM = uniqueArrayDaysOfWeek(uniqueCommonDays);
+    console.warn('DISPLAY DAYS ON DOM',displayDaysOnDOM);
   }
 
 
@@ -235,6 +266,7 @@ function Friends() {
       <br></br>
       <p>geting the times of ANYONE with availability on x day</p>
       {JSON.stringify(testIntersect)}
+      {JSON.stringify(freeTime)}
        </>
 
       <h2>{heading}</h2>
@@ -270,4 +302,3 @@ function Friends() {
 }
 
 export default Friends;
-

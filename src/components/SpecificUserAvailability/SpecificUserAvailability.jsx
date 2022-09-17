@@ -9,7 +9,7 @@ function SpecificUserAvailability() {
 
   const history = useHistory();
   const dispatch = useDispatch();
-  const [heading, setHeading] = useState('SpecificUserAvailability');
+  const [heading, setHeading] = useState();
   const specificUserReducer = useSelector((store) => store.specificUserReducer);
   let id = useParams();
   console.log(id); // console logs as {id: '3'}

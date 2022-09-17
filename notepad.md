@@ -1,3 +1,10 @@
+SELECT "user".id, "user".username, "user".timezone, array_agg("availability".time_id) as TIME
+  FROM   "user"
+  JOIN   "availability" ON "user".id = "availability".user_id
+  WHERE
+       "availability".days_id = 1
+  GROUP BY "user".id, "user".username, "user".timezone;
+
 SELECT
 	"user".id,
 	"user".username,

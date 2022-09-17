@@ -173,12 +173,19 @@ router.post('/availableTimes', async (req, res) => {
   const dummyData = req.body.day;
   console.error('DUMMY DATA YOU DUMMY:', dummyData);
   // Send back user object from the session (previously queried from the database)
-  const query = `SELECT "user".id, "user".username, "user".timezone, array_agg("availability".time_id) as TIME
-  FROM   "user"
-  JOIN   "availability" ON "user".id = "availability".user_id
-  WHERE
-       "availability".days_id = $1
-  GROUP BY "user".id, "user".username, "user".timezone;`;
+  const query = `SELECT 
+	"user".id, "user".username, 
+	"user".timezone, 
+	array_agg("availability".time_id) as TIME,
+	"days".day
+FROM 
+     "user"
+	  JOIN "availability" ON "user".id = "availability".user_id
+      JOIN "days" ON "days".id = "availability".days_id
+WHERE
+     "availability".days_id = $1
+GROUP BY 
+  	 "user".id, "user".username, "user".timezone, "days".day;`;
   pool.query(query, [dummyData])
     .then(result => {
       console.log('result.rows on server side for route /availableTimes:', result.rows) // this is coming back as each user id, their id, username, timezone, and available days.
