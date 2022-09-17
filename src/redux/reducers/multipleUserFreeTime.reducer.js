@@ -2,7 +2,8 @@ const multipleUserFreeTimeReducer = (state = [], action) => {
     switch (action.type) {
       case 'ALL_USERS_FREE_TIME': 
       console.log('ACTION PAYLOAD IN THE multipleUserFreeTimeReducer:',action.payload)
-        return action.payload;
+      console.error('action payload in freetime reducer', state )
+        return [...state], action.payload;
       default:
         return state;
     }

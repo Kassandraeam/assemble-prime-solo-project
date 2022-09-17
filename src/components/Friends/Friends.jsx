@@ -11,7 +11,6 @@ import { common, deepOrange, deepPurple } from '@mui/material/colors';
 import Checkbox from '@mui/material/Checkbox';
 const label = { inputProps: { 'aria-label': 'Compare Times' } };
 import TestingReducer from '../_TemplateComponent copy/TemplateComponent';
-import { compare } from 'bcryptjs';
 
 
 const intersection = (arr1, arr2) => {
@@ -50,13 +49,17 @@ function Friends() {
   const dispatch = useDispatch();
   const [heading, setHeading] = useState('Users');
 
+  // ! I think this is all I needed. 
+  const availableTimes = freeTime.map(({ availableTimes }) => availableTimes)
+  console.error('USERNAMES?', availableTimes);
+
   //I may not even need these because the times come with the days.
   // ! compareArray contains all of the days that the user is free upon click, based on their current availability.
   const [compareArray, setCompareArray] = useState([]);
-  console.warn('THIS IS THE FORMAT I NEED RN FOR TIME. compareArray:',compareArray);
+  console.warn('THIS IS THE FORMAT I NEED RN FOR TIME. compareArray:', compareArray);
   // ! commonalities determines what number is present in all selected arrays.
   const [commonalities, setCommonalities] = useState();
-  console.warn('commonalitiesArray:',commonalities);
+  console.warn('commonalitiesArray:', commonalities);
   // ! uniqueCommonDays eliminates duplicates to show simply.
   const [uniqueCommonDays, setUniqueCommonDays] = useState([]);
   console.warn(uniqueCommonDays);
@@ -102,6 +105,7 @@ function Friends() {
   }
 
 
+
   useEffect(() => {
     dispatch({
       type: 'FETCH_ALL_USERS'
@@ -124,10 +128,11 @@ function Friends() {
     console.warn('Got this persons id:', eachUser)
     // ! compareArray contains all of the days that the user is free upon click, based on their current availability.
     setCompareArray([...compareArray, eachUser.availableDays]) // this gives me a new array with all the old stuff. this is stored locally.
-    console.log(freeTime[0])
-
-
   };
+
+
+
+
 
   const handleSubmit = (times) => {
     console.warn('CompareArray upon submit:', compareArray);
@@ -231,13 +236,21 @@ function Friends() {
   }
 
 
-  const handInfo = () => {
-    console.log({ hour })
-  }
+  // <h1>MAP OF FREETIME:</h1>
+  // {freeTime.map(freeHour => (
+  //   <div className='eachUser' key={freeHour.id}>
+  //     {/* <Friends freeHour={freeHour}/> */}
+  //     <p>USERNAME: {freeHour.username} </p>
+  //     <p>DAY: {freeHour.day} </p>
+  //     <p>AVAILABLE TIMES: {freeHour.availableTimes} </p>
+  //   </div>
+  // ))}
+
 
 
   return (
     <>
+
       {/* <TestingReducer></TestingReducer> */}
       <p>THIS IS THE COMPARE ARRAY:</p>
       {JSON.stringify(compareArray)}
@@ -249,6 +262,7 @@ function Friends() {
       <br></br>
       <br></br>
       <br></br>
+      <p>THIS ONE:</p>
       {JSON.stringify(freeTime)}
       <br></br>
       <br></br>
@@ -274,20 +288,17 @@ function Friends() {
             <p>TIMEZONE: {eachUser.timezone}</p>
             <Button variant="contained" onClick={() => handleGetAvailableSchedule(eachUser.id, eachUser.username)}>Get {eachUser.username}'s schedule</Button>
             &nbsp;
-            <Checkbox ref={ref} value={eachUser} onClick={() => handleCheckBox(eachUser)}></Checkbox>
-
+            <Checkbox ref={ref} value={eachUser} onClick={() => {handleCheckBox(eachUser); handleCheckBox(freeHour)}}></Checkbox>
           </div>
-
         ))}
-        <h1>MAP OF FREETIME:</h1>
         {freeTime.map(freeHour => (
           <div className='eachUser' key={freeHour.id}>
             <p>USERNAME: {freeHour.username} </p>
             <p>DAY: {freeHour.day} </p>
             <p>AVAILABLE TIMES: {freeHour.availableTimes} </p>
           </div>
-
         ))}
+
       </div>
     </>
   );

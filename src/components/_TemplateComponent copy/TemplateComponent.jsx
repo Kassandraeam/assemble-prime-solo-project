@@ -27,6 +27,9 @@ function testingReducer(props) {
 
     return (
         <>
+        {availableTimesReducer.map(ReducerItem => (
+            <Friends hoursFree={ReducerItem}/>
+          ))}
         <div>
             <h2>{heading}</h2>
         </div>
