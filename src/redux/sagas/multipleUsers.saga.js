@@ -3,7 +3,7 @@ import axios from 'axios';
 import { put, takeEvery, takeLatest } from 'redux-saga/effects';
 
 function* fetchAllUsersSaga() {
-    yield takeLatest('FETCH_ALL_USERS', fetchAllUsers);
+    yield takeEvery('FETCH_ALL_USERS', fetchAllUsers);
     yield takeEvery('GET_AVAILABLE_TIMES', fetchAllAvailableTimes);
 }
 
@@ -35,7 +35,7 @@ function* fetchAllUsers(action) {
     }
     catch (error) {
         console.log('action.payload in multipleUsersSaga:', action.payload)
-        console.error('ERROR IN MULTIPLE USERS SAGA')
+        console.error('ERROR IN MULTIPLE USERS SAGA', error)
     }
 };
 
@@ -44,6 +44,8 @@ function* fetchAllAvailableTimes(action) {
     try {
         const response = yield axios.post('/api/multipleUsers/availableTimes', {day: action.payload.day})
         console.warn('response data: with times based on what was shot to server:',response.data);
+
+
         yield put({
             type: 'ALL_USERS_FREE_TIME',
             payload: response.data
