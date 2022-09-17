@@ -11,7 +11,7 @@ function* fetchAllUsers(action) {
     try {
         console.log('fetch all users saga')
         const response = yield axios.get('/api/multipleUsers')
-
+        console.log('fetchAllUsers saga in multipleUsers Saga, this is getting all the users:', response.data)
         yield put({
             type: 'ALL_USERS',
             payload: response.data

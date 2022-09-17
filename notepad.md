@@ -1,5 +1,40 @@
-In the post, it maps through it there.
+SELECT
+	"user".id,
+	"user".username,
+	"days".id,
+	"days".day,
+	array_agg("availability".days_id) AS "availableDays",
+	array_agg("availability".time_id) AS "availableTimes"
+FROM
+	"availability"
+	JOIN "user" ON "user".id = "availability".user_id
+	JOIN "days" ON "days".id = "availability".days_id
+WHERE
+	"availability".days_id = 1
+GROUP BY
+	"user".id,
+	"user".username,
+	"days".day,
+	"days".id;
 
+In the post, it maps through it there.
+  //I may not even need these because the times come with the days.
+  // ! compareArray contains all of the days that the user is free upon click, based on their current availability.
+  const [compareArray, setCompareArray] = useState([]);
+  console.log('THIS IS THE FORMAT I NEED RN FOR TIME. compareArray:', compareArray);
+  // ! commonalities determines what number is present in all selected arrays.
+  const [commonalities, setCommonalities] = useState();
+  console.log('commonalitiesArray:', commonalities);
+  // ! uniqueCommonDays eliminates duplicates to show simply.
+  const [uniqueCommonDays, setUniqueCommonDays] = useState([]);
+  console.log(uniqueCommonDays);
+
+  // ! monday contains all of the times on Monday that the user is free upon submit.
+  const [monday, setMonday] = useState([]);
+  // ! commonMondays should determine which numbers are present in all selected arrays of Monday.
+  const [commonMondays, setCommonMondays] = useState([]);
+  // ! uniqueMondays eliminates duplicates to show simply.
+  const [uniqueMondays, setUniqueMondays] = useState([]);
 <script>
   {movies.map(movie => {
                     return (

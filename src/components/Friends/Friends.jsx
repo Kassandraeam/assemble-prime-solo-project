@@ -56,22 +56,39 @@ function Friends() {
   console.error('availableTimes?', availableTimes);
 
   //I may not even need these because the times come with the days.
-  // ! compareArray contains all of the days that the user is free upon click, based on their current availability.
-  const [compareArray, setCompareArray] = useState([]);
-  console.log('THIS IS THE FORMAT I NEED RN FOR TIME. compareArray:', compareArray);
-  // ! commonalities determines what number is present in all selected arrays.
-  const [commonalities, setCommonalities] = useState();
-  console.log('commonalitiesArray:', commonalities);
-  // ! uniqueCommonDays eliminates duplicates to show simply.
-  const [uniqueCommonDays, setUniqueCommonDays] = useState([]);
-  console.log(uniqueCommonDays);
+  // * compareArray contains all of the days that the user is free upon click, based on their current availability.
+      const [compareArray, setCompareArray] = useState([]);
+      console.log('THIS IS THE FORMAT I NEED RN FOR TIME. compareArray:', compareArray);
 
-  // ! monday contains all of the times on Monday that the user is free upon submit.
-  const [monday, setMonday] = useState([]);
-  // ! commonMondays should determine which numbers are present in all selected arrays of Monday.
-  const [commonMondays, setCommonMondays] = useState([]);
-  // ! uniqueMondays eliminates duplicates to show simply.
-  const [uniqueMondays, setUniqueMondays] = useState([]);
+      const [compareTimesArray, setCompareTimesArray] = useState([])
+
+
+
+
+  // * commonalities determines what number is present in all selected arrays.
+      const [commonalities, setCommonalities] = useState();
+      console.log('commonalitiesArray:', commonalities);
+
+      const [commonalitiesTime, setCommonalitiesTime] = useState([])
+
+
+
+
+  // * uniqueCommonDays eliminates duplicates to show simply.
+      const [uniqueCommonDays, setUniqueCommonDays] = useState([]);
+      console.log(uniqueCommonDays);
+
+      const [uniqueCommonTimes, setUniqueCommonTimes] = useState([])
+
+
+
+
+  // // * monday contains all of the times on Monday that the user is free upon submit.
+  // const [monday, setMonday] = useState([]);
+  // // * commonMondays should determine which numbers are present in all selected arrays of Monday.
+  // const [commonMondays, setCommonMondays] = useState([]);
+  // // * uniqueMondays eliminates duplicates to show simply.
+  // const [uniqueMondays, setUniqueMondays] = useState([]);
 
   const ref = useRef(null);
 
@@ -127,6 +144,7 @@ function Friends() {
     console.log('Got this persons id:', eachUser)
     // ! compareArray contains all of the days that the user is free upon click, based on their current availability.
     setCompareArray([...compareArray, eachUser.availableDays]) // this gives me a new array with all the old stuff. this is stored locally.
+    setCompareTimesArray([...compareTimesArray, eachUser.availableTimes]); 
   };
 
 
@@ -216,14 +234,18 @@ function Friends() {
       <br></br>
       <br></br>
       <br></br>
-      <p>THIS ONE gets EVERYONE's times:</p>
-      {JSON.stringify(freeTime)}
+      <p>Times:</p>
+      {JSON.stringify(compareTimesArray)}
+      
       <br></br>
       <br></br>
       <br></br>
       <br></br>
       <p>I want the available times to only be the ones I checked. So when I check a certain button, I want to only select their hours.</p>
-      {JSON.stringify(availableTimes)}
+      {/* {JSON.stringify(availableTimes)} */}
+
+
+      <h2>{heading}</h2>
 
 
       <Button variant="contained" onClick={handleSubmit}>SUBMIT</Button>
@@ -244,14 +266,6 @@ function Friends() {
             <Checkbox ref={ref} value={eachUser} onClick={() => handleCheckBox(eachUser)}></Checkbox>
           </div>
         ))}
-          {freeTime.map(freeHour => (
-            <div className='eachUser' key={freeHour.id}>
-              <p>USERNAME: {freeHour.username} </p>
-              <p>DAY: {freeHour.day} </p>
-              <p>AVAILABLE TIMES: {freeHour.availableTimes} </p>
-            </div>
-          ))}
-
       </div>
     </>
   );
