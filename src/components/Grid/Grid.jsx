@@ -1,35 +1,64 @@
-import React, { useEffect, useState } from "react";
-import "./styles.css";
-import Grid from "./components/grid";
+import React from 'react';
 
-export default function App() {
-  const gridBase = {
-    cells: 5,
-    rows: 5
-  };
+const Grid = ({
+  grid,
+  handleGridSize,
+  inputCells,
+  setCells,
+  inputRows,
+  setRows,
+}) => {
+  const cells = new Array(grid.cells).fill(0);
+  const rows = new Array(grid.rows).fill(0);
 
-  const [grid, setGrid] = useState(gridBase);
-  const [inputCells, setCells] = useState(grid.cells);
-  const [inputRows, setRows] = useState(grid.rows);
-
-  const handleGridSize = () => {
-    const res = {
-      cells: parseInt(inputCells),
-      rows: parseInt(inputRows)
-    };
-    setGrid({ ...res });
+  const handleClick = (e) => {
+    const item = e.target;
+    if (item.classList.contains('selected')) {
+      item.classList.remove('selected');
+    } else {
+      item.classList.add('selected');
+    }
   };
 
   return (
-    <div className="app">
-      <Grid
-        grid={grid}
-        handleGridSize={handleGridSize}
-        inputCells={inputCells}
-        inputRows={inputRows}
-        setCells={setCells}
-        setRows={setRows}
-      />
-    </div>
+    <>
+    <h1 className="weekdays">M T W Th F Sa Su</h1>
+    <main>
+
+      {rows.map((row, index) => (
+        <ul className="row" key={index}>
+          {cells.map((cell, index) => (
+            <li key={index} className="item" onClick={handleClick} />
+          ))}
+        </ul>
+      ))}
+
+      {/* <div>
+        <label htmlFor="cells">Define cells in the row</label>
+        <input
+          type="text"
+          placeholder="Define cells in the row"
+          id="cells"
+          value={inputCells}
+          onChange={(e) => setCells(e.target.value)}
+        />
+      </div> */}
+
+      {/* <div>
+        <label htmlFor="rows">Define rows</label>
+        <input
+          type="text"
+          placeholder="Define rows"
+          id="rows"
+          value={inputRows}
+          onChange={(e) => setRows(e.target.value)}
+        />
+      </div> */}
+
+      {/* <button onClick={handleGridSize}>Change Grid</button> */}
+    </main>
+    </>
   );
-}
+};
+
+export default Grid;

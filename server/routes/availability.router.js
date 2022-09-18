@@ -22,6 +22,7 @@ router.get('/', (req, res) => {
 
 
 router.get('/:id', (req, res) => {
+  console.log('HELLO!!!!')
   console.log('req.params.id: ', req.params.id)
 
   const queryText = 

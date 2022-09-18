@@ -1,18 +1,17 @@
-/* body 
+ body 
 .wrapper {
-    background-image: url('/Users/kassandraeam/Desktop/Solo_Project/assemble-prime-solo-project/public/images/tim-stief-dH6IjhWHNQQ-unsplash.jpg');
+
+    background-color: rgb(194, 119, 119);
     background-size: 50% auto;
     width: 100%;
 }
 
 html {
     height: 100%;
-    background-color: cyan;
-} */
+    background-color: rgb(255, 255, 255);
+} 
 
-/* body {
+body {
     height: 100%;
-    background-image: url('/Users/kassandraeam/Desktop/Solo_Project/assemble-prime-solo-project/public/images/tim-stief-dH6IjhWHNQQ-unsplash.jpg');
-
     background-size: 50% auto;
-} */
+} 

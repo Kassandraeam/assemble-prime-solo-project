@@ -151,12 +151,17 @@ function Friends() {
 
   simpleForOf(freeTime);
 
+
+  // get information and then run a function inside of this click button that then converts said user's time to LOCAL user's timezone.
   const handleGetAvailableSchedule = (eachUser) => {
-    history.push(`/friends/${eachUser}`)
     dispatch({
-      type: 'FETCH_SPECIFIC_USER',
-      id: eachUser
+      // type: 'FETCH_SPECIFIC_USER',
+      type: 'SPECIFIC_USER_REDUCER',
+      payload: {id: eachUser}
     })
+    history.push(`/friends/${eachUser}`)
+    console.warn('Specific User reducer in the handleGetAvailableSchdeule function:', specificUser, 'now I take this persons time_id and put it into a function that converts it to local time.')
+    console.warn('And then dispatch all of that to a separate reducer that then displays on the page /friends/eachUser.')
   };
 
 
