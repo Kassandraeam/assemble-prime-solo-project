@@ -33,7 +33,9 @@ function MyNav() {
 
   return (
     <>
-      <div className='nav'>
+      <div className='nav' style={{
+              
+                    }}>
         
         <Button
         variant="contained"

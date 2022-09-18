@@ -79,15 +79,10 @@ function Calendar() {
 
     return (
         <>
-        {/* <div className='border-spacing-2'>
-            <p className='text-5xl'>Assemble</p>
-            <p className='text-2xl'>Choose the times you're available</p>
-        </div> */}
-            {/* <div className='flex justify-center'>
-            <div style={{ height: 1000, width: '100%' }}>
-                <DataGrid rows={rows} columns={columns} />
-            </div>
-            </div> */}
+        <div className='border-spacing-2 justify-en'>
+            <p className='text-5xl text-right px-3'>Assemble</p>
+            <p className='text-2xl text-right px-3'>Choose the times you're available</p>
+        </div>
             <Luxon />
             {/* <TailwindCalendar></TailwindCalendar> */}
         </>
