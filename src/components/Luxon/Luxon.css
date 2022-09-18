@@ -18,10 +18,49 @@
 } */
 
 
-.monday{
+.MondayContainer div {
     border: 3px solid rgb(0, 0, 0);
+    width: 20%;
+    display: inline-block
+}
+.TuesdayContainer div {
+    border: 3px solid rgb(0, 0, 0);
+    width: 20%;
+    display: inline-block
+}
+.WednesdayContainer div {
+    border: 3px solid rgb(0, 0, 0);
+    width: 20%;
+    display: inline-block
+}
+.ThursdayContainer div {
+    border: 3px solid rgb(0, 0, 0);
+    width: 20%;
+    display: inline-block
+}
+.FridayContainer div {
+    border: 3px solid rgb(0, 0, 0);
+    width: 20%;
+    display: inline-block
+}
+.SaturdayContainer div {
+    border: 3px solid rgb(0, 0, 0);
+    width: 20%;
+    display: inline-block
+}
+.SundayContainer div {
+    border: 3px solid rgb(0, 0, 0);
+    width: 20%;
+    display: inline-block
+}
+
+
+label {
+    /* border: 3px solid green; */
+    display: inline-block
 
 }
+
 
 #mondayTitle {
     border: 3px solid rgb(255, 0, 0);
@@ -30,7 +69,7 @@
 .monday .tuesday .wednesday 
 .thursday .friday .saturday 
 .sunday {
-    display: inline-block;
-    border: 3px solid rgb(0, 0, 0);
+    /* display: inline-block; */
+    /* border: 3px solid rgb(0, 0, 0); */
 
 }

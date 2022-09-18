@@ -4,6 +4,7 @@ import { useHistory } from 'react-router-dom';
 import { useParams } from "react-router-dom";
 import Stack from '@mui/material/Stack';
 import Button from '@mui/material/Button';
+import './SpecificUserAvailability.css'
 const { DateTime } = require("luxon");
 
 function SpecificUserAvailability() {
@@ -51,7 +52,7 @@ function SpecificUserAvailability() {
 
   return (
     <>
-      <div>
+      <div className='mb-8 '>
         <h2>{heading}</h2>
         {/* <p>✨I need to convert specificUser.hour to the current user's timezone.✨</p> */}
       </div>
