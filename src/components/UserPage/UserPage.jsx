@@ -5,8 +5,12 @@ import { useDispatch } from 'react-redux';
 import '../App/App.css'
 import Button from '@mui/material/Button';
 import Luxon from '../Luxon/Luxon';
-import 'animate.css';
-
+import {MenuIcon, XIcon, trash} from '@heroicons/react/outline'
+import Box from '@mui/material/Box';
+import Card from '@mui/material/Card';
+import CardActions from '@mui/material/CardActions';
+import CardContent from '@mui/material/CardContent';
+import Typography from '@mui/material/Typography';
 function UserPage() {
   // this component doesn't do much to start, just renders some user reducer info to the DOM
   const user = useSelector((store) => store.user);
@@ -34,22 +38,23 @@ function UserPage() {
       id: id // item number in database
     })
   }
+  
 
   return (
     <>
-    <h1 className="animate__bounce animate__bounce">An animated element</h1>
-      <h2>Welcome, {user.username}!</h2>
-      <p>Your ID is: {user.id}</p>
+    <h1 className="text-4xl text-center">Welcome, {user.username}!</h1>
+      {/* <p>Your ID is: {user.id}</p> */}
       <h1>Available Times:</h1>
+
       
       {/* {JSON.stringify(availableTimesSpecificToUser)} */}
       <div className='map'>
-
-        
         {availableTimesSpecificToUser.map(free => (
-          <div className='mappp' key={free.id}>
-            <span><p>TIME FREE: {free.days_id} AT {free.time_id}</p>
-              <Button variant="contained" onClick={() => handleDelete(free.id)}>DELETE</Button></span>
+          <div className='w-screen h-[80px]' key={free.id}>
+            <ul>
+              <li>TIME FREE: {free.days_id} AT {free.time_id} UTC</li>
+            </ul>
+              <Button variant="contained" onClick={() => handleDelete(free.id)}>DELETE</Button>
           </div>
         ))}
 

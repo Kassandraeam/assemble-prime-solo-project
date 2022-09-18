@@ -3,28 +3,34 @@
 # = ids
 */
 
-#Monday_Column {
+/* #Monday_Column {
     margin: auto;
     width: 50%;
     border: 3px solid rgb(0, 0, 0);
     padding: 10px;
-}
-
+} */
+/* 
 #calendarHomepage {
     margin: auto;
     width: 50%;
     border: 3px solid rgb(0, 0, 0);
     padding: 10px;
-}
+} */
 
-#mondayTitle{
-    margin: auto;
-    width: 50%;
-
-    padding: 10px;
-}
 
 .monday{
+    border: 3px solid rgb(0, 0, 0);
+
+}
+
+#mondayTitle {
+    border: 3px solid rgb(255, 0, 0);
+}
+
+.monday .tuesday .wednesday 
+.thursday .friday .saturday 
+.sunday {
+    display: inline-block;
     border: 3px solid rgb(0, 0, 0);
 
 }

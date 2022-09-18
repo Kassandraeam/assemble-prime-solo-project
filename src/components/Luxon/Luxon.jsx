@@ -35,12 +35,14 @@ function Luxon() {
 
     const handleSubmit = () => {
         console.log('Clicked Submit');
+        alert('You have successfully updated your availability!')
         dispatch({
             type: 'POST_AVAILABILITY',
             payload: {
                 availability
             }
         })
+        window.location.reload(false)
     }
 
     const handleClick = (event) => {
@@ -48,6 +50,9 @@ function Luxon() {
         let year = 2022; let month = 9; let day = 8; let minute = 0;
         let hour = parseInt(event.target.value);
         const convertedTime = DateTime.local(year, month, day, hour, minute, {zone: userTimeZone}).toUTC();
+        let inUsersTimeZone = DateTime.utc(year, month, day, convertedTime.hour, minute).toLocal() // this is giving me the local time from UTC.
+        console.warn('inUsersTimeZone', inUsersTimeZone); // 5:00 PM IS 2200 UTC
+
 
         console.error('HOUR IN 24 HOUR SYSTEM:', hour);
         console.log(`convert ${convertedTime.hour}:${convertedTime.minute}`)
@@ -59,7 +64,10 @@ function Luxon() {
                 {
                     user: user.id,
                     weekday: event.target.name,
-                    time: 24
+                    localHour: 24,
+                    time: 24,
+                    inUsersTimeZone: 24
+                
                 }
             ])
         } else {
@@ -68,7 +76,9 @@ function Luxon() {
                 {
                     user: user.id,
                     weekday: event.target.name,
-                    time: convertedTime.hour
+                    localHour: hour,
+                    time: convertedTime.hour,
+                    inUsersTimeZone: inUsersTimeZone
                 }
             ])
         }
@@ -92,8 +102,8 @@ function Luxon() {
         }
         return (
             <>
-                <h1>Your time zone (maybe hide this?): {userTimeZone}</h1>
                 <div>
+                    <div className=''>
                     <FormControl sx={{ m: 1, minWidth: 120 }}>
                         <InputLabel id="demo-simple-select-helper-label">Timezone</InputLabel>
                         <Select
@@ -102,8 +112,8 @@ function Luxon() {
                             value={inputTimeZone}
                             label="Timezone"
                             onChange={handleChange}
-                        >
-
+                        > 
+            
                             <MenuItem value='UTC-12'>GMT-12</MenuItem>
                             <MenuItem value='UTC-11'>GMT-11</MenuItem>
                             <MenuItem value='UTC-10'>GMT-10</MenuItem>
@@ -135,13 +145,12 @@ function Luxon() {
                         <FormHelperText>Change your timezone here!</FormHelperText>
                         <Button variant="contained" onClick={submitNewZone}>Change Timezone</Button>
                     </FormControl>
-                    
+                    </div>
                 
                 </div>
-                {/* <h1>Current Time: {now.hour}:{now.minute}:{now.second}</h1>
-                <h1>Your Current UTC Time Zone: {userTimeZone}</h1>
-                <h1>Your time converted to UTC: {yourTimeInUTC.hour}:{yourTimeInUTC.minute}:{yourTimeInUTC.second}</h1> */}
-
+               
+            <div>
+                </div>
                 <div className='monday'>
                     <p id='mondayTitle'>Monday</p>
                     <div>
@@ -246,14 +255,739 @@ function Luxon() {
 
                     <button onClick={() => handleSubmit()}>Submit Availability</button>
                 </div>
+                <div className='tuesday'>
+                    <p id='tuesdayTitle'>Tuesday</p>
+                    <div>
+                        <input type="checkbox" name="2" value="1" onClick={handleClick} />
+                        <label>1:00AM</label>
+                    </div>
+
+                    <div>
+                        <input type="checkbox" name="2" value="2" onClick={handleClick} />
+                        <label>2:00AM</label>
+                    </div>
+
+                    <div>
+                        <input type="checkbox" name="2" value="3" onClick={handleClick} />
+                        <label>3:00AM</label>
+                    </div>
+                    <div>
+                        <input type="checkbox" name="2" value="4" onClick={handleClick} />
+                        <label>4:00AM</label>
+                    </div>
+                    <div>
+                        <input type="checkbox" name="2" value="5" onClick={handleClick} />
+                        <label>5:00AM</label>
+                    </div>
+                    <div>
+                        <input type="checkbox" name="2" value="6" onClick={handleClick} />
+                        <label>6:00AM</label>
+                    </div>
+                    <div>
+                        <input type="checkbox" name="2" value="7" onClick={handleClick} />
+                        <label>7:00AM</label>
+                    </div>
+                    <div>
+                        <input type="checkbox" name="2" value="8" onClick={handleClick} />
+                        <label>8:00AM</label>
+                    </div>
+                    <div>
+                        <input type="checkbox" name="2" value="9" onClick={handleClick} />
+                        <label>9:00AM</label>
+                    </div>
+                    <div>
+                        <input type="checkbox" name="2" value="10" onClick={handleClick} />
+                        <label>10:00AM</label>
+                    </div>
+                    <div>
+                        <input type="checkbox" name="2" value="11" onClick={handleClick} />
+                        <label>11:00AM</label>
+                    </div>
+                    <div>
+                        <input type="checkbox" name="2" value="12" onClick={handleClick} />
+                        <label>12:00PM</label>
+                    </div>
+                    {/* Afternoon */}
+                    <div>
+                        <input type="checkbox" name="2" value="13" onClick={handleClick} />
+                        <label>1:00PM</label>
+                    </div>
+                    <div>
+                        <input type="checkbox" name="2" value="14" onClick={handleClick} />
+                        <label>2:00PM</label>
+                    </div>
+                    <div>
+                        <input type="checkbox" name="2" value="15" onClick={handleClick} />
+                        <label>3:00PM</label>
+                    </div>
+                    <div>
+                        <input type="checkbox" name="2" value="16" onClick={handleClick} />
+                        <label>4:00PM</label>
+                    </div>
+                    <div>
+                        <input type="checkbox" name="2" value="17" onClick={handleClick} />
+                        <label>5:00PM</label>
+                    </div>
+                    <div>
+                        <input type="checkbox" name="2" value="18" onClick={handleClick} />
+                        <label>6:00PM</label>
+                    </div>
+                    <div>
+                        <input type="checkbox" name="2" value="19" onClick={handleClick} />
+                        <label>7:00PM</label>
+                    </div>
+                    <div>
+                        <input type="checkbox" name="2" value="20" onClick={handleClick} />
+                        <label>8:00PM</label>
+                    </div>
+                    <div>
+                        <input type="checkbox" name="2" value="21" onClick={handleClick} />
+                        <label>9:00PM</label>
+                    </div>
+                    <div>
+                        <input type="checkbox" name="2" value="22" onClick={handleClick} />
+                        <label>10:00PM</label>
+                    </div>
+                    <div>
+                        <input type="checkbox" name="2" value="23" onClick={handleClick} />
+                        <label>11:00PM</label>
+                    </div>
+                    <div>
+                        <input type="checkbox" name="2" value="24" onClick={handleClick} />
+                        <label>12:00AM</label>
+                    </div>
+
+                    <button onClick={() => handleSubmit()}>Submit Availability</button>
+                </div>
+                <div className='wednesday'>
+                    <p id='wednesdayTitle'>Wednesday</p>
+                    <div>
+                        <input type="checkbox" name="3" value="1" onClick={handleClick} />
+                        <label>1:00AM</label>
+                    </div>
+
+                    <div>
+                        <input type="checkbox" name="3" value="2" onClick={handleClick} />
+                        <label>2:00AM</label>
+                    </div>
+
+                    <div>
+                        <input type="checkbox" name="3" value="3" onClick={handleClick} />
+                        <label>3:00AM</label>
+                    </div>
+                    <div>
+                        <input type="checkbox" name="3" value="4" onClick={handleClick} />
+                        <label>4:00AM</label>
+                    </div>
+                    <div>
+                        <input type="checkbox" name="3" value="5" onClick={handleClick} />
+                        <label>5:00AM</label>
+                    </div>
+                    <div>
+                        <input type="checkbox" name="3" value="6" onClick={handleClick} />
+                        <label>6:00AM</label>
+                    </div>
+                    <div>
+                        <input type="checkbox" name="3" value="7" onClick={handleClick} />
+                        <label>7:00AM</label>
+                    </div>
+                    <div>
+                        <input type="checkbox" name="3" value="8" onClick={handleClick} />
+                        <label>8:00AM</label>
+                    </div>
+                    <div>
+                        <input type="checkbox" name="3" value="9" onClick={handleClick} />
+                        <label>9:00AM</label>
+                    </div>
+                    <div>
+                        <input type="checkbox" name="3" value="10" onClick={handleClick} />
+                        <label>10:00AM</label>
+                    </div>
+                    <div>
+                        <input type="checkbox" name="3" value="11" onClick={handleClick} />
+                        <label>11:00AM</label>
+                    </div>
+                    <div>
+                        <input type="checkbox" name="3" value="12" onClick={handleClick} />
+                        <label>12:00PM</label>
+                    </div>
+                    {/* Afternoon */}
+                    <div>
+                        <input type="checkbox" name="3" value="13" onClick={handleClick} />
+                        <label>1:00PM</label>
+                    </div>
+                    <div>
+                        <input type="checkbox" name="3" value="14" onClick={handleClick} />
+                        <label>2:00PM</label>
+                    </div>
+                    <div>
+                        <input type="checkbox" name="3" value="15" onClick={handleClick} />
+                        <label>3:00PM</label>
+                    </div>
+                    <div>
+                        <input type="checkbox" name="3" value="16" onClick={handleClick} />
+                        <label>4:00PM</label>
+                    </div>
+                    <div>
+                        <input type="checkbox" name="3" value="17" onClick={handleClick} />
+                        <label>5:00PM</label>
+                    </div>
+                    <div>
+                        <input type="checkbox" name="3" value="18" onClick={handleClick} />
+                        <label>6:00PM</label>
+                    </div>
+                    <div>
+                        <input type="checkbox" name="3" value="19" onClick={handleClick} />
+                        <label>7:00PM</label>
+                    </div>
+                    <div>
+                        <input type="checkbox" name="3" value="20" onClick={handleClick} />
+                        <label>8:00PM</label>
+                    </div>
+                    <div>
+                        <input type="checkbox" name="3" value="21" onClick={handleClick} />
+                        <label>9:00PM</label>
+                    </div>
+                    <div>
+                        <input type="checkbox" name="3" value="22" onClick={handleClick} />
+                        <label>10:00PM</label>
+                    </div>
+                    <div>
+                        <input type="checkbox" name="3" value="23" onClick={handleClick} />
+                        <label>11:00PM</label>
+                    </div>
+                    <div>
+                        <input type="checkbox" name="3" value="24" onClick={handleClick} />
+                        <label>12:00AM</label>
+                    </div>
+
+                    <button onClick={() => handleSubmit()}>Submit Availability</button>
+                </div>
+                <div className='wednesday'>
+                    <p id='wednesdayTitle'>Wednesday</p>
+                    <div>
+                        <input type="checkbox" name="3" value="1" onClick={handleClick} />
+                        <label>1:00AM</label>
+                    </div>
+
+                    <div>
+                        <input type="checkbox" name="3" value="2" onClick={handleClick} />
+                        <label>2:00AM</label>
+                    </div>
+
+                    <div>
+                        <input type="checkbox" name="3" value="3" onClick={handleClick} />
+                        <label>3:00AM</label>
+                    </div>
+                    <div>
+                        <input type="checkbox" name="3" value="4" onClick={handleClick} />
+                        <label>4:00AM</label>
+                    </div>
+                    <div>
+                        <input type="checkbox" name="3" value="5" onClick={handleClick} />
+                        <label>5:00AM</label>
+                    </div>
+                    <div>
+                        <input type="checkbox" name="3" value="6" onClick={handleClick} />
+                        <label>6:00AM</label>
+                    </div>
+                    <div>
+                        <input type="checkbox" name="3" value="7" onClick={handleClick} />
+                        <label>7:00AM</label>
+                    </div>
+                    <div>
+                        <input type="checkbox" name="3" value="8" onClick={handleClick} />
+                        <label>8:00AM</label>
+                    </div>
+                    <div>
+                        <input type="checkbox" name="3" value="9" onClick={handleClick} />
+                        <label>9:00AM</label>
+                    </div>
+                    <div>
+                        <input type="checkbox" name="3" value="10" onClick={handleClick} />
+                        <label>10:00AM</label>
+                    </div>
+                    <div>
+                        <input type="checkbox" name="3" value="11" onClick={handleClick} />
+                        <label>11:00AM</label>
+                    </div>
+                    <div>
+                        <input type="checkbox" name="3" value="12" onClick={handleClick} />
+                        <label>12:00PM</label>
+                    </div>
+                    {/* Afternoon */}
+                    <div>
+                        <input type="checkbox" name="3" value="13" onClick={handleClick} />
+                        <label>1:00PM</label>
+                    </div>
+                    <div>
+                        <input type="checkbox" name="3" value="14" onClick={handleClick} />
+                        <label>2:00PM</label>
+                    </div>
+                    <div>
+                        <input type="checkbox" name="3" value="15" onClick={handleClick} />
+                        <label>3:00PM</label>
+                    </div>
+                    <div>
+                        <input type="checkbox" name="3" value="16" onClick={handleClick} />
+                        <label>4:00PM</label>
+                    </div>
+                    <div>
+                        <input type="checkbox" name="3" value="17" onClick={handleClick} />
+                        <label>5:00PM</label>
+                    </div>
+                    <div>
+                        <input type="checkbox" name="3" value="18" onClick={handleClick} />
+                        <label>6:00PM</label>
+                    </div>
+                    <div>
+                        <input type="checkbox" name="3" value="19" onClick={handleClick} />
+                        <label>7:00PM</label>
+                    </div>
+                    <div>
+                        <input type="checkbox" name="3" value="20" onClick={handleClick} />
+                        <label>8:00PM</label>
+                    </div>
+                    <div>
+                        <input type="checkbox" name="3" value="21" onClick={handleClick} />
+                        <label>9:00PM</label>
+                    </div>
+                    <div>
+                        <input type="checkbox" name="3" value="22" onClick={handleClick} />
+                        <label>10:00PM</label>
+                    </div>
+                    <div>
+                        <input type="checkbox" name="3" value="23" onClick={handleClick} />
+                        <label>11:00PM</label>
+                    </div>
+                    <div>
+                        <input type="checkbox" name="3" value="24" onClick={handleClick} />
+                        <label>12:00AM</label>
+                    </div>
+
+                    <button onClick={() => handleSubmit()}>Submit Availability</button>
+                </div>
+                <div className='thursday'>
+                    <p id='thursdayTitle'>Thursday</p>
+                    <div>
+                        <input type="checkbox" name="4" value="1" onClick={handleClick} />
+                        <label>1:00AM</label>
+                    </div>
+
+                    <div>
+                        <input type="checkbox" name="4" value="2" onClick={handleClick} />
+                        <label>2:00AM</label>
+                    </div>
+
+                    <div>
+                        <input type="checkbox" name="4" value="3" onClick={handleClick} />
+                        <label>3:00AM</label>
+                    </div>
+                    <div>
+                        <input type="checkbox" name="4" value="4" onClick={handleClick} />
+                        <label>4:00AM</label>
+                    </div>
+                    <div>
+                        <input type="checkbox" name="4" value="5" onClick={handleClick} />
+                        <label>5:00AM</label>
+                    </div>
+                    <div>
+                        <input type="checkbox" name="4" value="6" onClick={handleClick} />
+                        <label>6:00AM</label>
+                    </div>
+                    <div>
+                        <input type="checkbox" name="4" value="7" onClick={handleClick} />
+                        <label>7:00AM</label>
+                    </div>
+                    <div>
+                        <input type="checkbox" name="4" value="8" onClick={handleClick} />
+                        <label>8:00AM</label>
+                    </div>
+                    <div>
+                        <input type="checkbox" name="4" value="9" onClick={handleClick} />
+                        <label>9:00AM</label>
+                    </div>
+                    <div>
+                        <input type="checkbox" name="4" value="10" onClick={handleClick} />
+                        <label>10:00AM</label>
+                    </div>
+                    <div>
+                        <input type="checkbox" name="4" value="11" onClick={handleClick} />
+                        <label>11:00AM</label>
+                    </div>
+                    <div>
+                        <input type="checkbox" name="4" value="12" onClick={handleClick} />
+                        <label>12:00PM</label>
+                    </div>
+                    {/* Afternoon */}
+                    <div>
+                        <input type="checkbox" name="4" value="13" onClick={handleClick} />
+                        <label>1:00PM</label>
+                    </div>
+                    <div>
+                        <input type="checkbox" name="4" value="14" onClick={handleClick} />
+                        <label>2:00PM</label>
+                    </div>
+                    <div>
+                        <input type="checkbox" name="4" value="15" onClick={handleClick} />
+                        <label>3:00PM</label>
+                    </div>
+                    <div>
+                        <input type="checkbox" name="4" value="16" onClick={handleClick} />
+                        <label>4:00PM</label>
+                    </div>
+                    <div>
+                        <input type="checkbox" name="4" value="17" onClick={handleClick} />
+                        <label>5:00PM</label>
+                    </div>
+                    <div>
+                        <input type="checkbox" name="4" value="18" onClick={handleClick} />
+                        <label>6:00PM</label>
+                    </div>
+                    <div>
+                        <input type="checkbox" name="4" value="19" onClick={handleClick} />
+                        <label>7:00PM</label>
+                    </div>
+                    <div>
+                        <input type="checkbox" name="4" value="20" onClick={handleClick} />
+                        <label>8:00PM</label>
+                    </div>
+                    <div>
+                        <input type="checkbox" name="4" value="21" onClick={handleClick} />
+                        <label>9:00PM</label>
+                    </div>
+                    <div>
+                        <input type="checkbox" name="4" value="22" onClick={handleClick} />
+                        <label>10:00PM</label>
+                    </div>
+                    <div>
+                        <input type="checkbox" name="4" value="23" onClick={handleClick} />
+                        <label>11:00PM</label>
+                    </div>
+                    <div>
+                        <input type="checkbox" name="4" value="24" onClick={handleClick} />
+                        <label>12:00AM</label>
+                    </div>
+
+                    <button onClick={() => handleSubmit()}>Submit Availability</button>
+                </div>
+                <div className='friday'>
+                    <p id='fridayTitle'>Friday</p>
+                    <div>
+                        <input type="checkbox" name="5" value="1" onClick={handleClick} />
+                        <label>1:00AM</label>
+                    </div>
+
+                    <div>
+                        <input type="checkbox" name="5" value="2" onClick={handleClick} />
+                        <label>2:00AM</label>
+                    </div>
+
+                    <div>
+                        <input type="checkbox" name="5" value="3" onClick={handleClick} />
+                        <label>3:00AM</label>
+                    </div>
+                    <div>
+                        <input type="checkbox" name="5" value="4" onClick={handleClick} />
+                        <label>4:00AM</label>
+                    </div>
+                    <div>
+                        <input type="checkbox" name="5" value="5" onClick={handleClick} />
+                        <label>5:00AM</label>
+                    </div>
+                    <div>
+                        <input type="checkbox" name="5" value="6" onClick={handleClick} />
+                        <label>6:00AM</label>
+                    </div>
+                    <div>
+                        <input type="checkbox" name="5" value="7" onClick={handleClick} />
+                        <label>7:00AM</label>
+                    </div>
+                    <div>
+                        <input type="checkbox" name="5" value="8" onClick={handleClick} />
+                        <label>8:00AM</label>
+                    </div>
+                    <div>
+                        <input type="checkbox" name="5" value="9" onClick={handleClick} />
+                        <label>9:00AM</label>
+                    </div>
+                    <div>
+                        <input type="checkbox" name="5" value="10" onClick={handleClick} />
+                        <label>10:00AM</label>
+                    </div>
+                    <div>
+                        <input type="checkbox" name="5" value="11" onClick={handleClick} />
+                        <label>11:00AM</label>
+                    </div>
+                    <div>
+                        <input type="checkbox" name="5" value="12" onClick={handleClick} />
+                        <label>12:00PM</label>
+                    </div>
+                    {/* Afternoon */}
+                    <div>
+                        <input type="checkbox" name="5" value="13" onClick={handleClick} />
+                        <label>1:00PM</label>
+                    </div>
+                    <div>
+                        <input type="checkbox" name="5" value="14" onClick={handleClick} />
+                        <label>2:00PM</label>
+                    </div>
+                    <div>
+                        <input type="checkbox" name="5" value="15" onClick={handleClick} />
+                        <label>3:00PM</label>
+                    </div>
+                    <div>
+                        <input type="checkbox" name="5" value="16" onClick={handleClick} />
+                        <label>4:00PM</label>
+                    </div>
+                    <div>
+                        <input type="checkbox" name="5" value="17" onClick={handleClick} />
+                        <label>5:00PM</label>
+                    </div>
+                    <div>
+                        <input type="checkbox" name="5" value="18" onClick={handleClick} />
+                        <label>6:00PM</label>
+                    </div>
+                    <div>
+                        <input type="checkbox" name="5" value="19" onClick={handleClick} />
+                        <label>7:00PM</label>
+                    </div>
+                    <div>
+                        <input type="checkbox" name="5" value="20" onClick={handleClick} />
+                        <label>8:00PM</label>
+                    </div>
+                    <div>
+                        <input type="checkbox" name="5" value="21" onClick={handleClick} />
+                        <label>9:00PM</label>
+                    </div>
+                    <div>
+                        <input type="checkbox" name="5" value="22" onClick={handleClick} />
+                        <label>10:00PM</label>
+                    </div>
+                    <div>
+                        <input type="checkbox" name="5" value="23" onClick={handleClick} />
+                        <label>11:00PM</label>
+                    </div>
+                    <div>
+                        <input type="checkbox" name="5" value="24" onClick={handleClick} />
+                        <label>12:00AM</label>
+                    </div>
+
+                    <button onClick={() => handleSubmit()}>Submit Availability</button>
+                </div> 
+                <div className='saturday'>
+                    <p id='saturdayTitle'>Saturday</p>
+                    <div>
+                        <input type="checkbox" name="6" value="1" onClick={handleClick} />
+                        <label>1:00AM</label>
+                    </div>
+
+                    <div>
+                        <input type="checkbox" name="6" value="2" onClick={handleClick} />
+                        <label>2:00AM</label>
+                    </div>
+
+                    <div>
+                        <input type="checkbox" name="6" value="3" onClick={handleClick} />
+                        <label>3:00AM</label>
+                    </div>
+                    <div>
+                        <input type="checkbox" name="6" value="4" onClick={handleClick} />
+                        <label>4:00AM</label>
+                    </div>
+                    <div>
+                        <input type="checkbox" name="6" value="5" onClick={handleClick} />
+                        <label>5:00AM</label>
+                    </div>
+                    <div>
+                        <input type="checkbox" name="6" value="6" onClick={handleClick} />
+                        <label>6:00AM</label>
+                    </div>
+                    <div>
+                        <input type="checkbox" name="6" value="7" onClick={handleClick} />
+                        <label>7:00AM</label>
+                    </div>
+                    <div>
+                        <input type="checkbox" name="6" value="8" onClick={handleClick} />
+                        <label>8:00AM</label>
+                    </div>
+                    <div>
+                        <input type="checkbox" name="6" value="9" onClick={handleClick} />
+                        <label>9:00AM</label>
+                    </div>
+                    <div>
+                        <input type="checkbox" name="6" value="10" onClick={handleClick} />
+                        <label>10:00AM</label>
+                    </div>
+                    <div>
+                        <input type="checkbox" name="6" value="11" onClick={handleClick} />
+                        <label>11:00AM</label>
+                    </div>
+                    <div>
+                        <input type="checkbox" name="6" value="12" onClick={handleClick} />
+                        <label>12:00PM</label>
+                    </div>
+                    {/* Afternoon */}
+                    <div>
+                        <input type="checkbox" name="6" value="13" onClick={handleClick} />
+                        <label>1:00PM</label>
+                    </div>
+                    <div>
+                        <input type="checkbox" name="6" value="14" onClick={handleClick} />
+                        <label>2:00PM</label>
+                    </div>
+                    <div>
+                        <input type="checkbox" name="6" value="15" onClick={handleClick} />
+                        <label>3:00PM</label>
+                    </div>
+                    <div>
+                        <input type="checkbox" name="6" value="16" onClick={handleClick} />
+                        <label>4:00PM</label>
+                    </div>
+                    <div>
+                        <input type="checkbox" name="6" value="17" onClick={handleClick} />
+                        <label>5:00PM</label>
+                    </div>
+                    <div>
+                        <input type="checkbox" name="6" value="18" onClick={handleClick} />
+                        <label>6:00PM</label>
+                    </div>
+                    <div>
+                        <input type="checkbox" name="6" value="19" onClick={handleClick} />
+                        <label>7:00PM</label>
+                    </div>
+                    <div>
+                        <input type="checkbox" name="6" value="20" onClick={handleClick} />
+                        <label>8:00PM</label>
+                    </div>
+                    <div>
+                        <input type="checkbox" name="6" value="21" onClick={handleClick} />
+                        <label>9:00PM</label>
+                    </div>
+                    <div>
+                        <input type="checkbox" name="6" value="22" onClick={handleClick} />
+                        <label>10:00PM</label>
+                    </div>
+                    <div>
+                        <input type="checkbox" name="6" value="23" onClick={handleClick} />
+                        <label>11:00PM</label>
+                    </div>
+                    <div>
+                        <input type="checkbox" name="6" value="24" onClick={handleClick} />
+                        <label>12:00AM</label>
+                    </div>
+
+                    <button onClick={() => handleSubmit()}>Submit Availability</button>
+                </div>
+                <div className='sunday'>
+                    <p id='sundayTitle'>Sunday</p>
+                    <div>
+                        <input type="checkbox" name="7" value="1" onClick={handleClick} />
+                        <label>1:00AM</label>
+                    </div>
+
+                    <div>
+                        <input type="checkbox" name="7" value="2" onClick={handleClick} />
+                        <label>2:00AM</label>
+                    </div>
+
+                    <div>
+                        <input type="checkbox" name="7" value="3" onClick={handleClick} />
+                        <label>3:00AM</label>
+                    </div>
+                    <div>
+                        <input type="checkbox" name="7" value="4" onClick={handleClick} />
+                        <label>4:00AM</label>
+                    </div>
+                    <div>
+                        <input type="checkbox" name="7" value="5" onClick={handleClick} />
+                        <label>5:00AM</label>
+                    </div>
+                    <div>
+                        <input type="checkbox" name="7" value="6" onClick={handleClick} />
+                        <label>6:00AM</label>
+                    </div>
+                    <div>
+                        <input type="checkbox" name="7" value="7" onClick={handleClick} />
+                        <label>7:00AM</label>
+                    </div>
+                    <div>
+                        <input type="checkbox" name="7" value="8" onClick={handleClick} />
+                        <label>8:00AM</label>
+                    </div>
+                    <div>
+                        <input type="checkbox" name="7" value="9" onClick={handleClick} />
+                        <label>9:00AM</label>
+                    </div>
+                    <div>
+                        <input type="checkbox" name="7" value="10" onClick={handleClick} />
+                        <label>10:00AM</label>
+                    </div>
+                    <div>
+                        <input type="checkbox" name="7" value="11" onClick={handleClick} />
+                        <label>11:00AM</label>
+                    </div>
+                    <div>
+                        <input type="checkbox" name="7" value="12" onClick={handleClick} />
+                        <label>12:00PM</label>
+                    </div>
+                    {/* Afternoon */}
+                    <div>
+                        <input type="checkbox" name="7" value="13" onClick={handleClick} />
+                        <label>1:00PM</label>
+                    </div>
+                    <div>
+                        <input type="checkbox" name="7" value="14" onClick={handleClick} />
+                        <label>2:00PM</label>
+                    </div>
+                    <div>
+                        <input type="checkbox" name="7" value="15" onClick={handleClick} />
+                        <label>3:00PM</label>
+                    </div>
+                    <div>
+                        <input type="checkbox" name="7" value="16" onClick={handleClick} />
+                        <label>4:00PM</label>
+                    </div>
+                    <div>
+                        <input type="checkbox" name="7" value="17" onClick={handleClick} />
+                        <label>5:00PM</label>
+                    </div>
+                    <div>
+                        <input type="checkbox" name="7" value="18" onClick={handleClick} />
+                        <label>6:00PM</label>
+                    </div>
+                    <div>
+                        <input type="checkbox" name="7" value="19" onClick={handleClick} />
+                        <label>7:00PM</label>
+                    </div>
+                    <div>
+                        <input type="checkbox" name="7" value="20" onClick={handleClick} />
+                        <label>8:00PM</label>
+                    </div>
+                    <div>
+                        <input type="checkbox" name="7" value="21" onClick={handleClick} />
+                        <label>9:00PM</label>
+                    </div>
+                    <div>
+                        <input type="checkbox" name="7" value="22" onClick={handleClick} />
+                        <label>10:00PM</label>
+                    </div>
+                    <div>
+                        <input type="checkbox" name="7" value="23" onClick={handleClick} />
+                        <label>11:00PM</label>
+                    </div>
+                    <div>
+                        <input type="checkbox" name="7" value="24" onClick={handleClick} />
+                        <label>12:00AM</label>
+                    </div>
+
+                    <button onClick={() => handleSubmit()}>Submit Availability</button>
+                </div>
+
                
             <p>Notes: </p>
             <p>Clear checked checkmarks upon Submit availability</p>
-            <p>Add more UTC options for the change timezone</p>
-            <p>Add the rest of the days</p>
             <p>Get rid of Dashboard view from register</p>
-            <p>If a person changes their timezones, how does that reflect their current availability?</p>
-      {/* <CalendarGrid /> */}
             </>
         )
     }

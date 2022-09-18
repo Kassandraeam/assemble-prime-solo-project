@@ -27,9 +27,16 @@ function LoginForm() {
 
   return (
     <>
-    <h5 className="animate__bounce animate__bounce">Assemble</h5>
-    <h1 className="animate__bounce animate__bounce">An animated element</h1>
-    
+    <div className='w-screen h-[80px] z-10 bg-zinc-200 fixed drop-shadlow-lg'>
+    <div className='px-2 flex justify-between items-center w-full h-full'>
+    </div>
+
+
+
+    </div>
+
+
+
     <form className="formPanel" onSubmit={login}>
       <h2>Login</h2>
       {errors.loginMessage && (

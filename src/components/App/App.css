@@ -111,3 +111,6 @@ input {
   margin: 5px;
   margin-bottom: 10px;
 }
+@tailwind base;
+@tailwind components;
+@tailwind utilities;

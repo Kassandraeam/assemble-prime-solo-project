@@ -15,12 +15,52 @@ import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 import Luxon from '../Luxon/Luxon';
 import Griddd from '../Griddd/Gridd.jsx'
+import { DataGrid, GridRowsProp, GridColDef } from '@mui/x-data-grid';
+
+// import TailwindCalendar from '../TailwindCalendar/TailwindCalendar'
 
 
 
 function Calendar() {
 
 
+    const rows: GridRowsProp = [
+        { id: 1,  col1:  '100' },
+        { id: 2,  col1:  '200' },
+        { id: 3,  col1:  '300' },
+        { id: 4,  col1:  '400' },
+        { id: 5,  col1:  '500' },
+        { id: 6,  col1:  '600' },
+        { id: 7,  col1:  '700' },
+        { id: 8,  col1:  '800' },
+        { id: 9,  col1:  '900' },
+        { id: 10, col1: '1000' },
+        { id: 11, col1: '1100' },
+        { id: 12, col1: '1200' },
+        { id: 13, col1: '1300' },
+        { id: 14, col1: '1400' },
+        { id: 15, col1: '1500' },
+        { id: 16, col1: '1600' },
+        { id: 17, col1: '1700' },
+        { id: 18, col1: '1800' },
+        { id: 19, col1: '1900' },
+        { id: 20, col1: '2000' },
+        { id: 21, col1: '2100' },
+        { id: 22, col1: '2200' },
+        { id: 23, col1: '2300' },
+        { id: 24, col1: '2400' },
+    ];
+
+    const columns: GridColDef[] = [
+        { field: 'col1', headerName: 'Hours',      width:    175 },
+        { field: 'col2', headerName: 'Monday',     width:    175 },
+        { field: 'col3', headerName: 'Tuesday',    width:    175 },
+        { field: 'col4', headerName: 'Wednesday',  width:    175 },
+        { field: 'col5', headerName: 'Thursday',   width:    175 },
+        { field: 'col6', headerName: 'Friday',     width:    175 },
+        { field: 'col7', headerName: 'Saturday',   width:    175 },
+        { field: 'col8', headerName: 'Sunday',     width:    175 },
+    ];
 
     const history = useHistory();
     const dispatch = useDispatch();
@@ -36,99 +76,20 @@ function Calendar() {
 
     const user = useSelector((store) => store.user);
 
-    const saveAvailability = () => {
-        console.log('save availability')
-        //eventually this will need to dispatch
-        //what does it dispatch?
-        //
-    }
-
-    const daysAndTime = () => {
-        console.log('clicked');
-        console.log(day);
-        console.log(time);
-        console.log(typeof(time));
-    }
-
-    const handleDay = (event) => {
-        setDay(event.target.value);
-    };
-
-    const handleTime = (event) => {
-        setTime(event.target.value);
-    }
 
     return (
         <>
-
-            <p id='calendarHomepage'>Calendar Homepage</p>
-            <h2>Welcome, {user.username}!</h2>
-            
-            {/* <TestComponent /> */}
-           {/* <span> <Box sx={{ maxWidth: 180 }} display="flex" justifyContent="space-between">
-                <FormControl fullWidth>
-                    <InputLabel id="demo-simple-select-label">Day</InputLabel>
-                    <Select
-                        labelId="demo-simple-select-label"
-                        id="demo-simple-select"
-                        value={day}
-                        label="Day"
-                        onChange={handleDay}>
-                        <MenuItem value='1'>Monday</MenuItem>
-                        <MenuItem value='2'>Tuesday</MenuItem>
-                        <MenuItem value='3'>Wednesday</MenuItem>
-                        <MenuItem value='4'>Thursday</MenuItem>
-                        <MenuItem value='5'>Friday</MenuItem>
-                        <MenuItem value='6'>Saturday</MenuItem>
-                        <MenuItem value='7'>Sunday</MenuItem>
-                    </Select>
-                </FormControl>
-            </Box>
-
-            <Box sx={{ maxWidth: 180 }} display="flex" justifyContent="space-between">
-                <FormControl fullWidth>
-                    <InputLabel id="demo-simple-select-label">Time</InputLabel>
-                    <Select
-                        labelId="demo-simple-select-label"
-                        id="demo-simple-select"
-                        value={time}
-                        label="Time"
-                        onChange={handleTime}>
-                        <MenuItem value='01:00'>1:00AM</MenuItem>
-                        <MenuItem value='02:00'>2:00AM</MenuItem>
-                        <MenuItem value='03:00'>3:00AM</MenuItem>
-                        <MenuItem value='04:00'>4:00AM</MenuItem>
-                        <MenuItem value='05:00'>5:00AM</MenuItem>
-                        <MenuItem value='06:00'>6:00AM</MenuItem>
-                        <MenuItem value='07:00'>7:00AM</MenuItem>
-                        <MenuItem value='08:00'>8:00AM</MenuItem>
-                        <MenuItem value='09:00'>9:00AM</MenuItem>
-                        <MenuItem value='10:00'>10:00AM</MenuItem>
-                        <MenuItem value='11:00'>11:00AM</MenuItem>
-                        <MenuItem value='12:00'>12:00PM</MenuItem>
-                    </Select>
-                </FormControl>
-            </Box>
-            </span> */}
-            {/* <Button variant="contained" onClick={daysAndTime}>Submit</Button> */}
-
-            <Luxon/>
-            
-
-            
-            {/* <MyNav /> */}
-
-
-            {/* <div className="app">
-                <Grid
-                    grid={grid}
-                    handleGridSize={handleGridSize}
-                    inputCells={inputCells}
-                    inputRows={inputRows}
-                    setCells={setCells}
-                    setRows={setRows}
-                />
-            </div> */}
+        <div className='border-spacing-2'>
+            <p className='text-5xl'>Assemble</p>
+            <p className='text-2xl'>Choose the times you're available</p>
+        </div>
+            <div className='flex justify-center'>
+            <div style={{ height: 1000, width: '100%' }}>
+                <DataGrid rows={rows} columns={columns} />
+            </div>
+            </div>
+            <Luxon />
+            {/* <TailwindCalendar></TailwindCalendar> */}
         </>
     )
 }

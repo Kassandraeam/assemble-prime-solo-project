@@ -9,7 +9,7 @@ import Avatar from '@mui/material/Avatar';
 import Stack from '@mui/material/Stack';
 import { common, deepOrange, deepPurple } from '@mui/material/colors';
 import Checkbox from '@mui/material/Checkbox';
-import TestingReducer from '../_TemplateComponent copy/TemplateComponent';
+import TestingReducer from '../TailwindCalendar/TailwindCalendar';
 import { array } from 'prop-types';
 const label = { inputProps: { 'aria-label': 'Compare Times' } };
 
@@ -248,57 +248,37 @@ function Friends() {
 
   return (
     <>
-       <>
-      <p>THIS IS THE COMPARE ARRAY FOR DAYS:</p>
-      {JSON.stringify(compareArray)}
-      <br></br>
-      <br></br>
-      <br></br>
-      <p>Unique Common Days (M:1, T:2, W:3 ---):</p>
-      {JSON.stringify(uniqueCommonDays)}
-      <br></br>
-      <br></br>
-      <br></br>
-      <p>Times:</p>
-      <br></br>
-      <br></br>
-      <br></br>
-      <br></br>
-      <p>geting the times of ANYONE with availability on x day</p>
-      {JSON.stringify(testIntersect)}
-      {JSON.stringify(freeTime)}
-       </>
+      <h2 className='text-2xl'>{heading}</h2>
 
-      <h2>{heading}</h2>
-
-      <Button variant="contained" onClick={handleSubmit}>SUBMIT</Button>
+      {/* <Button variant="contained" onClick={handleSubmit}>SUBMIT</Button> */}
       &nbsp;
-      <div className='map'>
+
         &nbsp;
         {allUsers.map(eachUser => (
 
           <div className='eachUser' key={eachUser.id}>
+            <div className='flex items-center'>
             <Avatar {...stringAvatar(eachUser.username)}></Avatar>
-            <p>USER: {eachUser.username} </p>
-            <p>TIMEZONE: {eachUser.timezone}</p>
-            <Button variant="contained" onClick={() => handleGetAvailableSchedule(eachUser.id, eachUser.username)}>Get {eachUser.username}'s schedule</Button>
+            <p>   &nbsp;&nbsp;{eachUser.username} </p>
+            </div>
+            <p>&nbsp;&nbsp;TIMEZONE: {eachUser.timezone}</p>
             &nbsp;
-            <Checkbox value={eachUser} onClick={() => handleCheckBox(eachUser)}></Checkbox>
+            <div>
+            <Button variant="contained" onClick={() => handleGetAvailableSchedule(eachUser.id, eachUser.username, eachUser.timezone)}>Get {eachUser.username}'s schedule</Button>
+            &nbsp;
+            </div>
           </div>
         ))}
         {freeTime.map(eachHour => (
           <div className='eachUser' key={eachHour.id}>
-
             <p>ID{eachHour.id}</p>
             <p>username:{eachHour.username}</p>
             <p>time:{eachHour.time}</p>
-            <Button onClick={() => handleCheckBox(eachHour.time)}>For the sake of getting something </Button>
             </div>
            ))}
-
-      </div>
     </>
   );
 }
 
 export default Friends;
+

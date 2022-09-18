@@ -34,6 +34,7 @@ function MyNav() {
   return (
     <>
       <div className='nav'>
+        
         <Button
         variant="contained"
           id="basic-button"
@@ -57,7 +58,6 @@ function MyNav() {
           <MenuItem color="secondary"className='navLink' onClick={() => history.push('/user')}><AccountCircleRoundedIcon color="primary"/>Profile</MenuItem>
           <MenuItem className='navLink' onClick={otherUsers}> <GroupRoundedIcon color="primary"/>Other Users</MenuItem> 
           <MenuItem className='navLink' onClick={() => history.push('/calendar')}><CalendarTodayRoundedIcon color="primary"/>Calendar</MenuItem>
-          {/* <LogOutButton className="navLink" /> */}
           <MenuItem onClick={() => dispatch({ type: 'LOGOUT' })}><ExitToAppRoundedIcon color="primary"/>LOG OUT</MenuItem>
         </Menu>
       </div>

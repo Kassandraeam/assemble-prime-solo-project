@@ -1,5 +1,13 @@
 .eachUser{
+    
     border: solid black;
-    padding: 15px;
+    border-radius: 25px;
+    height: 200px;
+    display: inline-block;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 1rem;
+    grid-auto-rows: minmax(50px, auto);
+    padding: 10px;
+    padding-block-end: 10px;
+    margin-right: 20px;
 }
-
