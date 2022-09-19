@@ -1,18 +1,11 @@
 import React, { useEffect, useState, useRef, useCallback } from 'react';
 import { useSelector } from 'react-redux';
-import MyNav from '../MyNav/MyNav';
 import { useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import './Friends.css'
 import Button from '@mui/material/Button';
 import Avatar from '@mui/material/Avatar';
-import Stack from '@mui/material/Stack';
-import { common, deepOrange, deepPurple } from '@mui/material/colors';
-import Checkbox from '@mui/material/Checkbox';
-import TestingReducer from '../TailwindCalendar/TailwindCalendar';
-import { array } from 'prop-types';
 const label = { inputProps: { 'aria-label': 'Compare Times' } };
-import MapEachPerson from './MapEachPerson.js'
 
 
 const intersection = (arr1, arr2) => {
@@ -75,16 +68,15 @@ function uniqueArrayDaysOfWeek(array){
 
   
 function Friends() {
+
   const specificUser = useSelector((store)=> store.specificUserReducer)
   const store = useSelector((store) => store);
   const allUsers = useSelector((store) => store.multipleUsersReducer)
-  (allUsers);
   let freeTime = useSelector((store) => store.multipleUserFreeTimeReducer)
 
   const history = useHistory();
   const dispatch = useDispatch();
   const [heading, setHeading] = useState('Users');
-  const availableTimes = freeTime.map(({ availableTimes }) => availableTimes)
   // from the multiple free time reducer, save it in a local state. 
   const [freehours, setFreeHours] = useState();
   // * compareArray contains all of the days that the user is free upon click, based on their current availability.
