@@ -6,7 +6,7 @@ function* specificUserAvailabilitySAGA() {
 }
 
 function* fetchSpecificUserAvailability(action) {
-    console.log(`This is what you are sending to this SAGA: ACTION.PAYLOAD = ${action.payload.id}`)
+    (`This is what you are sending to this SAGA: ACTION.PAYLOAD = ${action.payload.id}`)
     try {
         const response = yield axios.get(`/api/availability/${action.payload.id}`)
         yield put({
@@ -15,8 +15,8 @@ function* fetchSpecificUserAvailability(action) {
         })
     }
     catch (error) {
-        console.log('error in SAGA, this is what you were trying to send:', action.payload)
-        console.error('error in SAGA', error)
+        ('error in SAGA, this is what you were trying to send:', action.payload)
+        ('error in SAGA', error)
     }
 };
 

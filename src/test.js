@@ -32,19 +32,19 @@ function uniqueArrayDaysOfWeek(array){
 
 function secondTest (array) {
     for (let i = 1; i <= array.length; i++) {
-    // console.log('secondTest',i);
+    // ('secondTest',i);
     if (i === 1) {
-        console.log('this has been the first test');
+        ('this has been the first test');
     } else if (i === 2) {
-        console.log('this has been a second test');
+        ('this has been a second test');
     } else if (i === 3) {
-        console.log('this has been the third test');
+        ('this has been the third test');
     }
     }}
 
 secondTest(test);
 
-console.log(uniqueArrayDaysOfWeek(test));
+(uniqueArrayDaysOfWeek(test));
 
 
 // const intersection = (arr1, arr2) => {

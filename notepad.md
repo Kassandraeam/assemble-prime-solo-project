@@ -27,7 +27,7 @@ GROUP BY
   router.post('/new', async (req, res) => {
   const name = req.body.name;
   const amount = req.body.amount;
-  console.log(`Creating new account ${name} with initial balance of ${amount}`);
+  (`Creating new account ${name} with initial balance of ${amount}`);
 
   const connection = await pool.connect();
   try {
@@ -51,7 +51,7 @@ GROUP BY
     res.sendStatus(200);
   } catch (error) {
     await connection.query('ROLLBACK');
-    console.log('Error adding new account:', error)
+    ('Error adding new account:', error)
     res.sendStatus(500);
   } finally {
     connection.release();
@@ -62,13 +62,13 @@ In the post, it maps through it there.
   //I may not even need these because the times come with the days.
   // ! compareArray contains all of the days that the user is free upon click, based on their current availability.
   const [compareArray, setCompareArray] = useState([]);
-  console.log('THIS IS THE FORMAT I NEED RN FOR TIME. compareArray:', compareArray);
+  ('THIS IS THE FORMAT I NEED RN FOR TIME. compareArray:', compareArray);
   // ! commonalities determines what number is present in all selected arrays.
   const [commonalities, setCommonalities] = useState();
-  console.log('commonalitiesArray:', commonalities);
+  ('commonalitiesArray:', commonalities);
   // ! uniqueCommonDays eliminates duplicates to show simply.
   const [uniqueCommonDays, setUniqueCommonDays] = useState([]);
-  console.log(uniqueCommonDays);
+  (uniqueCommonDays);
 
   // ! monday contains all of the times on Monday that the user is free upon submit.
   const [monday, setMonday] = useState([]);
@@ -101,7 +101,7 @@ Maybe I can map through the freeTime to get individual times?
 router.post('/', async (req, res) => {
   const client = await pool.connect();
   const availability = req.body.availability;
-  console.log(availability)
+  (availability)
   try {
     await client.query('BEGIN')
     await Promise.all(availability.map((available) => {
@@ -113,7 +113,7 @@ router.post('/', async (req, res) => {
     res.sendStatus(201);
   } catch (error) {
     await client.query('ROLLBACK')
-    console.log('Error POST /api/availability', error);
+    ('Error POST /api/availability', error);
     res.sendStatus(500);
   } finally {
     client.release()
@@ -137,10 +137,10 @@ only grabbing the last entry. I think I have to do the transactional sql for the
 
 <script edit this so it's a async function> 
 router.post('/availableTimes', async (req, res) => {
-  console.error(req.body);
-  console.log('PAYLOAD BABEYYYYY', req.body.day)
+  (req.body);
+  ('PAYLOAD BABEYYYYY', req.body.day)
   const dummyData = req.body.day;
-  console.log('dummy data you dummy', dummyData);
+  ('dummy data you dummy', dummyData);
   // Send back user object from the session (previously queried from the database)
   const query = `SELECT
     "user".id,
@@ -162,13 +162,13 @@ router.post('/availableTimes', async (req, res) => {
 ;`;
   pool.query(query, [dummyData])
     .then(result => {
-      console.log('result.rows on server side for route /availableTimes:', result.rows) // this is coming back as each user id, their id, username, timezone, and available days.
+      ('result.rows on server side for route /availableTimes:', result.rows) // this is coming back as each user id, their id, username, timezone, and available days.
       res.send(result.rows);
     })
     .catch(err => {
-      console.log('dummy data you dummy', dummyData);
+      ('dummy data you dummy', dummyData);
 
-      console.log('ERROR: Get all users times', err);
+      ('ERROR: Get all users times', err);
       res.sendStatus(500)
     })
 });
@@ -179,7 +179,7 @@ router.post('/availableTimes', async (req, res) => {
 router.post('/availableTimes', async (req, res) => {
   const client = await pool.connect();
   const commonDays = req.body.uniqueCommonDays
-  console.log('CommonDayss in the server post route',commonDays);
+  ('CommonDayss in the server post route',commonDays);
     try {
     await client.query('BEGIN')
 
@@ -213,7 +213,7 @@ router.post('/availableTimes', async (req, res) => {
 
   } catch (error) {
     await client.query('ROLLBACK')
-    console.log('Error POST /api/availability', error);
+    ('Error POST /api/availability', error);
     res.sendStatus(500);
   } finally {
     client.release()
@@ -231,16 +231,16 @@ router.post('/availableTimes', async (req, res) => {
 
 <script borked handleSubmit>
       const handleSubmit = () => {
-    console.log(compareArray)
-    console.log(intersectMany(compareArray))
+    (compareArray)
+    (intersectMany(compareArray))
     let commonalities = intersectMany(...compareArray);
     setCommonalities(...commonalities);
-    // console.log('unique days: ', getUnique(commonalities));
+    // ('unique days: ', getUnique(commonalities));
     let uniqueCommonDays = getUnique(commonalities).sort();
     setUniqueCommonDays([...uniqueCommonDays])
     // setUniqueCommonDays(getUnique(commonalities).sort());
     // setCommonalities(getUnique(commonalities).sort());
-    // console.log('COMMONALITIES', commonalities)
+    // ('COMMONALITIES', commonalities)
     handleGettingAvailableTimes(uniqueCommonDays);
     
     //unique days doesn't get hit UNTIL handleSubmit is clicked.
@@ -339,16 +339,16 @@ router.get('/', (req, res) => {
   `;
   pool.query(query)
     .then(result => {
-      console.log('result.rows on server side:',result.rows) // this is coming back as each user id, their id, username, timezone, and available days.
+      ('result.rows on server side:',result.rows) // this is coming back as each user id, their id, username, timezone, and available days.
       res.send(result.rows);
     })
   pool.query(queryTwo)
     .then(resultTwo => {
-      console.log('secondQuery test on server side:', resultTwo.rows)
+      ('secondQuery test on server side:', resultTwo.rows)
       res.send(resultTwo.rows);
     })
     .catch(err => {
-      console.log('ERROR: Get all users times', err);
+      ('ERROR: Get all users times', err);
       res.sendStatus(500)
     })
 });
@@ -358,7 +358,7 @@ router.get('/', (req, res) => {
 <script>
     // updates a specific movie and genre
 router.put('/:id', (req, res) => {
-  console.log("hi", req.body.genre_id)
+  ("hi", req.body.genre_id)
   const id = req.params.id
   const title = req.body.title
   const description = req.body.description
@@ -376,7 +376,7 @@ router.put('/:id', (req, res) => {
     .then(results => {
       res.sendStatus(200)
     }).catch(err => {
-      console.log(err)
+      (err)
       res.sendStatus(500)
     })
 })
@@ -483,10 +483,10 @@ TODAY IS LOGIC GET THAT IMPLEMENTED.
     };
     return res;
     };
-    console.log(intersectMany(arr1, arr2, arr3));
+    (intersectMany(arr1, arr2, arr3));
     const bigArray = [ arr1, arr2, arr3 ]
-    console.log('big array without the spread operator:', bigArray)
-    console.log('big array using the spread operator: ',...bigArray)
+    ('big array without the spread operator:', bigArray)
+    ('big array using the spread operator: ',...bigArray)
     </script>
 </div>
 <div Concern!>
@@ -534,7 +534,7 @@ const intersectMany = (...arrs) => {
    };
    return res;
 };
-console.log(intersectMany(arr1, arr2, arr3));
+(intersectMany(arr1, arr2, arr3));
 </script>
 2. MAKE PAGE TO SEE OTHER USERS.
 3. SO ON AND SO FORTH.
@@ -589,7 +589,7 @@ function getIntersection(a, b) {
 const arr1 = ['a', 'b', 'c', 'c'];
 const arr2 = ['a', 'b', 'c', 'd', 'e', 'a'];
 // 👇️ ['a', 'b','c']
-console.log(getIntersection(arr1, arr2));
+(getIntersection(arr1, arr2));
 </script>
 <!-- ? DO WHILE/WHILE ? -->
 do while, body of the loop is executed at least once
@@ -669,8 +669,8 @@ Paris:   2400
     let chosenDay = testSettingZone.day;
     let chosenHour = testSettingZone.hour;
     let chosenTimeConvertedToUTC = DateTime.utc(chosenYear, chosenMonth, chosenDay, chosenHour) // ! EXPECTING 2200 in hour.
-    console.log('expecting 23, which is what time it is RIGHT NOW in Paris',testSettingZone)
-    console.log('Chosen time converted to UTC, expecting 22',chosenTimeConvertedToUTC);
+    ('expecting 23, which is what time it is RIGHT NOW in Paris',testSettingZone)
+    ('Chosen time converted to UTC, expecting 22',chosenTimeConvertedToUTC);
 ;
 </div>
 

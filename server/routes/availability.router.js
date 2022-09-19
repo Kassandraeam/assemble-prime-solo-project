@@ -4,9 +4,7 @@ const pool = require('../modules/pool');
 
 const router = express.Router();
 
-/**
- * GET route template
- */
+// * GETS the user's id, the day id, time id, and the zone that they're in, for all users.
 router.get('/', (req, res) => {
   const query = `SELECT * FROM availability;`;
   pool.query(query)
@@ -14,84 +12,67 @@ router.get('/', (req, res) => {
       res.send(result.rows);
     })
     .catch(err => {
-      console.log('ERROR: Get all available times', err);
+      ('ERROR: Get all available times', err);
       res.sendStatus(500)
     })
 
 });
 
-
-router.get('/:id', (req, res) => {
-  console.log('req.params.id: ', req.params.id)
-
-  const queryText = 
-  `
-  SELECT "availability".id, "user".id AS "user_id","availability".days_id, "availability".time_id, "user".username as "username", "days".day, "time".hour
-  FROM "availability"
-  JOIN "user" ON "user".id = "availability".user_id
-  JOIN "days" ON "days".id = "availability".days_id
-  JOIN "time" ON "time".id = "availability".time_id
-  WHERE "user_id" = $1
-  GROUP BY "availability".id, "user".id, "availability".days_id, "availability".time_id, "user".username, "days".day, "time".time, "time".hour
- ;
-  `;
-  pool.query(queryText, [req.params.id])
-    .then(result => {
-      console.log('result in pool query', result)
-      res.send(result.rows);
-    })
-    .catch(err => {
-      console.log('ERROR: Get all available times', err);
-      res.sendStatus(500)
-    })
-
-});
-
-
-// router.get('/:id', (req, res) => {
-//   console.log(req.params.id)
-//   const query = `SELECT * FROM movies WHERE id = $1;`;
-//   pool.query(query, [req.params.id])
-//     .then(result => {
-//       res.send(result.rows);
-//     })
-//     .catch(err => {
-//       console.log('ERROR: Get detail movies', err);
-//       res.sendStatus(500)
-//     })
-// });
-
-
-
+// * Duplicate from multipleUsers router 🤨
 router.post('/', async (req, res) => {
   const client = await pool.connect();
 
   const availability = req.body.availability;
-  console.log(availability)
+  (availability)
   try {
     await client.query('BEGIN')
-
     await Promise.all(availability.map((available) => {
       const queryText = `INSERT INTO "availability" ("user_id", "days_id", "time_id") VALUES($1, $2, $3) RETURNING "id", "user_id", "days_id", "time_id";`;
       const reqBody = [available.user, available.weekday, available.time];
       return client.query(queryText, reqBody);
     }));
-
     await client.query('COMMIT')
     res.sendStatus(201);
-
   } catch (error) {
     await client.query('ROLLBACK')
-    console.log('Error POST /api/availability', error);
+    ('Error POST /api/availability', error);
     res.sendStatus(500);
   } finally {
     client.release()
   }
 });
 
+// * GETS the information for a specific user, their user_id, days_id, time_id, username, day they chose, and time they chose.
+router.get('/:id', (req, res) => {
+  ('req.params.id: ', req.params.id)
+
+  const queryText = 
+  `
+    SELECT "availability".id, "user".id AS "user_id","availability".days_id, "availability".time_id, "user".username as "username", "days".day, "time".hour
+    FROM "availability"
+    JOIN "user" ON "user".id = "availability".user_id
+    JOIN "days" ON "days".id = "availability".days_id
+    JOIN "time" ON "time".id = "availability".time_id
+    WHERE "user_id" = $1
+    GROUP BY "availability".id, "user".id, "availability".days_id, "availability".time_id, "user".username, "days".day, "time".time, "time".hour
+  ;
+  `;
+  pool.query(queryText, [req.params.id])
+    .then(result => {
+      ('result in pool query', result)
+      res.send(result.rows);
+    })
+    .catch(err => {
+      ('ERROR: Get all available times', err);
+      res.sendStatus(500)
+    })
+
+});
+
+// * Deletes the day/time the user selects in their profile.
 router.delete('/:id', (req, res) => {
-  console.log('DELETE ROUTER');
-  console.log(req.params.id);
+  ('DELETE ROUTER');
+  (req.params.id);
 
   queryText =
     ` DELETE FROM "availability"
@@ -101,26 +82,9 @@ router.delete('/:id', (req, res) => {
     res.sendStatus(200);
   })
   .catch(err => {
-    console.error('err on DELETE ROUTE', err)
+    ('err on DELETE ROUTE', err)
     res.sendStatus(500);
   })
 })
 
-
-/*
-router.delete('/:id', (req, res) => {
-  console.log(req.params.id)
-  const id = req.params.id
-  queryText = `
-    DELETE FROM "movies_genres"
-    WHERE "movie_id" = $1;`;
-  pool.query(queryText, [id])
-  .then(results => {
-    res.sendStatus(200)
-  }).catch(err => {
-    console.log(err)
-    res.sendStatus(500)
-  })
-})
-*/
 module.exports = router;

@@ -26,11 +26,11 @@ function UserPage() {
     })
   }, []);
 
-  console.log('Times available to this user:', availableTimesSpecificToUser)
+  ('Times available to this user:', availableTimesSpecificToUser)
 
   const handleDelete = (id) => {
-    console.log('THIS IS THE ID OF THE ITEM THAT YOU WANT TO DELETE:', id);
-    console.log('THIS IS THE USER ID IN THE HANDLE DELETE HOPEFULLY', user.id)
+    ('THIS IS THE ID OF THE ITEM THAT YOU WANT TO DELETE:', id);
+    ('THIS IS THE USER ID IN THE HANDLE DELETE HOPEFULLY', user.id)
     // dispatch this id to the delete request.
     dispatch({
       type: 'DELETE_AVAILABILITY',

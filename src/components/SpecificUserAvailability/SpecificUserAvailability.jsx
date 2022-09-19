@@ -18,13 +18,13 @@ function SpecificUserAvailability() {
 
 
   let id = useParams();
-  console.log(id); // console logs as {id: '3'}
+  (id); // console logs as {id: '3'}
 
   const convertUTCToLocal = (specificUser) => {
-    console.log('CONVERT TO LOCAL SHOULD RUN',specificUserReducer);
-    console.log('THIS IS UTC VALUE FROM TABLE',specificUser)
+    ('CONVERT TO LOCAL SHOULD RUN',specificUserReducer);
+    ('THIS IS UTC VALUE FROM TABLE',specificUser)
     let test = DateTime.utc(2017, 5, 15, specificUser, 36).toLocal()
-    console.log('UTC',specificUser, 'That is', test.hour, 'in MY timezone.');
+    ('UTC',specificUser, 'That is', test.hour, 'in MY timezone.');
 
     setLocal([
       ...local,
@@ -32,8 +32,8 @@ function SpecificUserAvailability() {
           timeToShow: test.hour,
       }
   ])
-    console.log(local)
-    console.log(`this is the variable local time zone:${local.timeToShow}`)
+    (local)
+    (`this is the variable local time zone:${local.timeToShow}`)
   }
 
 
@@ -46,7 +46,7 @@ function SpecificUserAvailability() {
   }, [])
 
   const handleBack = () => {
-    console.log('go back a page');
+    ('go back a page');
     history.push('/friends');
   }
 

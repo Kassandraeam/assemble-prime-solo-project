@@ -5,7 +5,7 @@ const Bill = [100, 200, 10];
 const Alex = [100, 200, 300, 15];
 const Tuladai = [100, 200, 300, 400, 20];
 const bigArray = [Gab, Bill, Alex, Tuladai];
-console.log('BIG ARRAY BEFORE RUNNING FUNCTION:', bigArray);
+('BIG ARRAY BEFORE RUNNING FUNCTION:', bigArray);
 const intersection = (arr1, arr2) => {
     const res = [];
     for (let i = 0; i < arr1.length; i++) {
@@ -23,7 +23,7 @@ const intersectMany = (...arrs) => {
     };
     return res;
 };
-console.log('COMMON TIMES IN BIG ARRAY:', intersectMany(...bigArray));
+('COMMON TIMES IN BIG ARRAY:', intersectMany(...bigArray));
  */
 
 // ! This is the function that gets unique elements in any array passed through it. 
@@ -45,24 +45,24 @@ function getUnique(array) {
 /*
 function sendEachUniqueDay(array){
     for (let day of array) {
-        // console.log(day);
+        // (day);
         // for each day I get back, I need to run that SQL statement.
         // maybe check what the value of it is and determine a local state to hold it in?
         if (day === 1) {
-            console.log('1 is being sent');
+            ('1 is being sent');
             // dispatch with type: that gets me to a saga that gets me to router that inserts that info as a value.
             // get that information back as an array. 
             // Store in local state mondayTimes (maybe a reducer instead?)
             // Run that local state through the logic to get 
                 // 1. The common times amoung the selected users.
         } else if (day === 2) {
-            console.log('2 is being sent');
+            ('2 is being sent');
         } else if (day === 3) {
-            console.log('3 is being sent');
+            ('3 is being sent');
         } else if (day === 4) {
-            console.log('4 is being sent');
+            ('4 is being sent');
         } else {
-            console.log('Invalid number')
+            ('Invalid number')
         }
     }
 }
@@ -79,7 +79,7 @@ function sendEachUniqueDay(array) {
     for (let day of array) {
         switch (day) {
             case 1:
-                console.log('1 is being sent');
+                ('1 is being sent');
                 dispatch({
                     type: 'GET_AVAILABLE_TIMES',
                     payload: day
@@ -87,7 +87,7 @@ function sendEachUniqueDay(array) {
                 break;
 
             case 2:
-                console.log('2 is being sent');
+                ('2 is being sent');
                 dispatch({
                     type: 'GET_AVAILABLE_TIMES',
                     payload: day
@@ -95,7 +95,7 @@ function sendEachUniqueDay(array) {
                 break;
 
             case 3:
-                console.log('3 is being sent');
+                ('3 is being sent');
                 dispatch({
                     type: 'GET_AVAILABLE_TIMES',
                     payload: day
@@ -103,7 +103,7 @@ function sendEachUniqueDay(array) {
                 break;
 
             case 4:
-                console.log('4 is being sent');
+                ('4 is being sent');
                 dispatch({
                     type: 'GET_AVAILABLE_TIMES',
                     payload: day
@@ -111,7 +111,7 @@ function sendEachUniqueDay(array) {
                 break;
 
             case 5:
-                console.log('5 is being sent');
+                ('5 is being sent');
                 dispatch({
                     type: 'GET_AVAILABLE_TIMES',
                     payload: day
@@ -119,7 +119,7 @@ function sendEachUniqueDay(array) {
                 break;
 
             case 6:
-                console.log('6 is being sent');
+                ('6 is being sent');
                 dispatch({
                     type: 'GET_AVAILABLE_TIMES',
                     payload: day
@@ -127,14 +127,14 @@ function sendEachUniqueDay(array) {
                 break;
 
             case 7:
-                console.log('7 is being sent');
+                ('7 is being sent');
                 dispatch({
                     type: 'GET_AVAILABLE_TIMES',
                     payload: day
                 })
                 break;
             default:
-                console.log('default of the sendEachUniqueDay function')
+                ('default of the sendEachUniqueDay function')
 
                 break;
         }
@@ -146,21 +146,21 @@ sendEachUniqueDay([1, 2, 3, 5]);
 function ifElseFunction(array) {
     for (let day of array) {
         if (day === 1) {
-            console.log('1 is being sent');
+            ('1 is being sent');
         } else if (day === 2) {
-            console.log('2 is being sent');
+            ('2 is being sent');
         } else if (day === 3) {
-            console.log('3 is being sent');
+            ('3 is being sent');
         } else if (day === 4) {
-            console.log('4 is being sent');
+            ('4 is being sent');
         } else if (day === 5) {
-            console.log('5 is being sent');
+            ('5 is being sent');
         } else if (day === 6) {
-            console.log('6 is being sent');
+            ('6 is being sent');
         } else if (day === 7) {
-            console.log('7 is being sent');
+            ('7 is being sent');
         } else {
-            console.log('invalid number')
+            ('invalid number')
         }
     }
 };

@@ -32,29 +32,21 @@ router.delete('/', (req, res) => {
   // DELETE route code here
 })
 
-// TODO: STEP 6 - For this example, we want to GET everything from a table. So we match the CRUD request on line 13 of the Saga. In this case it's a GET. The information that we get from the database we send back as result.rows TO our Saga. Go back to the Saga.
-
-// ? Want to GET everything?
 router.get('/', (req, res) => {
-
   const queryText = `This is where your SQL query from Postico will go.`;
-  
   pool.query(queryText)
     .then(result => {
       res.send(result.rows);
     })
     .catch(err => {
-      console.log('ERROR in router.get on server side', err);
+      ('ERROR in router.get on server side', err);
       res.sendStatus(500)
     })
 
 });
 
-// ? Want to GET something specific?
 router.get('/:id', (req, res) => {
-  // ? Where do we get req.params.id ? 
-  // * 
-  console.log(req.params.id) 
+  (req.params.id)
 
   const queryText = `This is where your SQL commands from Postico will go.`;
   const id = [req.params.id]
@@ -64,7 +56,7 @@ router.get('/:id', (req, res) => {
       res.send(result.rows);
     })
     .catch(err => {
-      console.log('ERROR in router.get on server side', err);
+      ('ERROR in router.get on server side', err);
       res.sendStatus(500)
     })
 

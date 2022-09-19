@@ -9,33 +9,33 @@ function* fetchAllUsersSaga() {
 
 // function* fetchAllUsers(action) {
 //     try {
-//         console.log('fetch all users saga')
+//         ('fetch all users saga')
 //         const response = yield axios.get('/api/multipleUsers')
-//         console.log('fetchAllUsers saga in multipleUsers Saga, this is getting all the users:', response.data)
+//         ('fetchAllUsers saga in multipleUsers Saga, this is getting all the users:', response.data)
 //         yield put({
 //             type: 'ALL_USERS',
 //             payload: response.data
 //         })
 //     }
 //     catch (error) {
-//         console.log('action.payload in multipleUsersSaga:', action.payload)
-//         console.error('ERROR IN MULTIPLE USERS SAGA')
+//         ('action.payload in multipleUsersSaga:', action.payload)
+//         ('ERROR IN MULTIPLE USERS SAGA')
 //     }
 // };
 function* fetchAllUsers(action) {
     try {
-        //console.log('fetch all users saga')
+        //('fetch all users saga')
         const response = yield axios.get('/api/multipleUsers')
 
-        //console.log('fetchAllUsers saga in multipleUsers Saga, this is getting all the users:', response.data)
+        //('fetchAllUsers saga in multipleUsers Saga, this is getting all the users:', response.data)
         yield put({
             type: 'ALL_USERS',
             payload: response.data
         })
     }
     catch (error) {
-        //console.log('action.payload in multipleUsersSaga:', action.payload)
-        console.error('ERROR IN MULTIPLE USERS SAGA', error)
+        //('action.payload in multipleUsersSaga:', action.payload)
+        ('ERROR IN MULTIPLE USERS SAGA', error)
     }
 };
 
@@ -43,31 +43,31 @@ function* fetchAllUsers(action) {
 function* fetchAllAvailableTimes(action) {
     try {
         const response = yield axios.post('/api/multipleUsers/availableTimes', {day: action.payload.day})
-        //console.warn('response data: with times based on what was shot to server:',response.data);
+        //('response data: with times based on what was shot to server:',response.data);
         yield put({
             type: 'ALL_USERS_FREE_TIME',
             payload: response.data
         })
     }
     catch (error) {
-        console.error('error in multipleUsersSaga/fetchAllAvailableTimes function saga:', error)
+        ('error in multipleUsersSaga/fetchAllAvailableTimes function saga:', error)
     }
 }
 
 // function* fetchAllUsers(action) {
 //     try {
-//         console.log('fetch all users saga')
+//         ('fetch all users saga')
 //         const response = yield axios.get('/api/multipleUsers')
 
-//         console.log('fetchAllUsers saga in multipleUsers Saga, this is getting all the users:', response.data)
+//         ('fetchAllUsers saga in multipleUsers Saga, this is getting all the users:', response.data)
 //         yield put({
 //             type: 'ALL_USERS',
 //             payload: response.data
 //         })
 //     }
 //     catch (error) {
-//         console.log('action.payload in multipleUsersSaga:', action.payload)
-//         console.error('ERROR IN MULTIPLE USERS SAGA')
+//         ('action.payload in multipleUsersSaga:', action.payload)
+//         ('ERROR IN MULTIPLE USERS SAGA')
 //     }
 // };
 
@@ -75,14 +75,14 @@ function* fetchAllAvailableTimes(action) {
 // function* fetchAllAvailableTimes(action) {
 //     try {
 //         const response = yield axios.post('/api/multipleUsers/availableTimes', {day: action.payload.day})
-//         console.warn('response data: with times based on what was shot to server:',response.data);
+//         ('response data: with times based on what was shot to server:',response.data);
 //         yield put({
 //             type: 'ALL_USERS_FREE_TIME',
 //             payload: response.data
 //         })
 //     }
 //     catch (error) {
-//         console.error('error in multipleUsersSaga/fetchAllAvailableTimes function saga:', error)
+//         ('error in multipleUsersSaga/fetchAllAvailableTimes function saga:', error)
 //     }
 // }
 
@@ -90,14 +90,14 @@ function* fetchAllAvailableTimes(action) {
 // function* fetchAllAvailableTimes(action) {
 //     try {
 //         const response = yield axios.post('/api/multipleUsers/availableTimes', {day: action.payload.day})
-//         console.warn('response data: with times based on what was shot to server:',response.data);
+//         ('response data: with times based on what was shot to server:',response.data);
 //         yield put({
 //             type: 'ALL_USERS_FREE_TIME',
 //             payload: response.data
 //         })
 //     }
 //     catch (error) {
-//         console.error('error in multipleUsersSaga/fetchAllAvailableTimes function saga:', error)
+//         ('error in multipleUsersSaga/fetchAllAvailableTimes function saga:', error)
 //     }
 // }
 

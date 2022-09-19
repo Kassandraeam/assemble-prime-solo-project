@@ -78,7 +78,7 @@ function Friends() {
   const specificUser = useSelector((store)=> store.specificUserReducer)
   const store = useSelector((store) => store);
   const allUsers = useSelector((store) => store.multipleUsersReducer)
-  console.error(allUsers);
+  (allUsers);
   let freeTime = useSelector((store) => store.multipleUserFreeTimeReducer)
 
   const history = useHistory();
@@ -99,8 +99,8 @@ function Friends() {
   let arrayTest = [];
   const simpleForOf = (arr) => {
     for (const hour of arr) {
-      //console.log('INDIVIDUAL ITEMS FROM THE ARRAY',hour);
-      //console.log(hour.time);
+      //('INDIVIDUAL ITEMS FROM THE ARRAY',hour);
+      //(hour.time);
       arrayTest.push(hour.time);
     }
   }
@@ -113,7 +113,7 @@ function Friends() {
   const ref = useRef(null);
 
   let testIntersect = (intersectMany(arrayTest))
-  //console.log('testIntersect', testIntersect)
+  //('testIntersect', testIntersect)
 
   function stringToColor(string) {
     let hash = 0;
@@ -164,7 +164,7 @@ function Friends() {
 
  // + CHECKBOX 
   const handleCheckBox = (eachUser) => {
-    console.log('userID:',eachUser.id)
+    ('userID:',eachUser.id)
     setCompareArray([...compareArray, eachUser.availableDays])
     // HERE:
     
@@ -179,9 +179,9 @@ function Friends() {
     setUniqueCommonDays([...uniqueCommonDays])
 
     handleGettingAvailableTimes(uniqueCommonDays);
-    console.log('unique common days', uniqueCommonDays)
+    ('unique common days', uniqueCommonDays)
     let displayDaysOnDOM = uniqueArrayDaysOfWeek(uniqueCommonDays);
-    console.warn('DISPLAY DAYS ON DOM',displayDaysOnDOM);
+    ('DISPLAY DAYS ON DOM',displayDaysOnDOM);
   }
 
 
@@ -192,56 +192,56 @@ function Friends() {
       for (let day of array) {
         switch (day) {
           case 1:
-            console.warn('Shooting', day, 'off to the Server!')
+            ('Shooting', day, 'off to the Server!')
             dispatch({
               type: 'GET_AVAILABLE_TIMES',
               payload: { day: day }
             })
             break;
           case 2:
-            console.warn('Shooting', day, 'off to the Server!')
+            ('Shooting', day, 'off to the Server!')
             dispatch({
               type: 'GET_AVAILABLE_TIMES',
               payload: { day: day }
             })
             break;
           case 3:
-            console.warn('Shooting', day, 'off to the Server!')
+            ('Shooting', day, 'off to the Server!')
             dispatch({
               type: 'GET_AVAILABLE_TIMES',
               payload: { day: day }
             })
             break;
           case 4:
-            console.warn('Shooting', day, 'off to the Server!')
+            ('Shooting', day, 'off to the Server!')
             dispatch({
               type: 'GET_AVAILABLE_TIMES',
               payload: { day: day }
             })
             break;
           case 5:
-            console.warn('Shooting', day, 'off to the Server!')
+            ('Shooting', day, 'off to the Server!')
             dispatch({
               type: 'GET_AVAILABLE_TIMES',
               payload: { day: day }
             })
             break;
           case 6:
-            console.warn('Shooting', day, 'off to the Server!')
+            ('Shooting', day, 'off to the Server!')
             dispatch({
               type: 'GET_AVAILABLE_TIMES',
               payload: { day: day }
             })
             break;
           case 7:
-            console.warn('Shooting', day, 'off to the Server!')
+            ('Shooting', day, 'off to the Server!')
             dispatch({
               type: 'GET_AVAILABLE_TIMES',
               payload: { day: day }
             })
             break;
           default:
-            console.log('default of the sendEachUniqueDay function')
+            ('default of the sendEachUniqueDay function')
             break;
         }
       }

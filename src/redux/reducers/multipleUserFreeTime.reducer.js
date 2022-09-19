@@ -1,8 +1,8 @@
 const multipleUserFreeTimeReducer = (state = [], action) => { 
     switch (action.type) {
       case 'ALL_USERS_FREE_TIME': 
-      console.warn('THIS REDUCER IN MULTIPLE USER FREE TIME CONTAINS TIME:',action.payload)
-      // console.error('action payload in freetime reducer', state )
+      ('THIS REDUCER IN MULTIPLE USER FREE TIME CONTAINS TIME:',action.payload)
+      // ('action payload in freetime reducer', state )
         return [...state, action.payload];
       default:
         return state;
@@ -17,7 +17,7 @@ const multipleUserFreeTimeReducer = (state = [], action) => {
   // const multipleUserFreeTimeReducer = (state = [], action) => { 
   //   switch (action.type) {
   //     case 'ALL_USERS_FREE_TIME': 
-  //     console.log('ACTION PAYLOAD IN THE multipleUserFreeTimeReducer:',action.payload)
+  //     ('ACTION PAYLOAD IN THE multipleUserFreeTimeReducer:',action.payload)
   //       return [...state, action.payload];
   //     default:
   //       return state;

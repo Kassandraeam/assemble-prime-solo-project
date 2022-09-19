@@ -18,9 +18,9 @@ function Luxon() {
     const dispatch = useDispatch();
     const user = useSelector((store) => store.user);
 
-    console.log(user.timezone);
+    (user.timezone);
     const userTimeZone = user.timezone;
-    console.log(userTimeZone);
+    (userTimeZone);
 
     useEffect(() => {
         setInitialUserTimeZone(user.timezone);
@@ -34,7 +34,7 @@ function Luxon() {
 
 
     const handleSubmit = () => {
-        console.log('Clicked Submit');
+        ('Clicked Submit');
         alert('You have successfully updated your availability!')
         dispatch({
             type: 'POST_AVAILABILITY',
@@ -51,14 +51,14 @@ function Luxon() {
         let hour = parseInt(event.target.value);
         const convertedTime = DateTime.local(year, month, day, hour, minute, { zone: userTimeZone }).toUTC();
         let inUsersTimeZone = DateTime.utc(year, month, day, convertedTime.hour, minute).toLocal() // this is giving me the local time from UTC.
-        console.warn('inUsersTimeZone', inUsersTimeZone); // 5:00 PM IS 2200 UTC
+        ('inUsersTimeZone', inUsersTimeZone); // 5:00 PM IS 2200 UTC
 
 
-        console.error('HOUR IN 24 HOUR SYSTEM:', hour);
-        console.log(`convert ${convertedTime.hour}:${convertedTime.minute}`)
+        ('HOUR IN 24 HOUR SYSTEM:', hour);
+        (`convert ${convertedTime.hour}:${convertedTime.minute}`)
 
         if (convertedTime.hour === 0) {
-            console.log('this turns it to 24');
+            ('this turns it to 24');
             setAvailability([
                 ...availability,
                 {
@@ -90,8 +90,8 @@ function Luxon() {
     };
 
     const submitNewZone = () => {
-        console.log('This will dispatch to a put saga, then a reducer')
-        console.log('PAYLOAD:', inputTimeZone); // this is what I'll dispatch to the PUT.
+        ('This will dispatch to a put saga, then a reducer')
+        ('PAYLOAD:', inputTimeZone); // this is what I'll dispatch to the PUT.
         dispatch({
             type: 'UPDATE_TIMEZONE',
             payload: {

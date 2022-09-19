@@ -25,7 +25,7 @@ function* functionThatRunsWhenThisYieldIsActivated(action) {
         yield axios.delete('/This_Should_Match_Between_The_Saga_And_Server/${action.payload}')
         */
 
-        console.log('This is what you are sending to this SAGA: ACTION.PAYLOAD=', action.payload)
+        ('This is what you are sending to this SAGA: ACTION.PAYLOAD=', action.payload)
 
         // TODO: STEP 8 - Now we want to be able to use that information that we GOT anywhere in our app. So we dispatch it to a reducer. 
         yield put({
@@ -36,8 +36,8 @@ function* functionThatRunsWhenThisYieldIsActivated(action) {
         })
     }
     catch (error) {
-        console.log('error in SAGA, this is what you were trying to send:', action.payload)
-        console.error('error in SAGA', error)
+        ('error in SAGA, this is what you were trying to send:', action.payload)
+        ('error in SAGA', error)
     }
 };
 

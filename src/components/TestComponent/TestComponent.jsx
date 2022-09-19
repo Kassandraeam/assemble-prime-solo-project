@@ -26,5 +26,5 @@ export default TestComponent;
 
 // const DateTime = luxon.DateTime;
 // const d = DateTime.fromISO('2019-07-09T18:45', { zone: 'America/Chicago' });
-// console.log(d.toISO());
-// console.log(d.toUTC().toISO());
+// (d.toISO());
+// (d.toUTC().toISO());
