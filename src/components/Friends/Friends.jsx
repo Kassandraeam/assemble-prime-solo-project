@@ -12,6 +12,7 @@ import Checkbox from '@mui/material/Checkbox';
 import TestingReducer from '../TailwindCalendar/TailwindCalendar';
 import { array } from 'prop-types';
 const label = { inputProps: { 'aria-label': 'Compare Times' } };
+import MapEachPerson from './MapEachPerson.js'
 
 
 const intersection = (arr1, arr2) => {
@@ -162,10 +163,11 @@ function Friends() {
 
 
  // + CHECKBOX 
-  const handleCheckBox = (eachUser, eachHour) => {
+  const handleCheckBox = (eachUser) => {
     console.log('userID:',eachUser.id)
-    setCompareArray([...compareArray, eachUser.availableDays]) 
-    getTime(eachHour);
+    setCompareArray([...compareArray, eachUser.availableDays])
+    // HERE:
+    
   };
 
 // + SUBMIT
@@ -248,14 +250,14 @@ function Friends() {
 
   return (
     <>
-      <h2 className='text-2xl'>{heading}</h2>
-
+      <h2 className='text-3xl my-8 mx-5'>{heading}</h2>
+      <MapEachPerson></MapEachPerson>
       {/* <Button variant="contained" onClick={handleSubmit}>SUBMIT</Button> */}
       &nbsp;
 
         &nbsp;
         {allUsers.map(eachUser => (
-
+          
           <div className='eachUser' key={eachUser.id}>
             <div className='flex items-center'>
             <Avatar {...stringAvatar(eachUser.username)}></Avatar>
@@ -267,6 +269,7 @@ function Friends() {
             <Button variant="contained" onClick={() => handleGetAvailableSchedule(eachUser.id, eachUser.username, eachUser.timezone)}>Get {eachUser.username}'s schedule</Button>
             &nbsp;
             </div>
+            <Button className='flex items-center mt-3' onClick={()=>handleCheckBox(eachUser.id)}>Compare!</Button>
           </div>
         ))}
         {freeTime.map(eachHour => (

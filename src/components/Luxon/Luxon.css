@@ -10,38 +10,59 @@
 
 .MondayContainer div {
     border: 1px solid rgb(0, 0, 0);
+    border-radius: 10px;
     width: 20%;
-    display: inline-block
+    display: inline-block;
+    background-color: white;
+
 }
 .TuesdayContainer div {
     border: 1px solid rgb(0, 0, 0);
+    border-radius: 10px;
     width: 20%;
-    display: inline-block
+    display: inline-block;
+    background-color: white;
+
 }
 .WednesdayContainer div {
     border: 1px solid rgb(0, 0, 0);
+    border-radius: 10px;
     width: 20%;
-    display: inline-block
+    display: inline-block;
+    background-color: white;
+
 }
 .ThursdayContainer div {
     border: 1px solid rgb(0, 0, 0);
+    border-radius: 10px;
     width: 20%;
-    display: inline-block
+    display: inline-block;
+    background-color: white;
+
 }
 .FridayContainer div {
     border: 1px solid rgb(0, 0, 0);
+    border-radius: 10px;
     width: 20%;
-    display: inline-block
+    display: inline-block;
+    background-color: white;
+
 }
 .SaturdayContainer div {
     border: 1px solid rgb(0, 0, 0);
+    border-radius: 10px;
     width: 20%;
-    display: inline-block
+    display: inline-block;
+    background-color: white;
+
 }
 .SundayContainer div {
     border: 1px solid rgb(0, 0, 0);
+    border-radius: 10px;
     width: 20%;
-    display: inline-block
+    display: inline-block;
+    background-color: white;
+
 }
 
 label {

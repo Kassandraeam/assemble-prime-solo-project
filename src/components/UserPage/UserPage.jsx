@@ -2,15 +2,15 @@ import React from 'react';
 import { useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { useDispatch } from 'react-redux';
-import '../App/App.css'
 import Button from '@mui/material/Button';
 import Luxon from '../Luxon/Luxon';
-import {MenuIcon, XIcon, trash} from '@heroicons/react/outline'
+import { MenuIcon, XIcon, trash } from '@heroicons/react/outline'
 import Box from '@mui/material/Box';
 import Card from '@mui/material/Card';
 import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
 import Typography from '@mui/material/Typography';
+import './UserPage.css'
 function UserPage() {
   // this component doesn't do much to start, just renders some user reducer info to the DOM
   const user = useSelector((store) => store.user);
@@ -38,27 +38,23 @@ function UserPage() {
       id: id // item number in database
     })
   }
-  
+
 
   return (
     <>
-    <h1 className="text-4xl text-center">Welcome, {user.username}!</h1>
+      <h1 className="text-4xl text-center">Welcome, {user.username}!</h1>
       {/* <p>Your ID is: {user.id}</p> */}
-      <h1>Available Times:</h1>
+      <h1 className='text-4xl'>Available Times:</h1>
 
-      
+
       {/* {JSON.stringify(availableTimesSpecificToUser)} */}
-      <div className='map'>
+      <div className='allOfUsersDays'>
         {availableTimesSpecificToUser.map(free => (
-          <div className='w-screen h-[80px]' key={free.id}>
-            <ul>
-              <li>TIME FREE: {free.days_id} AT {free.time_id} UTC</li>
-            </ul>
-              <Button variant="contained" onClick={() => handleDelete(free.id)}>DELETE</Button>
+          <div className='userDays mr-5 mb-8' key={free.id}>
+              <p>TIME FREE: {free.days_id} AT {free.time_id} UTC</p>
+            <Button variant="contained" className='mx-2' onClick={() => handleDelete(free.id)}>DELETE</Button>
           </div>
         ))}
-
-        
       </div>
     </>
   );

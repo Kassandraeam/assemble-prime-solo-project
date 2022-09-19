@@ -1,4 +1,6 @@
-
+div .eachUser{
+    background-color: white;
+}
 
 @tailwind base;
 @tailwind components;
