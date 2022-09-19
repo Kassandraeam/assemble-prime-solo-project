@@ -58,8 +58,7 @@ function SpecificUserAvailability() {
       </div>
       {specificUserReducer.map(specificUser => (
         <div className='map' key={specificUser.id} >
-          <p>{specificUser.username} is free on {specificUser.day} at: {specificUser.hour} UTC</p>
-          <Button onClick={()=>convertUTCToLocal(specificUser.time_id)}>Convert to your Time</Button>
+          <li className='text-3xl my-8'>{specificUser.username} is free on {specificUser.day} at: {specificUser.hour} UTC</li>
         </div>
       ))}
       <Button variant="contained" onClick={handleBack}>BACK</Button>

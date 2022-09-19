@@ -1,0 +1,34 @@
+/* .navBar {
+    width: 100%;
+    height: 100px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem;
+    background-color: var(--darkrey);
+  }
+  
+  .nav-menu {
+    display: flex;
+  }
+  
+  .nav-item {
+    padding: 1rem
+  }
+  
+  @media screen and (max-width: 940px) {
+    .nav-menu {
+      position: absolute;
+      left: 0%;
+      flex-direction: column;
+      background-color: var(--darkrey);
+      width: 100%;
+      height: 100%;
+      text-align: center;
+
+    }
+    .hamburger {
+      display:flex;
+    }
+  }
+   */

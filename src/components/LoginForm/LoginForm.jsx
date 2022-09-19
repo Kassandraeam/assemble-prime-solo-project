@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import {useSelector} from 'react-redux';
-import 'animate.css';
+import './LoginForm.css'
 
 function LoginForm() {
   const [username, setUsername] = useState('');
@@ -27,24 +27,15 @@ function LoginForm() {
 
   return (
     <>
-    <div className='w-screen h-[80px] z-10 bg-zinc-200 fixed drop-shadlow-lg'>
-    <div className='px-2 flex justify-between items-center w-full h-full'>
-    </div>
-
-
-
-    </div>
-
-
-
-    <form className="formPanel" onSubmit={login}>
-      <h2>Login</h2>
+    <div className='flex justify-left'>
+    <form className='formPanel' onSubmit={login}>
+      <h2 className='flex justify-center'>Login</h2>
       {errors.loginMessage && (
         <h3 className="alert" role="alert">
           {errors.loginMessage}
         </h3>
       )}
-      <div>
+      <div className='flex justify-center'>
         <label htmlFor="username">
           Username:
           <input
@@ -56,6 +47,7 @@ function LoginForm() {
           />
         </label>
       </div>
+      
       <div>
         <label htmlFor="password">
           Password:
@@ -72,6 +64,7 @@ function LoginForm() {
         <input className="btn" type="submit" name="submit" value="Log In" />
       </div>
     </form>
+    </div>
     </>
   );
 }

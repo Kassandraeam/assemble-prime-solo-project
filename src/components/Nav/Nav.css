@@ -1,40 +1,46 @@
-.nav {
+.navBar {
+  width: 100%;
+  height: 100px;
   display: flex;
-  justify-content: space-between; 
-  align-items: center; 
-  margin: 0 0 30px;
-  background-color: #707070;
-  overflow: hidden;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem;
+  background-color: var(--darkrey);
 }
 
-.nav a {
-  text-decoration: none;
+.nav-menu {
+  display: flex;
 }
 
-.nav-title {
-  font-size: 24px;
-  font-weight: 700;
-  color: #f2f2f2;
-  padding-left: 10px;
-  margin: 0;
+.nav-item {
+  padding: 1rem
 }
 
-.navLink {
-  display: inline-block;
-  color: #f2f2f2;
-  background-color: #00acb0;
-  text-align: center;
-  padding: 24px 10px;
-  text-decoration: none;
-  font-size: 15px;
+@media screen and (max-width: 940px) {
+  .nav-menu {
+    position: absolute;
+    left: -100%;
+    top: 0%;
+    flex-direction: column;
+    justify-content: center;
+    background-color: var(--darkrey);
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    transition: 0.4s;    
+  }
+  
+  .nav-menu.active {
+    left: 0
+  }
+  .nav-item{
+    margin: 1.5rem;
+    font-size: 1.8rem;
+    justify-content: baseline;
+  }
 
-  /* these last two make the logout button in
-  the nav bar look like another link */
-  border: none;
-  cursor: pointer;
-  outline: 0;
+  .hamburger {
+    display:flex;
+  }
 }
 
-.navLink:hover {
-  background-color: #008183;
-}

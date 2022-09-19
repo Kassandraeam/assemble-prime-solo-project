@@ -1,24 +1,24 @@
 .nav {
     /* flex box layout */
-    /* display: flex; */
-    /* justify-content: space-between; */
-    /* align-items: center; */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
   
-    /* margin: 0 0 30px; */
-    /* background-color: #8a8a8a; */
-    /* overflow: hidden; */
+    margin: 0 0 30px;
+    background-color: #8a8a8a;
+    overflow: hidden;
   }
   
   .nav a {
-    /* text-decoration: none; */
+    text-decoration: none;
   }
   
   .nav-title {
-    /* font-size: 24px;
+    font-size: 24px;
     font-weight: 700;
     color: #f2f2f2;
     padding-left: 10px;
-    margin: 0; */
+    margin: 0;
   }
   
   .navLink {

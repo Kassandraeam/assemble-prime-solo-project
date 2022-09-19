@@ -79,10 +79,10 @@ function Calendar() {
 
     return (
         <>
-        <div className='border-spacing-2 justify-en'>
+        {/* <div className='border-spacing-2 justify-en'>
             <p className='text-5xl text-right px-3'>Assemble</p>
             <p className='text-2xl text-right px-3'>Choose the times you're available</p>
-        </div>
+        </div> */}
             <Luxon />
             {/* <TailwindCalendar></TailwindCalendar> */}
         </>

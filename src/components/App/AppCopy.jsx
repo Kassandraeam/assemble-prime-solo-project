@@ -17,14 +17,6 @@ import LoginPage from '../LoginPage/LoginPage';
 import RegisterPage from '../RegisterPage/RegisterPage';
 import './App.css';
 
-import Calendar from '../Calendar/Calendar';
-import Friends from '../Friends/Friends';
-import MyNav from '../MyNav/MyNav';
-import NewNav from '../NewNav/NewNav';
-import SpecificUserAvailability from '../SpecificUserAvailability/SpecificUserAvailability'
-import Hero from '../HeroComponent/Hero.jsx';
-
-
 function App() {
   const dispatch = useDispatch();
 
@@ -36,10 +28,8 @@ function App() {
 
   return (
     <Router>
-
       <div>
-        <Nav/>
-        {/* <MyNav /> */}
+        <Nav />
         <Switch>
           {/* Visiting localhost:3000 will redirect to localhost:3000/home */}
           <Redirect exact from="/" to="/home" />
@@ -49,7 +39,7 @@ function App() {
             // shows AboutPage at all times (logged in or not)
             exact
             path="/about"
-            >
+          >
             <AboutPage />
           </Route>
 
@@ -63,31 +53,6 @@ function App() {
             path="/user"
           >
             <UserPage />
-          </ProtectedRoute>
-
-
-          <ProtectedRoute
-          exact
-          path="/calendar"
-          >
-
-
-            <Calendar/>
-          </ProtectedRoute>
-
-          <ProtectedRoute
-          exact
-          path="/friends"
-          >
-            <Friends/>
-          </ProtectedRoute>
-
-
-          <ProtectedRoute
-          exact
-          path="/friends/:id"
-          >
-            <SpecificUserAvailability/>
           </ProtectedRoute>
 
           <ProtectedRoute
@@ -109,7 +74,6 @@ function App() {
               :
               // Otherwise, show the login page
               <LoginPage />
-             
             }
           </Route>
 
@@ -153,6 +117,3 @@ function App() {
 }
 
 export default App;
-
-
-//npm react-select-date

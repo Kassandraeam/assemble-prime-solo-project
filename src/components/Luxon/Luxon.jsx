@@ -107,7 +107,7 @@ function Luxon() {
         <>
             <div className='Calendar'>
                 <div className='monday'>
-                    <p id='mondayTitle'>Monday</p>
+                    <p id='mondayTitle' className='text-3xl'>Monday</p>
                     <div className='MondayContainer mb-10'>
                         {/* <div style={{
                             backgroundColor: isActive ? '#1876d2' : '',
@@ -216,7 +216,7 @@ function Luxon() {
                     </div>
                 </div>
                 <div className='tuesday'>
-                    <p id='tuesdayTitle'>Tuesday</p>
+                    <p id='tuesdayTitle' className='text-3xl'>Tuesday</p>
                     <div className='TuesdayContainer mb-10'>
                         <div>
                             <label>1:00AM</label>
@@ -322,7 +322,7 @@ function Luxon() {
                     </div>
                 </div>
                 <div className='wednesday'>
-                    <p id='wednesdayTitle'>Wednesday</p>
+                    <p id='wednesdayTitle' className='text-3xl'>Wednesday</p>
                     <div className='WednesdayContainer mb-10'>
                         <div>
                             <label>1:00AM</label>
@@ -428,7 +428,7 @@ function Luxon() {
                     </div>
                 </div>
                 <div className='thursday'>
-                    <p id='thursdayTitle'>Thursday</p>
+                    <p id='thursdayTitle' className='text-3xl'>Thursday</p>
                     <div className='ThursdayContainer mb-10'>
                         <div>
                             <label>1:00AM</label>
@@ -534,7 +534,7 @@ function Luxon() {
                     </div>
                 </div>
                 <div className='friday'>
-                    <p id='fridayTitle'>Friday</p>
+                    <p id='fridayTitle' className='text-3xl'>Friday</p>
                     <div className='FridayContainer mb-10'>
                         <div>
                             <label>1:00AM</label>
@@ -639,7 +639,7 @@ function Luxon() {
                     </div>
                 </div>
                 <div className='saturday'>
-                    <p id='saturdayTitle'>Saturday</p>
+                    <p id='saturdayTitle' className='text-3xl'>Saturday</p>
                     <div className='SaturdayContainer mb-10'>
                         <div>
                             <label>1:00AM</label>
@@ -744,7 +744,7 @@ function Luxon() {
                     </div>
                 </div>
                 <div className='sunday'>
-                    <p id='sundayTitle'>Sunday</p>
+                    <p id='sundayTitle' className='text-3xl'>Sunday</p>
                     <div className='SundayContainer mb-10'>
                         <div>
                             <label>1:00AM</label>
@@ -881,11 +881,6 @@ function Luxon() {
                     Submit Availability
                 </Button>
             </div>
-
-
-            <p>Notes: </p>
-            <p>Clear checked checkmarks upon Submit availability</p>
-            <p>Get rid of Dashboard view from register</p>
         </>
     )
 }
