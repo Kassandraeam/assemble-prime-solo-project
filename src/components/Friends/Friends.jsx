@@ -251,7 +251,6 @@ function Friends() {
   return (
     <>
       <h2 className='text-3xl my-8 mx-5'>{heading}</h2>
-      <MapEachPerson></MapEachPerson>
       {/* <Button variant="contained" onClick={handleSubmit}>SUBMIT</Button> */}
       &nbsp;
 
@@ -269,7 +268,7 @@ function Friends() {
             <Button variant="contained" onClick={() => handleGetAvailableSchedule(eachUser.id, eachUser.username, eachUser.timezone)}>Get {eachUser.username}'s schedule</Button>
             &nbsp;
             </div>
-            <Button className='flex items-center mt-3' onClick={()=>handleCheckBox(eachUser.id)}>Compare!</Button>
+            {/* <Button className='flex items-center mt-3' onClick={()=>handleCheckBox(eachUser.id)}>Compare!</Button> */}
           </div>
         ))}
         {freeTime.map(eachHour => (

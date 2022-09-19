@@ -15,7 +15,7 @@ function UserPage() {
   // this component doesn't do much to start, just renders some user reducer info to the DOM
   const user = useSelector((store) => store.user);
   const availableTimesSpecificToUser = useSelector((store) => store.availabilityReducer)
-  console.log('availableTimesSpecificUser Reducer:', availableTimesSpecificToUser)
+
   const dispatch = useDispatch();
 
 

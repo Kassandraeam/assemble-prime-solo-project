@@ -105,6 +105,50 @@ function Luxon() {
 
     return (
         <>
+        <div className='FormControl ml-5'>
+        <h1 >Your time zone: {userTimeZone}</h1>
+        <FormControl sx={{ m: 1, minWidth: 120 }}>
+                        <InputLabel id="demo-simple-select-helper-label">Timezone</InputLabel>
+                        <Select
+                            labelId="demo-simple-select-helper-label"
+                            id="demo-simple-select-helper"
+                            value={inputTimeZone}
+                            label="Timezone"
+                            onChange={handleChange}
+                        >
+
+                            <MenuItem value='UTC-12'>GMT-12</MenuItem>
+                            <MenuItem value='UTC-11'>GMT-11</MenuItem>
+                            <MenuItem value='UTC-10'>GMT-10</MenuItem>
+                            <MenuItem value='UTC-9'>GMT-9</MenuItem>
+                            <MenuItem value='UTC-8'>GMT-8</MenuItem>
+                            <MenuItem value='UTC-7'>GMT-7</MenuItem>
+                            <MenuItem value='UTC-6'>GMT-6</MenuItem>
+                            <MenuItem value='UTC-5'>GMT-5</MenuItem>
+                            <MenuItem value='UTC-4'>GMT-4</MenuItem>
+                            <MenuItem value='UTC-3'>GMT-3</MenuItem>
+                            <MenuItem value='UTC-2'>GMT-2</MenuItem>
+                            <MenuItem value='UTC-1'>GMT-1</MenuItem>
+                            <MenuItem value='UTC+0'>GMT+0</MenuItem>
+                            <MenuItem value='UTC+1'>GMT+1</MenuItem>
+                            <MenuItem value='UTC+2'>GMT+2</MenuItem>
+                            <MenuItem value='UTC+3'>GMT+3</MenuItem>
+                            <MenuItem value='UTC+4'>GMT+4</MenuItem>
+                            <MenuItem value='UTC+5'>GMT+5</MenuItem>
+                            <MenuItem value='UTC+6'>GMT+6</MenuItem>
+                            <MenuItem value='UTC+7'>GMT+7</MenuItem>
+                            <MenuItem value='UTC+8'>GMT+8</MenuItem>
+                            <MenuItem value='UTC+9'>GMT+9</MenuItem>
+                            <MenuItem value='UTC+10'>GMT+10</MenuItem>
+                            <MenuItem value='UTC+11'>GMT+11</MenuItem>
+                            <MenuItem value='UTC+12'>GMT+12</MenuItem>
+                            <MenuItem value='UTC+13'>GMT+13</MenuItem>
+                            <MenuItem value='UTC+14'>GMT+14</MenuItem>
+                        </Select>
+                        <FormHelperText>Change your timezone here!</FormHelperText>
+                        <Button variant="contained" onClick={submitNewZone}>Change Timezone</Button>
+                    </FormControl>
+</div>
             <div className='Calendar'>
                 <div className='monday'>
                     <p id='mondayTitle' className='text-3xl'>Monday</p>
