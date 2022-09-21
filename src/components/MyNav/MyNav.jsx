@@ -29,7 +29,7 @@ function MyNav() {
   const user = useSelector((store) => store.user);
 
   const otherUsers = () => {
-    ('otherUsers');
+    // ('otherUsers');
     history.push('/friends');
   }
 

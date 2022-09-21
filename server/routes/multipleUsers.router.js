@@ -25,7 +25,7 @@ router.get('/', (req, res) => {
 router.post('/', async (req, res) => {
   const client = await pool.connect();
   const availability = req.body.availability;
-  (availability)
+  // (availability)
   try {
     await client.query('BEGIN')
 
@@ -40,7 +40,7 @@ router.post('/', async (req, res) => {
 
   } catch (error) {
     await client.query('ROLLBACK')
-    ('Error POST /api/availability', error);
+    // ('Error POST /api/availability', error);
     res.sendStatus(500);
   } finally {
     client.release()
@@ -49,10 +49,10 @@ router.post('/', async (req, res) => {
 
 // * GETS the user.id, username, user timezone, and an array of the times that they have available, based on the day
 router.post('/availableTimes', async (req, res) => {
-  (req.body);
-  ('PAYLOAD BABEYYYYY', req.body.day)
+  // (req.body);
+  // ('PAYLOAD BABEYYYYY', req.body.day)
   const dummyData = req.body.day;
-  ('DUMMY DATA YOU DUMMY:', dummyData);
+  // ('DUMMY DATA YOU DUMMY:', dummyData);
   const query = `
   SELECT 
 	"user".id, "user".username, 

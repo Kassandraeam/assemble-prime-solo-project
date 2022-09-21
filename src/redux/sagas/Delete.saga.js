@@ -8,8 +8,8 @@ function* deleteSaga() {
 }
 
 function* deleteAvailability(action){
-    ('deleteAvailability.saga action.id', action.id);
-    ('ACTION.PAYLOAD', action.payload);
+    // ('deleteAvailability.saga action.id', action.id);
+    // ('ACTION.PAYLOAD', action.payload);
     
     try{
         yield axios.delete(`/api/availability/${action.id}`)
@@ -18,7 +18,7 @@ function* deleteAvailability(action){
             payload: action.payload
         })
     } catch {
-        ('delete error in the delete saga')
+        // ('delete error in the delete saga')
     }
 };
 

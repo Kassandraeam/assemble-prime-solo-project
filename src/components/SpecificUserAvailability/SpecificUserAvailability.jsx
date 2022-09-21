@@ -18,7 +18,7 @@ function SpecificUserAvailability() {
 
 
   let id = useParams();
-  (id); // console logs as {id: '3'}
+  // (id); // console logs as {id: '3'}
 
   // const convertUTCToLocal = (specificUser) => {
   //   ('CONVERT TO LOCAL SHOULD RUN',specificUserReducer);
@@ -45,7 +45,7 @@ function SpecificUserAvailability() {
   }, [])
 
   const handleBack = () => {
-    ('go back a page');
+    // ('go back a page');
     history.push('/friends');
   }
 

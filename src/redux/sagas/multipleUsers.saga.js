@@ -35,7 +35,7 @@ function* fetchAllUsers(action) {
     }
     catch (error) {
         //('action.payload in multipleUsersSaga:', action.payload)
-        ('ERROR IN MULTIPLE USERS SAGA', error)
+        // ('ERROR IN MULTIPLE USERS SAGA', error)
     }
 };
 
@@ -50,7 +50,7 @@ function* fetchAllAvailableTimes(action) {
         })
     }
     catch (error) {
-        ('error in multipleUsersSaga/fetchAllAvailableTimes function saga:', error)
+        // ('error in multipleUsersSaga/fetchAllAvailableTimes function saga:', error)
     }
 }
 

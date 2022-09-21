@@ -59,7 +59,7 @@ router.post('/logout', (req, res) => {
 // * Updates the timezone of the user.
 // * Returns 'OK'
 router.put(`/`, (req, res) => {
-  ('REQ.BODY IN THE PUT', req.body)
+  // ('REQ.BODY IN THE PUT', req.body)
   const timezone = req.body.inputTimeZone;
   const user = req.body.user;
   const queryText = `

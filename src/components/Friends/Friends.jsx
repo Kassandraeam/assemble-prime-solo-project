@@ -59,7 +59,7 @@ function Friends() {
     }
   }
 
-  simpleForOf(freeTime);
+  // console.log(simpleForOf(freeTime));
 
   function stringToColor(string) {
     let hash = 0;
@@ -92,7 +92,7 @@ function Friends() {
     })
   }, [])
 
-  simpleForOf(freeTime);
+  // console.log(simpleForOf(freeTime));
 
   const handleGetAvailableSchedule = (eachUser) => {
     history.push(`/friends/${eachUser}`)
@@ -106,7 +106,7 @@ function Friends() {
 
  // + CHECKBOX 
   const handleCheckBox = (eachUser) => {
-    ('userID:',eachUser.id)
+    // ('userID:',eachUser.id)
     setCompareArray([...compareArray, eachUser.availableDays])
   };
 // + SUBMIT
@@ -115,59 +115,59 @@ function Friends() {
     setCommonalities(...commonalities);
     let uniqueCommonDays = getUnique(commonalities).sort();
     setUniqueCommonDays([...uniqueCommonDays])
-    handleGettingAvailableTimes(uniqueCommonDays);
-    ('unique common days', uniqueCommonDays)
-    ('DISPLAY DAYS ON DOM',displayDaysOnDOM);
+    // handleGettingAvailableTimes(uniqueCommonDays);
+    // ('unique common days', uniqueCommonDays)
+    // ('DISPLAY DAYS ON DOM',displayDaysOnDOM);
   }
   const handleGettingAvailableTimes = (array) => {
-    sendEachUniqueDay(...array);
+    // sendEachUniqueDay(...array);
     function sendEachUniqueDay(...array) {
       for (let day of array) {
         switch (day) {
           case 1:
-            ('Shooting', day, 'off to the Server!')
+            // ('Shooting', day, 'off to the Server!')
             dispatch({
               type: 'GET_AVAILABLE_TIMES',
               payload: { day: day }
             })
             break;
           case 2:
-            ('Shooting', day, 'off to the Server!')
+            // ('Shooting', day, 'off to the Server!')
             dispatch({
               type: 'GET_AVAILABLE_TIMES',
               payload: { day: day }
             })
             break;
           case 3:
-            ('Shooting', day, 'off to the Server!')
+            // ('Shooting', day, 'off to the Server!')
             dispatch({
               type: 'GET_AVAILABLE_TIMES',
               payload: { day: day }
             })
             break;
           case 4:
-            ('Shooting', day, 'off to the Server!')
+            // ('Shooting', day, 'off to the Server!')
             dispatch({
               type: 'GET_AVAILABLE_TIMES',
               payload: { day: day }
             })
             break;
           case 5:
-            ('Shooting', day, 'off to the Server!')
+            // ('Shooting', day, 'off to the Server!')
             dispatch({
               type: 'GET_AVAILABLE_TIMES',
               payload: { day: day }
             })
             break;
           case 6:
-            ('Shooting', day, 'off to the Server!')
+            // ('Shooting', day, 'off to the Server!')
             dispatch({
               type: 'GET_AVAILABLE_TIMES',
               payload: { day: day }
             })
             break;
           case 7:
-            ('Shooting', day, 'off to the Server!')
+            // ('Shooting', day, 'off to the Server!')
             dispatch({
               type: 'GET_AVAILABLE_TIMES',
               payload: { day: day }

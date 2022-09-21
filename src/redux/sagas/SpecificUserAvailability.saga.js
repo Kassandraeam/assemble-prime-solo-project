@@ -15,8 +15,8 @@ function* fetchSpecificUserAvailability(action) {
         })
     }
     catch (error) {
-        ('error in SAGA, this is what you were trying to send:', action.payload)
-        ('error in SAGA', error)
+        // ('error in SAGA, this is what you were trying to send:', action.payload)
+        // ('error in SAGA', error)
     }
 };
 

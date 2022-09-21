@@ -9,7 +9,7 @@ function* availabilitySaga() {
 
 function* fetchAvailability(action) {
     try {
-        ('action.payload in availablily saga:', action.payload)
+        // ('action.payload in availablily saga:', action.payload)
         const response = yield axios.get(`/api/availability/${action.payload}`)
 
         yield put({
@@ -18,8 +18,8 @@ function* fetchAvailability(action) {
         })
     }
     catch (error) {
-        ('action.payload in availablily saga:', action.payload)
-        ('error in fetchAvailability Saga')
+        // ('action.payload in availablily saga:', action.payload)
+        // ('error in fetchAvailability Saga')
     }
 };
 

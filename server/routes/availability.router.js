@@ -23,7 +23,7 @@ router.post('/', async (req, res) => {
   const client = await pool.connect();
 
   const availability = req.body.availability;
-  (availability)
+  // (availability)
   try {
     await client.query('BEGIN')
     await Promise.all(availability.map((available) => {
@@ -71,8 +71,8 @@ router.get('/:id', (req, res) => {
 
 // * Deletes the day/time the user selects in their profile.
 router.delete('/:id', (req, res) => {
-  ('DELETE ROUTER');
-  (req.params.id);
+  // ('DELETE ROUTER');
+  // (req.params.id);
 
   queryText =
     ` DELETE FROM "availability"

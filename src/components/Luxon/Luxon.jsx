@@ -18,9 +18,9 @@ function Luxon() {
     const dispatch = useDispatch();
     const user = useSelector((store) => store.user);
 
-    (user.timezone);
+    // (user.timezone);
     const userTimeZone = user.timezone;
-    (userTimeZone);
+    // (userTimeZone);
 
     useEffect(() => {
         setInitialUserTimeZone(user.timezone);
@@ -34,7 +34,7 @@ function Luxon() {
 
 
     const handleSubmit = () => {
-        ('Clicked Submit');
+        // ('Clicked Submit');
         alert('You have successfully updated your availability!')
         dispatch({
             type: 'POST_AVAILABILITY',
@@ -51,11 +51,11 @@ function Luxon() {
         let hour = parseInt(event.target.value);
         const convertedTime = DateTime.local(year, month, day, hour, minute, { zone: userTimeZone }).toUTC();
         let inUsersTimeZone = DateTime.utc(year, month, day, convertedTime.hour, minute).toLocal() // this is giving me the local time from UTC.
-        ('inUsersTimeZone', inUsersTimeZone); // 5:00 PM IS 2200 UTC
+        // ('inUsersTimeZone', inUsersTimeZone); // 5:00 PM IS 2200 UTC
 
 
-        ('HOUR IN 24 HOUR SYSTEM:', hour);
-        (`convert ${convertedTime.hour}:${convertedTime.minute}`)
+        // ('HOUR IN 24 HOUR SYSTEM:', hour);
+        // (`convert ${convertedTime.hour}:${convertedTime.minute}`)
 
         if (convertedTime.hour === 0) {
             ('this turns it to 24');
@@ -90,8 +90,8 @@ function Luxon() {
     };
 
     const submitNewZone = () => {
-        ('This will dispatch to a put saga, then a reducer')
-        ('PAYLOAD:', inputTimeZone); // this is what I'll dispatch to the PUT.
+        // ('This will dispatch to a put saga, then a reducer')
+        // ('PAYLOAD:', inputTimeZone); // this is what I'll dispatch to the PUT.
         dispatch({
             type: 'UPDATE_TIMEZONE',
             payload: {
