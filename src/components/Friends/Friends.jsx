@@ -36,40 +36,8 @@ function getUnique(array) {
   return uniqueArray;
 }
 
-function uniqueArrayDaysOfWeek(array){
-  let uniqueArrayDaysOfWeekArray = [];
-  for (let i = 0; i < array.length; i++) {
-      if (i === 1) {
-        uniqueArrayDaysOfWeekArray.push['Monday'];
-      }
-      else if (i === 2) {
-        uniqueArrayDaysOfWeekArray.push['Tuesday'];
-      }
-      else if (i === 3) {
-        uniqueArrayDaysOfWeekArray.push['Wednesday']
-      }
-      else if (i === 4) {
-        uniqueArrayDaysOfWeekArray.push['Thursday']
-      }
-      else if (i === 5) {
-        uniqueArrayDaysOfWeekArray.push['Friday']
-      }
-      else if (i === 6) {
-        uniqueArrayDaysOfWeekArray.push['Saturday']
-      }
-      else if (i === 7) {
-        uniqueArrayDaysOfWeekArray.push['Sunday']
-      }
-      else {
-        return uniqueArrayDaysOfWeekArray;
-      }
-    }
-  }
-
-  
 function Friends() {
 
-  const specificUser = useSelector((store)=> store.specificUserReducer)
   const store = useSelector((store) => store);
   const allUsers = useSelector((store) => store.multipleUsersReducer)
   let freeTime = useSelector((store) => store.multipleUserFreeTimeReducer)
@@ -77,11 +45,7 @@ function Friends() {
   const history = useHistory();
   const dispatch = useDispatch();
   const [heading, setHeading] = useState('Users');
-  // from the multiple free time reducer, save it in a local state. 
-  const [freehours, setFreeHours] = useState();
-  // * compareArray contains all of the days that the user is free upon click, based on their current availability.
   const [compareArray, setCompareArray] = useState([]);
-  const [compareTimeArray, setCompareTimeArray] = useState([]);
 
   // * commonalities determines what number is present in all selected arrays.
   const [commonalities, setCommonalities] = useState();
@@ -91,21 +55,11 @@ function Friends() {
   let arrayTest = [];
   const simpleForOf = (arr) => {
     for (const hour of arr) {
-      //('INDIVIDUAL ITEMS FROM THE ARRAY',hour);
-      //(hour.time);
       arrayTest.push(hour.time);
     }
   }
 
   simpleForOf(freeTime);
-
-
-  const [uniqueCommonTimes, setUniqueCommonTimes] = useState([])
-
-  const ref = useRef(null);
-
-  let testIntersect = (intersectMany(arrayTest))
-  //('testIntersect', testIntersect)
 
   function stringToColor(string) {
     let hash = 0;
@@ -113,15 +67,11 @@ function Friends() {
     for (i = 0; i < string.length; i += 1) {
       hash = string.charCodeAt(i) + ((hash << 5) - hash);
     }
-
     let color = '#';
-
     for (i = 0; i < 3; i += 1) {
       const value = (hash >> (i * 8)) & 0xff;
       color += `00${value.toString(16)}`.slice(-2);
     }
-    /* eslint-enable no-bitwise */
-
     return color;
   }
   function stringAvatar(name) {
@@ -158,26 +108,17 @@ function Friends() {
   const handleCheckBox = (eachUser) => {
     ('userID:',eachUser.id)
     setCompareArray([...compareArray, eachUser.availableDays])
-    // HERE:
-    
   };
-
 // + SUBMIT
   const handleSubmit = () => {
     let commonalities = intersectMany(...compareArray);
     setCommonalities(...commonalities);
-
     let uniqueCommonDays = getUnique(commonalities).sort();
     setUniqueCommonDays([...uniqueCommonDays])
-
     handleGettingAvailableTimes(uniqueCommonDays);
     ('unique common days', uniqueCommonDays)
-    let displayDaysOnDOM = uniqueArrayDaysOfWeek(uniqueCommonDays);
     ('DISPLAY DAYS ON DOM',displayDaysOnDOM);
   }
-
-
-
   const handleGettingAvailableTimes = (array) => {
     sendEachUniqueDay(...array);
     function sendEachUniqueDay(...array) {
@@ -243,12 +184,9 @@ function Friends() {
   return (
     <>
       <h2 className='text-3xl my-8 mx-5'>{heading}</h2>
-      {/* <Button variant="contained" onClick={handleSubmit}>SUBMIT</Button> */}
       &nbsp;
-
         &nbsp;
         {allUsers.map(eachUser => (
-          
           <div className='eachUser' key={eachUser.id}>
             <div className='flex items-center'>
             <Avatar {...stringAvatar(eachUser.username)}></Avatar>
@@ -260,7 +198,6 @@ function Friends() {
             <Button variant="contained" onClick={() => handleGetAvailableSchedule(eachUser.id, eachUser.username, eachUser.timezone)}>Get {eachUser.username}'s schedule</Button>
             &nbsp;
             </div>
-            {/* <Button className='flex items-center mt-3' onClick={()=>handleCheckBox(eachUser.id)}>Compare!</Button> */}
           </div>
         ))}
         {freeTime.map(eachHour => (

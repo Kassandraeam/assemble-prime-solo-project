@@ -31,7 +31,6 @@ function UserPage() {
   const handleDelete = (id) => {
     ('THIS IS THE ID OF THE ITEM THAT YOU WANT TO DELETE:', id);
     ('THIS IS THE USER ID IN THE HANDLE DELETE HOPEFULLY', user.id)
-    // dispatch this id to the delete request.
     dispatch({
       type: 'DELETE_AVAILABILITY',
       payload: user.id, //alex
