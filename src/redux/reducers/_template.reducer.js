@@ -15,3 +15,4 @@ const reducerTemplate = (state = {}, action) => {
   export default reducerTemplate;
   
 // ! remember to import this to the _root.reducer.js, and to include it in the rootReducer combineReducers, yieldAll.
+
