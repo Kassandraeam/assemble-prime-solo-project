@@ -1,4 +1,5 @@
-import React, { useState, useEffect } from 'react';
+<script>
+    import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 
@@ -50,28 +51,4 @@ function TemplateFunction(props) {
 }
 
 export default TemplateFunction;
-
-// import React, { useState, useEffect } from 'react';
-// import { useSelector, useDispatch } from 'react-redux';
-// import { useHistory } from 'react-router-dom';
-
-// function SpecificUserAvailability() {
-
-//   const dispatch = useDispatch();
-//   const store = useSelector((store) => store);
-//   const [heading, setHeading] = useState('SpecificUserAvailability');
-
-//   useEffect(() => {
-//     dispatch({
-//         type: 'This_Should_Match_Between_The_Component_And_Saga'
-//     })
-// }, [])
-
-//   return (
-//     <div>
-//       <h2>{heading}</h2>
-//     </div>
-//   );
-// }
-
-// export default SpecificUserAvailability;
+</script>

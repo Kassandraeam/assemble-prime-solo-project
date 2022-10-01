@@ -1,3 +1,4 @@
+<script>
 import React, { useState } from 'react';
 import {useSelector} from 'react-redux';
 
@@ -18,3 +19,5 @@ function TemplateFunction(props) {
 }
 
 export default TemplateFunction;
+
+</script>

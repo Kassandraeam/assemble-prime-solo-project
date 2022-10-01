@@ -1,36 +1,3 @@
-@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Mono:wght@200;300&display=swap');
-
-
-* {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-}
-:root {
-    --primary: #6948ff;
-    --secondary: #553bcb;
-    --darkgrey: #22262a;
-    --lightgrey: #d3d3d3;
-    --grey: #808080;
-    --white: #f8f8f8;
-  }
-  
-ul {
-    list-style-type:none;
-}
-
-a {
-    text-decoration: none;
-    color: var(--white);
-
-}
-
-body {
-    color: grey;
-    line-height: 1.5;
-    font-family: 'Noto Sans Mono', monospace;
-}
-
-.primary-color {
-    color: var(--primary)
-}
+@tailwind base;
+@tailwind components;
+@tailwind utilities;

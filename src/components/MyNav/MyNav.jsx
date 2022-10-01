@@ -1,21 +1,19 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import Button from '@mui/material/Button';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
-import { useDispatch } from 'react-redux';
+
 import './MyNav.css'
 
 import AccountCircleRoundedIcon from '@mui/icons-material/AccountCircleRounded';
 import GroupRoundedIcon from '@mui/icons-material/GroupRounded';
 import CalendarTodayRoundedIcon from '@mui/icons-material/CalendarTodayRounded';
-import ExitToAppRoundedIcon from '@mui/icons-material/ExitToAppRounded';
-import { FaBars, FaTimes } from 'react-icons/fa'
+
 
 function MyNav() {
 
-  const dispatch = useDispatch();
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
   const handleClick = (event) => {
@@ -35,7 +33,6 @@ function MyNav() {
 
   return (
     <>
-      
       {/* BELOW IS ORIGINAL STUFF DO NOT DELETE BC IT WORKS */}
       {/*  */}
       <Button
