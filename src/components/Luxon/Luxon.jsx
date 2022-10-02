@@ -17,7 +17,7 @@ function Luxon() {
     const [isActive, setIsActive] = useState(false);
     const dispatch = useDispatch();
     const user = useSelector((store) => store.user);
-
+    const userID = user.id;
     // (user.timezone);
     const userTimeZone = user.timezone;
     // (userTimeZone);
@@ -35,6 +35,7 @@ function Luxon() {
 
     const handleSubmit = () => {
         // ('Clicked Submit');
+        console.log(userID);
         alert('You have successfully updated your availability!')
         dispatch({
             type: 'POST_AVAILABILITY',
@@ -42,6 +43,7 @@ function Luxon() {
                 availability
             }
         })
+
         window.location.reload(false)
     }
 
@@ -51,7 +53,10 @@ function Luxon() {
         let hour = parseInt(event.target.value);
         const convertedTime = DateTime.local(year, month, day, hour, minute, { zone: userTimeZone }).toUTC();
         let inUsersTimeZone = DateTime.utc(year, month, day, convertedTime.hour, minute).toLocal() // this is giving me the local time from UTC.
+        let inUsersTimeZoneHour = DateTime.utc(convertedTime.hour).toLocal() // this is giving me the local time from UTC.
         // ('inUsersTimeZone', inUsersTimeZone); // 5:00 PM IS 2200 UTC
+        console.log('inUsersTimeZone', inUsersTimeZone);
+        console.log('hour', inUsersTimeZone.hour);
 
 
         // ('HOUR IN 24 HOUR SYSTEM:', hour);
@@ -82,14 +87,17 @@ function Luxon() {
                 }
             ])
         }
+        console.log('Availability:', availability)
     }
 
 
     const handleChange = (event) => {
         setInputTimeZone(event.target.value);
+
     };
 
-    const submitNewZone = () => {
+    const submitNewZone = (user) => {
+        console.log('submitNewZone')
         // ('This will dispatch to a put saga, then a reducer')
         // ('PAYLOAD:', inputTimeZone); // this is what I'll dispatch to the PUT.
         dispatch({
@@ -99,56 +107,63 @@ function Luxon() {
                 user: user.id
             }
         })
+        dispatch({
+            type: 'DELETE_ALL_AVAILABILITY',
+            payload: {
+                user: user.id
+            }
+        })
         window.location.reload(false);
     }
 
 
     return (
         <>
-        <div className='FormControl ml-5'>
-        <h1 >Your time zone: {userTimeZone}</h1>
-        <FormControl sx={{ m: 1, minWidth: 120 }}>
-                        <InputLabel id="demo-simple-select-helper-label">Timezone</InputLabel>
-                        <Select
-                            labelId="demo-simple-select-helper-label"
-                            id="demo-simple-select-helper"
-                            value={inputTimeZone}
-                            label="Timezone"
-                            onChange={handleChange}
-                        >
+            <div className='FormControl ml-5'>
+                <h1 >Your time zone: {userTimeZone}</h1>
+                <FormControl sx={{ m: 1, minWidth: 120 }}>
+                    <InputLabel id="demo-simple-select-helper-label">Timezone</InputLabel>
+                    <Select
+                        labelId="demo-simple-select-helper-label"
+                        id="demo-simple-select-helper"
+                        value={inputTimeZone}
+                        label="Timezone"
+                        onChange={handleChange}
+                    >
 
-                            <MenuItem value='UTC-12'>GMT-12</MenuItem>
-                            <MenuItem value='UTC-11'>GMT-11</MenuItem>
-                            <MenuItem value='UTC-10'>GMT-10</MenuItem>
-                            <MenuItem value='UTC-9'>GMT-9</MenuItem>
-                            <MenuItem value='UTC-8'>GMT-8</MenuItem>
-                            <MenuItem value='UTC-7'>GMT-7</MenuItem>
-                            <MenuItem value='UTC-6'>GMT-6</MenuItem>
-                            <MenuItem value='UTC-5'>GMT-5</MenuItem>
-                            <MenuItem value='UTC-4'>GMT-4</MenuItem>
-                            <MenuItem value='UTC-3'>GMT-3</MenuItem>
-                            <MenuItem value='UTC-2'>GMT-2</MenuItem>
-                            <MenuItem value='UTC-1'>GMT-1</MenuItem>
-                            <MenuItem value='UTC+0'>GMT+0</MenuItem>
-                            <MenuItem value='UTC+1'>GMT+1</MenuItem>
-                            <MenuItem value='UTC+2'>GMT+2</MenuItem>
-                            <MenuItem value='UTC+3'>GMT+3</MenuItem>
-                            <MenuItem value='UTC+4'>GMT+4</MenuItem>
-                            <MenuItem value='UTC+5'>GMT+5</MenuItem>
-                            <MenuItem value='UTC+6'>GMT+6</MenuItem>
-                            <MenuItem value='UTC+7'>GMT+7</MenuItem>
-                            <MenuItem value='UTC+8'>GMT+8</MenuItem>
-                            <MenuItem value='UTC+9'>GMT+9</MenuItem>
-                            <MenuItem value='UTC+10'>GMT+10</MenuItem>
-                            <MenuItem value='UTC+11'>GMT+11</MenuItem>
-                            <MenuItem value='UTC+12'>GMT+12</MenuItem>
-                            <MenuItem value='UTC+13'>GMT+13</MenuItem>
-                            <MenuItem value='UTC+14'>GMT+14</MenuItem>
-                        </Select>
-                        <FormHelperText>Change your timezone here!</FormHelperText>
-                        <Button variant="contained" onClick={submitNewZone}>Change Timezone</Button>
-                    </FormControl>
-</div>
+                        <MenuItem value='UTC-12'>GMT-12</MenuItem>
+                        <MenuItem value='UTC-11'>GMT-11</MenuItem>
+                        <MenuItem value='UTC-10'>GMT-10</MenuItem>
+                        <MenuItem value='UTC-9'>GMT-9</MenuItem>
+                        <MenuItem value='UTC-8'>GMT-8</MenuItem>
+                        <MenuItem value='UTC-7'>GMT-7</MenuItem>
+                        <MenuItem value='UTC-6'>GMT-6</MenuItem>
+                        <MenuItem value='UTC-5'>GMT-5</MenuItem>
+                        <MenuItem value='UTC-4'>GMT-4</MenuItem>
+                        <MenuItem value='UTC-3'>GMT-3</MenuItem>
+                        <MenuItem value='UTC-2'>GMT-2</MenuItem>
+                        <MenuItem value='UTC-1'>GMT-1</MenuItem>
+                        <MenuItem value='UTC+0'>GMT+0</MenuItem>
+                        <MenuItem value='UTC+1'>GMT+1</MenuItem>
+                        <MenuItem value='UTC+2'>GMT+2</MenuItem>
+                        <MenuItem value='UTC+3'>GMT+3</MenuItem>
+                        <MenuItem value='UTC+4'>GMT+4</MenuItem>
+                        <MenuItem value='UTC+5'>GMT+5</MenuItem>
+                        <MenuItem value='UTC+6'>GMT+6</MenuItem>
+                        <MenuItem value='UTC+7'>GMT+7</MenuItem>
+                        <MenuItem value='UTC+8'>GMT+8</MenuItem>
+                        <MenuItem value='UTC+9'>GMT+9</MenuItem>
+                        <MenuItem value='UTC+10'>GMT+10</MenuItem>
+                        <MenuItem value='UTC+11'>GMT+11</MenuItem>
+                        <MenuItem value='UTC+12'>GMT+12</MenuItem>
+                        <MenuItem value='UTC+13'>GMT+13</MenuItem>
+                        <MenuItem value='UTC+14'>GMT+14</MenuItem>
+                    </Select>
+                    <FormHelperText>Change your timezone here!</FormHelperText>
+                    <FormHelperText>Changing your timezone will delete previous time entries.</FormHelperText>
+                    <Button variant="contained" onClick={submitNewZone}>Change Timezone</Button>
+                </FormControl>
+            </div>
             <div className='Calendar'>
                 <div className='monday'>
                     <p id='mondayTitle' className='text-3xl'>Monday</p>

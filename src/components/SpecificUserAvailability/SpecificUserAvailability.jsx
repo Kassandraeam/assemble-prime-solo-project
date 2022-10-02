@@ -9,7 +9,6 @@ const { DateTime } = require("luxon");
 
 function SpecificUserAvailability() {
 
-//DateTime.utc(2017, 5, 15, 17, 36).toLocal()
   const history = useHistory();
   const dispatch = useDispatch();
   const [heading, setHeading] = useState();
@@ -18,24 +17,6 @@ function SpecificUserAvailability() {
 
 
   let id = useParams();
-  // (id); // console logs as {id: '3'}
-
-  // const convertUTCToLocal = (specificUser) => {
-  //   ('CONVERT TO LOCAL SHOULD RUN',specificUserReducer);
-  //   ('THIS IS UTC VALUE FROM TABLE',specificUser)
-  //   let test = DateTime.utc(2017, 5, 15, specificUser, 36).toLocal()
-  //   ('UTC',specificUser, 'That is', test.hour, 'in MY timezone.');
-
-  //   setLocal([
-  //     ...local,
-  //     {
-  //         timeToShow: test.hour,
-  //     }
-  // ])
-  //   (local)
-  //   (`this is the variable local time zone:${local.timeToShow}`)
-  // }
-
 
   useEffect(() => {
     dispatch({

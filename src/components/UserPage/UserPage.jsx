@@ -3,16 +3,11 @@ import { useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { useDispatch } from 'react-redux';
 import Button from '@mui/material/Button';
-import Luxon from '../Luxon/Luxon';
-import { MenuIcon, XIcon, trash } from '@heroicons/react/outline'
-import Box from '@mui/material/Box';
-import Card from '@mui/material/Card';
-import CardActions from '@mui/material/CardActions';
-import CardContent from '@mui/material/CardContent';
-import Typography from '@mui/material/Typography';
+
 import './UserPage.css'
+
 function UserPage() {
-  // this component doesn't do much to start, just renders some user reducer info to the DOM
+
   const user = useSelector((store) => store.user);
   const availableTimesSpecificToUser = useSelector((store) => store.availabilityReducer)
 
@@ -24,17 +19,15 @@ function UserPage() {
       type: 'FETCH_AVAILABILITY',
       payload: user.id
     })
+    console.log('HERE',availableTimesSpecificToUser)
   }, []);
 
-  // ('Times available to this user:', availableTimesSpecificToUser)
-
   const handleDelete = (id) => {
-    // ('THIS IS THE ID OF THE ITEM THAT YOU WANT TO DELETE:', id);
-    // ('THIS IS THE USER ID IN THE HANDLE DELETE HOPEFULLY', user.id)
+
     dispatch({
       type: 'DELETE_AVAILABILITY',
-      payload: user.id, //alex
-      id: id // item number in database
+      payload: user.id, 
+      id: id 
     })
   }
 
@@ -47,11 +40,11 @@ function UserPage() {
 
 
       {/* {JSON.stringify(availableTimesSpecificToUser)} */}
-      <div className='allOfUsersDays'>
+      <div className='mt-4 ml-12 columns-3'>
         {availableTimesSpecificToUser.map(free => (
-          <div className='userDays mr-5 mb-8' key={free.id}>
-              <p>TIME FREE: {free.days_id} AT {free.time_id} UTC</p>
-            <Button variant="contained" className='mx-2' onClick={() => handleDelete(free.id)}>DELETE</Button>
+          <div className='mr-5 mb-8 columns-3' key={free.id}>
+              <p>TIME FREE: {free.day} AT {free.time_id} UTC</p>
+            <Button variant="contained" onClick={() => handleDelete(free.id)}>DELETE</Button>
           </div>
         ))}
       </div>

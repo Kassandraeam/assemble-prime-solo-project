@@ -27,15 +27,15 @@ router.post('/', async (req, res) => {
   try {
     await client.query('BEGIN')
     await Promise.all(availability.map((available) => {
-      const queryText = `INSERT INTO "availability" ("user_id", "days_id", "time_id") VALUES($1, $2, $3) RETURNING "id", "user_id", "days_id", "time_id";`;
-      const reqBody = [available.user, available.weekday, available.time];
+      const queryText = `INSERT INTO "availability" ("user_id", "days_id", "time_id", "urZone") VALUES($1, $2, $3, $4) RETURNING "id", "user_id", "days_id", "time_id", "urZone";`;
+      const reqBody = [available.user, available.weekday, available.time, available.localHour];
       return client.query(queryText, reqBody);
     }));
     await client.query('COMMIT')
     res.sendStatus(201);
   } catch (error) {
     await client.query('ROLLBACK')
-    ('Error POST /api/availability', error);
+      ('Error POST /api/availability', error);
     res.sendStatus(500);
   } finally {
     client.release()
@@ -46,15 +46,16 @@ router.post('/', async (req, res) => {
 router.get('/:id', (req, res) => {
   ('req.params.id: ', req.params.id)
 
-  const queryText = 
-  `
-    SELECT "availability".id, "user".id AS "user_id","availability".days_id, "availability".time_id, "user".username as "username", "days".day, "time".hour
-    FROM "availability"
-    JOIN "user" ON "user".id = "availability".user_id
-    JOIN "days" ON "days".id = "availability".days_id
-    JOIN "time" ON "time".id = "availability".time_id
-    WHERE "user_id" = $1
-    GROUP BY "availability".id, "user".id, "availability".days_id, "availability".time_id, "user".username, "days".day, "time".time, "time".hour
+  const queryText =
+    `
+      SELECT "availability".id, "user".id AS "user_id","availability".days_id, "availability".time_id, "user".username as "username", "days".day, "time".hour
+      FROM "availability"
+      JOIN "user" ON "user".id = "availability".user_id
+      JOIN "days" ON "days".id = "availability".days_id
+      JOIN "time" ON "time".id = "availability".time_id
+      WHERE "user_id" = $1
+      GROUP BY "availability".id, "user".id, "availability".days_id, "availability".time_id, "user".username, "days".day, "time".time, "time".hour
+      ORDER BY "days".day ASC ,"availability".time_id ASC
   ;
   `;
   pool.query(queryText, [req.params.id])
@@ -72,19 +73,33 @@ router.get('/:id', (req, res) => {
 // * Deletes the day/time the user selects in their profile.
 router.delete('/:id', (req, res) => {
   // ('DELETE ROUTER');
-  // (req.params.id);
-
   queryText =
     ` DELETE FROM "availability"
       WHERE "id" = $1;`;
-  pool.query (queryText, [req.params.id])
-  .then(results => {
-    res.sendStatus(200);
-  })
-  .catch(err => {
-    ('err on DELETE ROUTE', err)
-    res.sendStatus(500);
-  })
+  pool.query(queryText, [req.params.id])
+    .then(results => {
+      res.sendStatus(200);
+    })
+    .catch(err => {
+      ('err on DELETE ROUTE', err)
+      res.sendStatus(500);
+    })
+})
+
+// Gets rid of all the availability for the User.
+router.delete('/deleteAll', (req, res) => {
+  console.log('delete all route')
+  console.log('over here hopefully',req.params.id);
+  queryText =
+    `DELETE FROM "availability" WHERE user_id = $1;`;
+  pool.query(queryText, [req.params.id])
+    .then(results => {
+      res.sendStatus(200);
+    })
+    .catch(err => {
+      ('err on DELETE ROUTE', err)
+      res.sendStatus(500);
+    })
 })
 
 module.exports = router;

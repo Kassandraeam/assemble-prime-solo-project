@@ -4,13 +4,10 @@ import { useHistory } from 'react-router-dom';
 import Button from '@mui/material/Button';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
-
-import './MyNav.css'
-
 import AccountCircleRoundedIcon from '@mui/icons-material/AccountCircleRounded';
 import GroupRoundedIcon from '@mui/icons-material/GroupRounded';
 import CalendarTodayRoundedIcon from '@mui/icons-material/CalendarTodayRounded';
-
+import './MyNav.css'
 
 function MyNav() {
 
@@ -66,3 +63,6 @@ function MyNav() {
 }
 
 export default MyNav;
+
+
+
