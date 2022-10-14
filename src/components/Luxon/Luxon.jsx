@@ -93,6 +93,9 @@ function Luxon() {
 
     const handleChange = (event) => {
         setInputTimeZone(event.target.value);
+        dispatch({
+            type: 'DELETE_ALL_AVAILABILITY'
+        })
 
     };
 

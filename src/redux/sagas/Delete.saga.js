@@ -9,8 +9,6 @@ function* deleteSaga() {
 }
 
 function* deleteAvailability(action) {
-    // ('deleteAvailability.saga action.id', action.id);
-    // ('ACTION.PAYLOAD', action.payload);
     try {
         yield axios.delete(`/api/availability/${action.id}`)
         yield put({

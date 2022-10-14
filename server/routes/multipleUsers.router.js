@@ -70,7 +70,7 @@ router.post('/availableTimes', async (req, res) => {
   pool.query(query, [dummyData])
     .then(result => {
       ('result.rows on server side for route /availableTimes:', result.rows)
-      ('SENDING RESULT.ROWS TO REDUCER', result.rows)
+        ('SENDING RESULT.ROWS TO REDUCER', result.rows)
       res.send(result.rows);
     })
     .catch(err => {
