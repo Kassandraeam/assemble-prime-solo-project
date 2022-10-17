@@ -20,15 +20,15 @@ function UserPage() {
       type: 'FETCH_AVAILABILITY',
       payload: user.id
     })
-    console.log('HERE',availableTimesSpecificToUser)
+    console.log('HERE', availableTimesSpecificToUser)
   }, []);
 
   const handleDelete = (id) => {
 
     dispatch({
       type: 'DELETE_AVAILABILITY',
-      payload: user.id, 
-      id: id 
+      payload: user.id,
+      id: id
     })
   }
 
@@ -44,7 +44,7 @@ function UserPage() {
       <div className='ml-12 columns-1'>
         {availableTimesSpecificToUser.map(free => (
           <div className='mr-5 mb-8 columns-1' key={free.id}>
-              <p className='text-[20px]'>TIME FREE: {free.day} AT {free.time_id} UTC</p>
+            <p className='text-[20px]'>TIME FREE: {free.day} AT {free.time_id} UTC</p>
 
             <div className='mt-[25px]'>
               <Button variant="contained" className='mt-5' onClick={() => handleDelete(free.id)}>DELETE</Button>
