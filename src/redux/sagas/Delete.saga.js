@@ -9,6 +9,7 @@ function* deleteSaga() {
 }
 
 function* deleteAvailability(action) {
+    console.log('Delete availability.')
     try {
         yield axios.delete(`/api/availability/${action.id}`)
         yield put({
@@ -16,21 +17,22 @@ function* deleteAvailability(action) {
             payload: action.payload
         })
     } catch {
-        // ('delete error in the delete saga')
+        console.error('delete error in the delete saga')
     }
 };
 
 function* deleteAllAvailability(action) {
-    console.log('here')
+    console.warn('here')
+    console.warn(action.payload.user, 'action in delete all availability')
     try {
-        yield axios.delete(`/api/availability/deleteAll`)
-
-        yield put({
-            type: 'FETCH_AVAILABILITY',
-            payload: action.payload
-        })
+        yield axios.delete(`/api/availability/deleteAll/${action.payload.user}`)
+        // yield put({
+        //     type: 'FETCH_AVAILABILITY',
+        //     payload: action.payload
+        // })
+        console.error('success')
     } catch {
-        // ('delete error in the delete saga')
+        console.error('error in deleteAllAvailability')
     }
 }
 

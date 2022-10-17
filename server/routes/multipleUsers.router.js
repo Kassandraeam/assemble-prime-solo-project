@@ -12,7 +12,7 @@ router.get('/', (req, res) => {
 ;`;
   pool.query(query)
     .then(result => {
-      ('result.rows on server side:', result.rows)
+      console.log('result.rows on server side:', result.rows)
       res.send(result.rows);
     })
     .catch(err => {
@@ -25,7 +25,7 @@ router.get('/', (req, res) => {
 router.post('/', async (req, res) => {
   const client = await pool.connect();
   const availability = req.body.availability;
-  // (availability)
+  console.log(availability)
   try {
     await client.query('BEGIN')
 
@@ -49,10 +49,10 @@ router.post('/', async (req, res) => {
 
 // * GETS the user.id, username, user timezone, and an array of the times that they have available, based on the day
 router.post('/availableTimes', async (req, res) => {
-  // (req.body);
-  // ('PAYLOAD BABEYYYYY', req.body.day)
+  console.log(req.body);
+  console.log('PAYLOAD BABEYYYYY', req.body.day)
   const dummyData = req.body.day;
-  // ('DUMMY DATA YOU DUMMY:', dummyData);
+  console.log('DUMMY DATA YOU DUMMY:', dummyData);
   const query = `
   SELECT 
 	"user".id, "user".username, 
@@ -69,14 +69,14 @@ router.post('/availableTimes', async (req, res) => {
   	 "user".id, "user".username, "user".timezone, "days".day;`;
   pool.query(query, [dummyData])
     .then(result => {
-      ('result.rows on server side for route /availableTimes:', result.rows)
-        ('SENDING RESULT.ROWS TO REDUCER', result.rows)
+      console.log('result.rows on server side for route /availableTimes:', result.rows)
+      console.log('SENDING RESULT.ROWS TO REDUCER', result.rows)
       res.send(result.rows);
     })
     .catch(err => {
-      ('dummy data you dummy', dummyData);
+      console.log('dummy data you dummy', dummyData);
 
-      ('ERROR: Get all users times', err);
+      console.log('ERROR: Get all users times', err);
       res.sendStatus(500)
     })
 });

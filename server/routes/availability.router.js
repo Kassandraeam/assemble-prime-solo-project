@@ -12,7 +12,7 @@ router.get('/', (req, res) => {
       res.send(result.rows);
     })
     .catch(err => {
-      ('ERROR: Get all available times', err);
+      console.log('ERROR: Get all available times', err);
       res.sendStatus(500)
     })
 
@@ -23,7 +23,7 @@ router.post('/', async (req, res) => {
   const client = await pool.connect();
 
   const availability = req.body.availability;
-  // (availability)
+  console.log(availability)
   try {
     await client.query('BEGIN')
     await Promise.all(availability.map((available) => {
@@ -35,7 +35,7 @@ router.post('/', async (req, res) => {
     res.sendStatus(201);
   } catch (error) {
     await client.query('ROLLBACK')
-      ('Error POST /api/availability', error);
+    console.log('Error POST /api/availability', error);
     res.sendStatus(500);
   } finally {
     client.release()
@@ -44,7 +44,8 @@ router.post('/', async (req, res) => {
 
 // * GETS the information for a specific user, their user_id, days_id, time_id, username, day they chose, and time they chose.
 router.get('/:id', (req, res) => {
-  ('req.params.id: ', req.params.id)
+  console.log('Router get /:id')
+  console.log('req.params.id: ', req.params.id)
 
   const queryText =
     `
@@ -60,11 +61,11 @@ router.get('/:id', (req, res) => {
   `;
   pool.query(queryText, [req.params.id])
     .then(result => {
-      ('result in pool query', result)
+      console.log('result in pool query', result.rows)
       res.send(result.rows);
     })
     .catch(err => {
-      ('ERROR: Get all available times', err);
+      console.log('ERROR: Get all available times', err);
       res.sendStatus(500)
     })
 
@@ -72,7 +73,7 @@ router.get('/:id', (req, res) => {
 
 // * Deletes the day/time the user selects in their profile.
 router.delete('/:id', (req, res) => {
-  // ('DELETE ROUTER');
+  console.log('DELETE ROUTER');
   queryText =
     ` DELETE FROM "availability"
       WHERE "id" = $1;`;
@@ -81,19 +82,20 @@ router.delete('/:id', (req, res) => {
       res.sendStatus(200);
     })
     .catch(err => {
-      ('err on DELETE ROUTE', err)
+      console.log('err on DELETE ROUTE', err)
       res.sendStatus(500);
     })
 })
 
 // Gets rid of all the availability for the User.
-router.delete('/deleteAll', (req, res) => {
+router.delete('/deleteAll/:id', (req, res) => {
   console.log('delete all route')
-  console.log('over here hopefully',req.params.id);
+  console.log('over here hopefully',req.body.userID);
   queryText =
     `DELETE FROM "availability" WHERE user_id = $1;`;
-  pool.query(queryText, [req.params.id])
+  pool.query(queryText, [req.body.userID])
     .then(results => {
+      console.log('success!')
       res.sendStatus(200);
     })
     .catch(err => {

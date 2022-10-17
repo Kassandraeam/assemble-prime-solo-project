@@ -93,30 +93,26 @@ function Luxon() {
 
     const handleChange = (event) => {
         setInputTimeZone(event.target.value);
-        dispatch({
-            type: 'DELETE_ALL_AVAILABILITY'
-        })
-
     };
 
-    const submitNewZone = (user) => {
+    const submitNewZone = () => {
         console.log('submitNewZone')
-        // ('This will dispatch to a put saga, then a reducer')
-        // ('PAYLOAD:', inputTimeZone); // this is what I'll dispatch to the PUT.
+        console.log('This will dispatch to a put saga, then a reducer')
+        console.log('PAYLOAD:', inputTimeZone); // this is what I'll dispatch to the PUT.
         dispatch({
             type: 'UPDATE_TIMEZONE',
             payload: {
                 inputTimeZone,
-                user: user.id
+                user: userID
             }
         })
         dispatch({
             type: 'DELETE_ALL_AVAILABILITY',
             payload: {
-                user: user.id
+                user: userID
             }
         })
-        window.location.reload(false);
+        // window.location.reload(false);
     }
 
 

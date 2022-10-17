@@ -7,8 +7,8 @@ function* updateSaga() {
 }
 
 function* updateTimezone(action){
-    // ('ACTION.PAYLOAD.inputTimeZone:', action.payload.inputTimeZone);
-    // ('ACTION.PAYLOAD.USER:', action.payload.user)
+    console.log('ACTION.PAYLOAD.inputTimeZone:', action.payload.inputTimeZone);
+    console.log('ACTION.PAYLOAD.USER:', action.payload.user)
     
     try{
         yield axios.put(`/api/user/`, action.payload)
@@ -17,8 +17,8 @@ function* updateTimezone(action){
             type: 'FETCH_AVAILABILITY',
             payload: action.payload.user
         })
-    } catch {
-        // ('delete error in the delete saga')
+    } catch (error) {
+        console.log(error, 'delete error in the delete saga')
     }
 };
 
