@@ -3,24 +3,22 @@ import { useSelector } from 'react-redux';
 const { DateTime } = require("luxon");
 import "./Luxon.css"
 import { useDispatch } from 'react-redux';
-import CalendarGrid from '../CalendarGrid/CalendarGrid';
-
+import { useHistory } from 'react-router-dom';
 import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import FormHelperText from '@mui/material/FormHelperText';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 import Button from '@mui/material/Button';
-import Stack from '@mui/material/Stack';
+
 
 function Luxon() {
     const [isActive, setIsActive] = useState(false);
     const dispatch = useDispatch();
     const user = useSelector((store) => store.user);
     const userID = user.id;
-    // (user.timezone);
     const userTimeZone = user.timezone;
-    // (userTimeZone);
+    const history = useHistory();
 
     useEffect(() => {
         setInitialUserTimeZone(user.timezone);
@@ -112,7 +110,8 @@ function Luxon() {
                 user: userID
             }
         })
-        // window.location.reload(false);
+        window.location.reload(false);
+        // history.push('/calendar');
     }
 
 
@@ -167,12 +166,7 @@ function Luxon() {
                 <div className='monday'>
                     <p id='mondayTitle' className='text-3xl'>Monday</p>
                     <div className='MondayContainer mb-10'>
-                        {/* <div style={{
-                            backgroundColor: isActive ? '#1876d2' : '',
-                            color: isActive ? 'white' : '',
-                        }} onClick={testContainer}>
-                            <label name="1" value="1">TEST CONTAINER!</label>
-                        </div> */}
+
                         <div>
                             <label className=''>1:00AM</label>
                             <input type="checkbox" name="1" value="1" onClick={handleClick} />
