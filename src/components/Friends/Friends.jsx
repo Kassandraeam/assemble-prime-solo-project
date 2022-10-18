@@ -6,6 +6,8 @@ import './Friends.css'
 import Button from '@mui/material/Button';
 import Avatar from '@mui/material/Avatar';
 const label = { inputProps: { 'aria-label': 'Compare Times' } };
+const { DateTime } = require("luxon");
+
 
 
 const intersection = (arr1, arr2) => {
@@ -104,12 +106,12 @@ function Friends() {
 
 
 
- // + CHECKBOX 
+  // + CHECKBOX 
   const handleCheckBox = (eachUser) => {
     // ('userID:',eachUser.id)
     setCompareArray([...compareArray, eachUser.availableDays])
   };
-// + SUBMIT
+  // + SUBMIT
   const handleSubmit = () => {
     let commonalities = intersectMany(...compareArray);
     setCommonalities(...commonalities);
@@ -185,28 +187,19 @@ function Friends() {
     <>
       <h2 className='text-3xl my-8 mx-5'>{heading}</h2>
       &nbsp;
-        &nbsp;
-        {allUsers.map(eachUser => (
-          <div className='eachUser' key={eachUser.id}>
-            <div className='flex items-center'>
+      &nbsp;
+      {allUsers.map(eachUser => (
+        <div className='eachUser' key={eachUser.id}>
+          <div className='flex items-center'>
             <Avatar {...stringAvatar(eachUser.username)}></Avatar>
-            <p>   &nbsp;&nbsp;{eachUser.username} </p>
-            </div>
-            <p>&nbsp;&nbsp;TIMEZONE: {eachUser.timezone}</p>
-            &nbsp;
-            <div>
-            <Button variant="contained" onClick={() => handleGetAvailableSchedule(eachUser.id, eachUser.username, eachUser.timezone)}>Get {eachUser.username}'s schedule</Button>
-            &nbsp;
-            </div>
+            <p className='ml-[15px]'>{eachUser.username} </p>
           </div>
-        ))}
-        {freeTime.map(eachHour => (
-          <div className='eachUser' key={eachHour.id}>
-            <p>ID{eachHour.id}</p>
-            <p>username:{eachHour.username}</p>
-            <p>time:{eachHour.time}</p>
-            </div>
-           ))}
+          <div>
+          <p className='ml-2 mt-10'>TIMEZONE: {eachUser.timezone}</p>
+            <Button variant="contained" onClick={() => handleGetAvailableSchedule(eachUser.id, eachUser.username, eachUser.timezone)}>Get {eachUser.username}'s schedule</Button>
+          </div>
+        </div>
+      ))}
     </>
   );
 }

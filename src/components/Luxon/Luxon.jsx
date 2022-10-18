@@ -29,8 +29,8 @@ function Luxon() {
     const [inputTimeZone, setInputTimeZone] = useState(userTimeZone);
     const [initialUserTimeZone, setInitialUserTimeZone] = useState(user.timezone)
 
-
-
+    console.log(user);
+    
     const handleSubmit = () => {
         // ('Clicked Submit');
         console.log(userID);
@@ -41,25 +41,32 @@ function Luxon() {
                 availability
             }
         })
-
+        
         window.location.reload(false)
     }
-
+    
     const handleClick = (event) => {
         // eventually have a conditional, if box has been checked, run through this, and then send it.
         let year = 2022; let month = 9; let day = 8; let minute = 0;
         let hour = parseInt(event.target.value);
-        const convertedTime = DateTime.local(year, month, day, hour, minute, { zone: userTimeZone }).toUTC();
+        const convertedTime = DateTime.local(year, month, day, hour, minute, { zone: userTimeZone }).toUTC(); // this is the UTC.
         let inUsersTimeZone = DateTime.utc(year, month, day, convertedTime.hour, minute).toLocal() // this is giving me the local time from UTC.
         let inUsersTimeZoneHour = DateTime.utc(convertedTime.hour).toLocal() // this is giving me the local time from UTC.
-        // ('inUsersTimeZone', inUsersTimeZone); // 5:00 PM IS 2200 UTC
-        console.log('inUsersTimeZone', inUsersTimeZone);
-        console.log('hour', inUsersTimeZone.hour);
-
-
-        // ('HOUR IN 24 HOUR SYSTEM:', hour);
-        // (`convert ${convertedTime.hour}:${convertedTime.minute}`)
-
+        // console.error('inUsersTimeZone object:', inUsersTimeZone); // 5:00 PM IS 2200 UTC
+        console.error('User\'s hour in military time:', inUsersTimeZone.hour);
+        console.warn('Selected time', inUsersTimeZone.hour, 'in UTC:',convertedTime.hour)
+        // console.warn('Time where I am currently in military time:', inUsersTimeZoneHour.hour) // Time of where I am currently.
+        // now, convert user's UTC time to their time using their utc offset.
+        // so if their UTC time is 1700, and they have a UTC offset of -5, I should get back 1200.
+        // I'm taking Bill's time of 1700 UTC and converting to my timezone of -5. Which is 1200.
+        // Billy's time + MyTimeZone = Time I want to Display.
+        // let test = DateTime.fromObject({ year: year, month: month, day: day, hour: convertedTime.hour, minute: minute }, { zone: userTimeZone })
+        // So If I choose 1200 UTC, for me in UTC-5, that would be 7:00am
+        console.log('Hour I\'ve chosen: ', hour)
+        let test = DateTime.utc(year, month, day, hour, minute).setZone('UTC-5')
+        console.log('TEST!!!!!',test.hour)
+    
+        
         if (convertedTime.hour === 0) {
             ('this turns it to 24');
             setAvailability([
@@ -91,6 +98,8 @@ function Luxon() {
 
     const handleChange = (event) => {
         setInputTimeZone(event.target.value);
+        console.log('PAYLOAD:', inputTimeZone); // this is what I'll dispatch to the PUT.
+
     };
 
     const submitNewZone = () => {
