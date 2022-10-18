@@ -109,12 +109,13 @@ function UserPage() {
       case 23:
         return '11:00pm'
         break;
-      case 24:
+        case 24:
         return '12:00am'
         break;
       default:
         break;
     }
+    console.error('TEST')
     return test.hour;
   }
 
@@ -123,14 +124,10 @@ function UserPage() {
     <>
       <h1 className="text-4xl text-center mb-[30px]">Welcome, {user.username}!</h1>
       <h1 className='text-4xl ml-[60px] mb-[50px]'>Available Times:</h1>
-
-
-      {/* {JSON.stringify(availableTimesSpecificToUser)} */}
       <div className='ml-12 columns-1'>
         {availableTimesSpecificToUser.map(free => (
           <div className='mr-5 mb-8 columns-1' key={free.id}>
-            {/* {convertTime(free)} */}
-            {/* <p>UTC: {free.time_id}</p> */}
+
             <p className='text-[20px]'>TIME FREE: {free.day} AT {convertTime(free)}</p>
             <div className='mt-[25px]'>
               <Button variant="contained" className='mt-5' onClick={() => handleDelete(free.id)}>DELETE</Button>

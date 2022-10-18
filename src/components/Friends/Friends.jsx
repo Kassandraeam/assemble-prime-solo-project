@@ -192,23 +192,14 @@ function Friends() {
         <div className='eachUser' key={eachUser.id}>
           <div className='flex items-center'>
             <Avatar {...stringAvatar(eachUser.username)}></Avatar>
-            <p>   &nbsp;&nbsp;{eachUser.username} </p>
+            <p className='ml-[15px]'>{eachUser.username} </p>
           </div>
-          <p>&nbsp;&nbsp;TIMEZONE: {eachUser.timezone}</p>
-          &nbsp;
           <div>
+          <p className='ml-2 mt-10'>TIMEZONE: {eachUser.timezone}</p>
             <Button variant="contained" onClick={() => handleGetAvailableSchedule(eachUser.id, eachUser.username, eachUser.timezone)}>Get {eachUser.username}'s schedule</Button>
-            &nbsp;
           </div>
         </div>
       ))}
-      {/* {freeTime.map(eachHour => (
-          <div className='eachUser' key={eachHour.id}>
-            <p>ID{eachHour.id}</p>
-            <p>username:{eachHour.username}</p>
-            <p>time:{eachHour.time}</p>
-            </div>
-           ))} */}
     </>
   );
 }
