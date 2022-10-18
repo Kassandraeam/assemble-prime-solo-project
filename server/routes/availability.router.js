@@ -6,6 +6,7 @@ const router = express.Router();
 
 // * GETS the user's id, the day id, time id, and the zone that they're in, for all users.
 router.get('/', (req, res) => {
+  console.log('Router get availability')
   const query = `SELECT * FROM availability;`;
   pool.query(query)
     .then(result => {
@@ -20,6 +21,7 @@ router.get('/', (req, res) => {
 
 // * Duplicate from multipleUsers router 🤨
 router.post('/', async (req, res) => {
+  console.log('Router.post availability')
   const client = await pool.connect();
 
   const availability = req.body.availability;
@@ -49,13 +51,13 @@ router.get('/:id', (req, res) => {
 
   const queryText =
     `
-      SELECT "availability".id, "user".id AS "user_id","availability".days_id, "availability".time_id, "user".username as "username", "days".day, "time".hour
+      SELECT "availability".id, "user".id AS "user_id","availability".days_id, "availability".time_id, "user".username as "username", "days".day, "time".hour, "user".timezone
       FROM "availability"
       JOIN "user" ON "user".id = "availability".user_id
       JOIN "days" ON "days".id = "availability".days_id
       JOIN "time" ON "time".id = "availability".time_id
       WHERE "user_id" = $1
-      GROUP BY "availability".id, "user".id, "availability".days_id, "availability".time_id, "user".username, "days".day, "time".time, "time".hour
+      GROUP BY "availability".id, "user".id, "availability".days_id, "availability".time_id, "user".username, "days".day, "time".time, "time".hour, "user".timezone
       ORDER BY "days".day ASC ,"availability".time_id ASC
   ;
   `;

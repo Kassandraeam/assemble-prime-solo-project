@@ -24,7 +24,6 @@ function UserPage() {
   }, []);
 
   const handleDelete = (id) => {
-
     dispatch({
       type: 'DELETE_AVAILABILITY',
       payload: user.id,
@@ -32,11 +31,15 @@ function UserPage() {
     })
   }
 
+  const convertTime = (free) => {
+    console.log('ConvertTime Function');
+    console.log('free:', free);
+  }
+
 
   return (
     <>
       <h1 className="text-4xl text-center mb-[30px]">Welcome, {user.username}!</h1>
-      {/* <p>Your ID is: {user.id}</p> */}
       <h1 className='text-4xl ml-[60px] mb-[50px]'>Available Times:</h1>
 
 
@@ -44,8 +47,8 @@ function UserPage() {
       <div className='ml-12 columns-1'>
         {availableTimesSpecificToUser.map(free => (
           <div className='mr-5 mb-8 columns-1' key={free.id}>
+            {convertTime(free)}
             <p className='text-[20px]'>TIME FREE: {free.day} AT {free.time_id} UTC</p>
-
             <div className='mt-[25px]'>
               <Button variant="contained" className='mt-5' onClick={() => handleDelete(free.id)}>DELETE</Button>
             </div>

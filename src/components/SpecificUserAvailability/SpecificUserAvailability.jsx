@@ -9,11 +9,15 @@ const { DateTime } = require("luxon");
 
 function SpecificUserAvailability() {
 
+  const [local, setLocal] = useState([]);
   const history = useHistory();
   const dispatch = useDispatch();
   const [heading, setHeading] = useState();
   const specificUserReducer = useSelector((store) => store.specificUserReducer);
-  const [local, setLocal] = useState([]);
+  const user = useSelector((store) => store.user);
+  console.log(user); //Gets the current user's information.
+  // use the logged in user's timezone to convert what they're viewing.
+  // so because Billy is free at 1700 utc, I convert that to my time so 1700 utc to utc-5 is 1200, noon.
 
 
   let id = useParams();

@@ -200,13 +200,13 @@ function Friends() {
             </div>
           </div>
         ))}
-        {freeTime.map(eachHour => (
+        {/* {freeTime.map(eachHour => (
           <div className='eachUser' key={eachHour.id}>
             <p>ID{eachHour.id}</p>
             <p>username:{eachHour.username}</p>
             <p>time:{eachHour.time}</p>
             </div>
-           ))}
+           ))} */}
     </>
   );
 }
