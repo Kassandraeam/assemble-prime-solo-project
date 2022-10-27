@@ -6,9 +6,9 @@ function* specificUserAvailabilitySAGA() {
 }
 
 function* fetchSpecificUserAvailability(action) {
-    (`This is what you are sending to this SAGA: ACTION.PAYLOAD = ${action.payload.id}`)
+    console.log(`This is what you are sending to this SAGA: ACTION.PAYLOAD = ${action.id}`)
     try {
-        const response = yield axios.get(`/api/availability/${action.payload.id}`)
+        const response = yield axios.get(`/api/availability/${action.id}`)
         yield put({
             type: 'SPECIFIC_USER_REDUCER',
             payload: response.data

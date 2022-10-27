@@ -43,6 +43,7 @@ function Friends() {
   const store = useSelector((store) => store);
   const allUsers = useSelector((store) => store.multipleUsersReducer)
   let freeTime = useSelector((store) => store.multipleUserFreeTimeReducer)
+  let specificUser = useSelector((store) => store.specificUserReducer)
 
   const history = useHistory();
   const dispatch = useDispatch();
@@ -189,6 +190,11 @@ function Friends() {
       type: 'FETCH_SPECIFIC_USER',
       id: eachUser
     })
+    dispatch({
+      type: 'FETCH_SPECIFIC_USER_AVAILABILITY',
+      id: eachUser
+    })
+    console.log(specificUser)
   }
 
   return (
