@@ -183,6 +183,14 @@ function Friends() {
     };
   }
 
+  const handleCheckbox = (eachUser) => {
+    console.log('Handle checkbox', eachUser)
+    dispatch({
+      type: 'FETCH_SPECIFIC_USER',
+      id: eachUser
+    })
+  }
+
   return (
     <>
       <h2 className='text-3xl my-8 mx-5'>{heading}</h2>
@@ -195,8 +203,9 @@ function Friends() {
             <p className='ml-[15px]'>{eachUser.username} </p>
           </div>
           <div>
-          <p className='ml-2 mt-10'>TIMEZONE: {eachUser.timezone}</p>
+            <p className='ml-2 mt-10'>TIMEZONE: {eachUser.timezone}</p>
             <Button variant="contained" onClick={() => handleGetAvailableSchedule(eachUser.id, eachUser.username, eachUser.timezone)}>Get {eachUser.username}'s schedule</Button>
+            <input type='checkbox' onClick={() => handleCheckbox(eachUser.id, eachUser.username, eachUser.timezone)}></input>
           </div>
         </div>
       ))}
