@@ -98,10 +98,11 @@ function Friends() {
   // console.log(simpleForOf(freeTime));
 
   const handleGetAvailableSchedule = (eachUser) => {
-    history.push(`/friends/${eachUser}`)
+    console.warn('eachUser',eachUser.id)
+    history.push(`/friends/${eachUser.id}`)
     dispatch({
       type: 'FETCH_SPECIFIC_USER',
-      id: eachUser
+      id: eachUser.id
     })
   };
 
@@ -184,6 +185,10 @@ function Friends() {
     };
   }
 
+  const handleCompareSubmit = () => {
+    console.log('Handle Compare Submit');
+  }
+
   const handleCheckbox = (eachUser) => {
     console.log('Handle checkbox', eachUser)
     dispatch({
@@ -210,11 +215,12 @@ function Friends() {
           </div>
           <div>
             <p className='ml-2 mt-10'>TIMEZONE: {eachUser.timezone}</p>
-            <Button variant="contained" onClick={() => handleGetAvailableSchedule(eachUser.id, eachUser.username, eachUser.timezone)}>Get {eachUser.username}'s schedule</Button>
+            <Button variant="contained" onClick={() => handleGetAvailableSchedule(eachUser, eachUser.id, eachUser.username, eachUser.timezone)}>Get {eachUser.username}'s schedule</Button>
             <input type='checkbox' onClick={() => handleCheckbox(eachUser.id, eachUser.username, eachUser.timezone)}></input>
           </div>
         </div>
       ))}
+      <Button variant="contained" onClick={handleCompareSubmit}>Submit</Button>
     </>
   );
 }

@@ -2,7 +2,7 @@ import axios from 'axios';
 import { put, takeLatest } from 'redux-saga/effects';
 
 function* specificUserAvailabilitySAGA() {
-    yield takeLatest('FETCH_SPECIFIC_USER_AVAILABILITY', fetchSpecificUserAvailability)
+    yield takeLatest('FETCH_SPECIFIC_USER', fetchSpecificUserAvailability)
 }
 
 function* fetchSpecificUserAvailability(action) {
